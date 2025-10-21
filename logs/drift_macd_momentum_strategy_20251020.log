@@ -5913,3 +5913,39 @@ solana.exceptions.SolanaRpcException
 2025-10-21 07:16:46 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $109924.44 | P&L: $-1.86 (-1.66%)
 2025-10-21 07:16:46 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $4.89
 2025-10-21 07:16:46 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2025-10-21 07:17:46 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111505.92 | ATR: $2035.12 | Buy: False | Sell: False | Strength: 2.7596
+2025-10-21 07:17:46 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-21 07:17:46 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.001, 'market_type': 'perp', 'entry_price': -107.678717}
+2025-10-21 07:17:46 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring BUY position
+2025-10-21 07:17:46 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 2.9min / 240min (⏰ 237.1min remaining) [Flexible (2H)]
+2025-10-21 07:17:46 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: BUY 0.001000 BTC-PERP @ $111782.76
+2025-10-21 07:17:46 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $111505.92 | P&L: $-0.28 (-0.25%)
+2025-10-21 07:17:46 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $6.11
+2025-10-21 07:17:46 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2025-10-21 07:18:46 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109543.62 | ATR: $1831.83 | Buy: False | Sell: False | Strength: 24.2583
+2025-10-21 07:18:46 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-21 07:18:46 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.001, 'market_type': 'perp', 'entry_price': -107.678717}
+2025-10-21 07:18:46 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring BUY position
+2025-10-21 07:18:46 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 4.0min / 240min (⏰ 236.0min remaining) [Flexible (2H)]
+2025-10-21 07:18:46 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: BUY 0.001000 BTC-PERP @ $111782.76
+2025-10-21 07:18:46 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $109543.62 | P&L: $-2.24 (-2.00%)
+2025-10-21 07:18:46 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $5.50
+2025-10-21 07:18:46 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2025-10-21 07:19:47 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110319.86 | ATR: $1907.17 | Buy: False | Sell: False | Strength: 36.8729
+2025-10-21 07:19:47 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-21 07:19:47 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.001, 'market_type': 'perp', 'entry_price': -107.678717}
+2025-10-21 07:19:47 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring BUY position
+2025-10-21 07:19:47 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 5.0min / 240min (⏰ 235.0min remaining) [Flexible (2H)]
+2025-10-21 07:19:47 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: BUY 0.001000 BTC-PERP @ $111782.76
+2025-10-21 07:19:47 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $110319.86 | P&L: $-1.46 (-1.31%)
+2025-10-21 07:19:47 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $5.72
+2025-10-21 07:19:47 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2025-10-21 07:20:47 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108762.39 | ATR: $1863.89 | Buy: False | Sell: False | Strength: 39.1055
+2025-10-21 07:20:47 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-21 07:20:47 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.001, 'market_type': 'perp', 'entry_price': -107.678717}
+2025-10-21 07:20:47 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring BUY position
+2025-10-21 07:20:47 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 6.0min / 240min (⏰ 234.0min remaining) [Flexible (2H)]
+2025-10-21 07:20:47 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: BUY 0.001000 BTC-PERP @ $111782.76
+2025-10-21 07:20:47 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $108762.39 | P&L: $-3.02 (-2.70%)
+2025-10-21 07:20:47 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $5.59
+2025-10-21 07:20:47 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete

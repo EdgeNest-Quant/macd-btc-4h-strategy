@@ -41,8 +41,79 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 @st.cache_data(ttl=60)
+def load_log_files():
+    """Parse log files to extract SL/TP and execution details"""
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    log_dir = os.path.join(current_dir, '..', 'logs')
+    log_data = []
+    
+    if not os.path.exists(log_dir):
+        return pd.DataFrame()
+    
+    for log_file in glob.glob(os.path.join(log_dir, '*.log')):
+        try:
+            with open(log_file, 'r') as f:
+                content = f.read()
+                
+                # Extract trade executions with SL/TP
+                # Pattern: Trade recorded: SELL/BUY quantity symbol @ price
+                trade_pattern = r'Trade recorded: (SELL|BUY) ([\d.]+) ([\w-]+) @ ([\d.]+)'
+                trades = re.findall(trade_pattern, content)
+                
+                # Extract SL/TP levels
+                sl_pattern = r'Stop Loss: \$([\d,.]+)'
+                tp_pattern = r'Take Profit: \$([\d,.]+)'
+                
+                # Extract tx signatures with their trades
+                tx_pattern = r'tx: ([A-Za-z0-9]+)'
+                
+                # Split content into chunks for each trade
+                trade_chunks = content.split('Trade recorded:')
+                
+                for chunk in trade_chunks[1:]:  # Skip first empty chunk
+                    try:
+                        # Extract trade details
+                        trade_match = re.search(r'(SELL|BUY) ([\d.]+) ([\w-]+) @ ([\d.]+)', chunk)
+                        if not trade_match:
+                            continue
+                        
+                        side, qty, symbol, price = trade_match.groups()
+                        
+                        # Extract tx signature
+                        tx_match = re.search(r'tx: ([A-Za-z0-9]+)', chunk)
+                        if not tx_match:
+                            continue
+                        tx_sig = tx_match.group(1)
+                        
+                        # Look back for SL/TP in recent lines before this trade
+                        recent_lines = chunk[:500]  # Look at last 500 chars before trade
+                        
+                        sl_match = re.search(sl_pattern, recent_lines)
+                        tp_match = re.search(tp_pattern, recent_lines)
+                        
+                        sl_price = float(sl_match.group(1).replace(',', '')) if sl_match else None
+                        tp_price = float(tp_match.group(1).replace(',', '')) if tp_match else None
+                        
+                        log_data.append({
+                            'tx_signature': tx_sig,
+                            'side': side,
+                            'symbol': symbol,
+                            'entry_price': float(price),
+                            'quantity': float(qty),
+                            'sl_from_log': sl_price,
+                            'tp_from_log': tp_price
+                        })
+                    except Exception as e:
+                        continue
+        except Exception as e:
+            st.warning(f"Error reading log file {os.path.basename(log_file)}: {e}")
+            continue
+    
+    return pd.DataFrame(log_data)
+
+@st.cache_data(ttl=60)
 def load_trades():
-    """Load trades from CSV"""
+    """Load trades from CSV and enrich with log data"""
     try:
         # Get the absolute path to trades.csv
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -57,6 +128,22 @@ def load_trades():
         # Ensure non-negative quantities
         if 'quantity' in df.columns:
             df['quantity'] = df['quantity'].abs()
+        
+        # Load log data and merge
+        log_df = load_log_files()
+        if not log_df.empty:
+            # Merge log data with CSV data on tx_signature
+            df = df.merge(log_df, on='tx_signature', how='left', suffixes=('', '_log'))
+            
+            # Use log SL/TP if CSV values are missing or zero
+            if 'sl_from_log' in df.columns:
+                df['sl'] = df['sl'].fillna(df['sl_from_log'])
+                df['sl'] = df.apply(lambda row: row['sl_from_log'] if pd.notna(row['sl_from_log']) and (pd.isna(row['sl']) or row['sl'] == 0) else row['sl'], axis=1)
+            
+            if 'tp_from_log' in df.columns:
+                df['tp'] = df['tp'].fillna(df['tp_from_log'])
+                df['tp'] = df.apply(lambda row: row['tp_from_log'] if pd.notna(row['tp_from_log']) and (pd.isna(row['tp']) or row['tp'] == 0) else row['tp'], axis=1)
+        
         return df
     except Exception as e:
         st.error(f"Error loading trades: {e}")
