@@ -1,6 +1,7 @@
 """
 Drift Protocol Trading Dashboard
 Streamlit app for visualizing trading performance
+Combines CSV trade data with log files for accurate SL/TP detection
 """
 
 import streamlit as st
@@ -10,6 +11,8 @@ import plotly.express as px
 from datetime import datetime, timedelta
 import sys
 import os
+import re
+import glob
 
 # Add parent directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
