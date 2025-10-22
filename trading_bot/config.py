@@ -31,8 +31,21 @@ load_dotenv()
 
 # Solana & Drift Configuration
 SOLANA_RPC_URL = os.getenv("SOLANA_RPC_URL", "https://api.devnet.solana.com")
+RPC_URL = os.getenv("RPC_URL", SOLANA_RPC_URL)  # Primary RPC (Helius preferred)
 PRIVATE_KEY = os.getenv("PRIVATE_KEY")  # Base58 encoded private key or path to keypair file
 DRIFT_ENV = os.getenv("DRIFT_ENV", "devnet")  # "devnet" or "mainnet"
+
+# RPC Fallback Configuration - Try these in order if one fails
+RPC_ENDPOINTS = [
+    RPC_URL,  # Primary (from .env)
+    SOLANA_RPC_URL,  # Secondary (from .env)
+    "https://rpc-devnet.helius.xyz",  # Free public Helius
+    "https://api.devnet.solana.com",  # Public Solana devnet
+]
+
+# RPC Connection Settings
+RPC_TIMEOUT = 30.0  # Initial timeout in seconds
+RPC_MAX_RETRIES = 3  # Retries per endpoint
 
 # Trading Parameters
 # Drift Protocol Perpetual Markets (devnet)
@@ -48,19 +61,7 @@ SPOT_MARKETS = [
     {"symbol": "SOL", "market_index": 1}
 ]
 
-# Primary trading markets (use perpetuals for better liquidity)
-LIST_OF_TICKERS = ["SOL-PERP", "BTC-PERP", "ETH-PERP"]
-
-# Data fetching parameters
-TIME_FRAME = 1  # 1 minute bars
-DAYS = 20  # Historical data lookback period
-
-# Trading Hours (UTC timezone for Drift)
-# Drift operates 24/7, but you can limit bot operation hours
-START_HOUR = 0
-START_MIN = 0  
-END_HOUR = 23
-END_MIN = 59
+# Timezone Configuration
 TIME_ZONE = 'UTC'
 
 # Timezone Configuration - Centralized timezone control
@@ -108,7 +109,6 @@ MACD_SIGNAL_PERIOD = 2           # Signal line period
 EMA_FILTER_PERIOD = 168          # Long-term trend filter (168 = 4h * 42 = 1 week)
 
 # MACD Strategy Specific Parameters
-MACD_POSITION_PCT = 0.9         # Use 90% of available balance per trade (required for min order size)  
 MACD_STOP_BUFFER = 5             # Stop loss buffer in USD
 
 # === FINAL 4H MACD STRATEGY CONFIG (Balanced Quant Setup) ===
@@ -120,10 +120,10 @@ TRAILING_ACTIVATION_ATR = 3.0            # Activate trailing once profit > 3.0x 
 TAKE_PROFIT_ATR_MULTIPLIER = 6.0        # Target 2.2x risk-reward ratio
 MAX_DRAWDOWN_PCT = 0.10                 # Account-level emergency cutoff at 10%
 
-# --- POSITION SIZING ---
-MAX_POSITION_PCT = 0.9                  # Max 90% capital per trade (required for min order size)
-POSITION_PCT = 0.9                      # Use 90% of capital to meet Drift 0.001 BTC minimum
-LEVERAGE_MULTIPLIER = 2.0               # Maintain controlled 2x leverage
+# Position sizing
+POSITION_PCT = 0.30  # Use 30% of available balance per trade
+MAX_POSITION_PCT = 0.30  # Maximum position size (same as POSITION_PCT for risk manager)
+LEVERAGE_MULTIPLIER = 1.0  # Use 2x leverage (double the exposure)
 
 # --- RISK MANAGEMENT BEHAVIOR ---
 STOP_LOSS_BUFFER = 5                    # Small slippage allowance
@@ -133,26 +133,20 @@ MIN_TRADE_INTERVAL = 480                # Wait 8 hours between trades (2 bars)
 MIN_POSITION_HOLD_TIME = 480            # Hold at least 6 hours before eligible to close
 
 # --- ADVANCED HOLD TIME CONTROLS ---
-FLEXIBLE_HOLD_TIME = True               # Allow configurable hold times based on market conditions
-MIN_HOLD_TIME_FLEXIBLE = 240            # Minimum 4 hours for flexible mode (less strict)
-STRONG_REVERSAL_THRESHOLD = 0.35        # MACD difference threshold for early reversal override
+FLEXIBLE_HOLD_TIME = False               # Allow configurable hold times based on market conditions
+MIN_HOLD_TIME_FLEXIBLE = 360            # Minimum 6 hours for flexible mode (less strict)
+STRONG_REVERSAL_THRESHOLD = 0.50        # MACD difference threshold for early reversal override
 ENABLE_EARLY_REVERSAL_OVERRIDE = True   # Allow strong signals to override hold time
 
 # --- TIMEFRAMES ---
 PRIMARY_TIMEFRAME = '4h'                # Main trading timeframe
-CONFIRM_TIMEFRAME = '1h'                # Confirmation layer for entry validation
-PRIMARY_PERIODS = 100                   # MACD + EMA smoothing depth
-CONFIRM_PERIODS = 200                   # Trend validation depth
+CONFIRM_TIMEFRAME = '4h'                 # Confirmation layer for entry validation
+PRIMARY_PERIODS = 100                    # MACD + EMA smoothing depth
+CONFIRM_PERIODS = 100                    # Trend validation depth
 
 # --- SAFETY SETTINGS ---
 SAFETY_MARGIN = 0.8                     # Reserve 20% capital buffer
 CASH_ALLOCATION_MODE = 'full'           # Use full balance (within safety margin)
-
-# Legacy Parameters (for compatibility)
-STOP_PERC = 2  # Stop loss percentage
-EMA_LENGTH = 10
-SUPERTREND_LENGTH = 10
-ATR_LENGTH = 14
 
 # File Paths
 TRADES_FILE = "trades.csv"

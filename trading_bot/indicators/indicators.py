@@ -18,8 +18,12 @@ No external TA library dependencies to avoid conflicts
 """
 import pandas as pd
 import numpy as np
-from ..config import EMA_LENGTH, SUPERTREND_LENGTH, ATR_LENGTH
 from ..logger import logger
+
+# Legacy indicator defaults (not used by MACD strategy)
+EMA_LENGTH = 10
+SUPERTREND_LENGTH = 10
+ATR_LENGTH = 14
 
 
 class IndicatorCalculator:

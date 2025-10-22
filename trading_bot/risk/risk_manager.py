@@ -1,14 +1,14 @@
 """
 Risk management module for Drift Protocol trading
 """
-from ..config import STOP_PERC, MAX_POSITION_PCT, CASH_ALLOCATION_MODE, SAFETY_MARGIN
+from ..config import MAX_POSITION_PCT, CASH_ALLOCATION_MODE, SAFETY_MARGIN
 from ..logger import logger
 
 
 class DriftRiskManager:
     def __init__(self):
         """Initialize the Drift risk manager"""
-        self.stop_percentage = STOP_PERC
+        self.stop_percentage = 2  # Legacy 2% stop (not used by MACD strategy)
         self.safety_margin = SAFETY_MARGIN
         self.max_position_pct = MAX_POSITION_PCT
         self.cash_allocation_mode = CASH_ALLOCATION_MODE
@@ -177,8 +177,11 @@ RiskManager = DriftRiskManager
 """
 Risk management module
 """
-from ..config import MAX_POSITION_PCT, CASH_ALLOCATION_MODE, STOP_PERC
+from ..config import MAX_POSITION_PCT, CASH_ALLOCATION_MODE
 from ..logger import logger
+
+# Legacy constant for backward compatibility
+STOP_PERC = 2
 
 
 class RiskManager:

@@ -23,7 +23,8 @@ import ta
 from ..logger import logger
 from ..config import (TIMEZONE, MACD_TARGET_SYMBOL, MACD_TIMEFRAME, MACD_FAST_PERIOD, 
                     MACD_SLOW_PERIOD, MACD_SIGNAL_PERIOD, EMA_FILTER_PERIOD, 
-                    MACD_POSITION_PCT, MACD_STOP_BUFFER, MIN_SIGNAL_STRENGTH, PERP_MARKETS,
+                    MACD_STOP_BUFFER, MIN_SIGNAL_STRENGTH, PERP_MARKETS,
+                    get_market_index_by_symbol,  # Add this import
                     # === NEW 4H STRATEGY CONFIG IMPORTS ===
                     INITIAL_STOP_ATR_MULTIPLIER, TRAILING_STOP_ATR_MULTIPLIER, 
                     TRAILING_ACTIVATION_ATR, TAKE_PROFIT_ATR_MULTIPLIER, MAX_DRAWDOWN_PCT,
@@ -36,6 +37,23 @@ from ..config import (TIMEZONE, MACD_TARGET_SYMBOL, MACD_TIMEFRAME, MACD_FAST_PE
 
 
 class DriftMACDStrategy:
+    async def cleanup_orphaned_orders(self):
+        """Remove any orders that don't have corresponding positions"""
+        try:
+            orders_df = await self.broker.get_open_orders()
+            positions_df = await self.broker.get_open_position()
+            if not orders_df.empty:
+                for _, order in orders_df.iterrows():
+                    symbol = order['symbol']
+                    market_index = order['market_index']
+                    has_position = False
+                    if not positions_df.empty:
+                        has_position = (positions_df['market_index'] == market_index).any()
+                    if not has_position:
+                        logger.warning(f"🧹 Cleaning orphaned order for {symbol}")
+                        await self.broker.close_order(symbol)
+        except Exception as e:
+            logger.error(f"Error cleaning orphaned orders: {e}")
     """
     Enhanced 4H MACD Strategy with ChatGPT Recommendations:
     
@@ -76,7 +94,7 @@ class DriftMACDStrategy:
         self.macd_slow = MACD_SLOW_PERIOD
         self.macd_signal = MACD_SIGNAL_PERIOD
         self.ema_filter = EMA_FILTER_PERIOD
-        self.position_pct = MACD_POSITION_PCT
+        self.position_pct = POSITION_PCT  # Use main position sizing config
         self.min_signal_strength = MIN_SIGNAL_STRENGTH
         
         # Advanced Risk Management Parameters (NEW)
@@ -125,7 +143,8 @@ class DriftMACDStrategy:
     async def initialize(self):
         """Initialize strategy components (required by main.py)"""
         logger.info(f"🚀 Initializing {self.__class__.__name__} strategy...")
-        
+        # Clean up orphaned orders on startup
+        await self.cleanup_orphaned_orders()
         # Initialize starting equity tracking
         try:
             balance = await self.broker.get_account_balance()
@@ -136,7 +155,6 @@ class DriftMACDStrategy:
                 logger.warning("Could not retrieve balance for equity tracking")
         except Exception as e:
             logger.warning(f"Error initializing equity tracking: {e}")
-        
         logger.info(f"✅ {self.__class__.__name__} strategy initialized successfully")
     
     async def run_strategy(self):
@@ -451,8 +469,8 @@ class DriftMACDStrategy:
                 logger.warning("Insufficient balance for buy order")
                 return
             
-            # Calculate position size (90% allocation for Drift minimums)
-            position_value = balance * POSITION_PCT
+            # Calculate position size with leverage (50% allocation × 2x leverage)
+            position_value = balance * POSITION_PCT * LEVERAGE_MULTIPLIER
             quantity = position_value / price
             
             # Validate minimum order size for Drift (0.001 BTC)
@@ -461,7 +479,7 @@ class DriftMACDStrategy:
                 logger.warning(f"Order size {quantity:.6f} BTC below Drift minimum {min_order_size} BTC")
                 return
             
-            logger.info(f"💰 Buy Signal: ${position_value:.2f} ({POSITION_PCT*100}%) = {quantity:.6f} BTC")
+            logger.info(f"💰 Buy Signal: ${position_value:.2f} ({POSITION_PCT*100}% × {LEVERAGE_MULTIPLIER}x) = {quantity:.6f} BTC")
             
             # Calculate risk management levels
             initial_stop_loss = price - (self.initial_stop_atr_multiplier * atr_value)
@@ -479,21 +497,11 @@ class DriftMACDStrategy:
             )
             
             if tx_sig:
-                # Get actual market price at execution time for more accurate logging
-                try:
-                    current_market_price = df['close'].iloc[-1]  # Most recent close price
-                    execution_price = current_market_price  # Use current market price as proxy
-                    slippage = abs(execution_price - price) / price * 100
+                # Log successful execution - price parameter already contains current market price
+                execution_price = price  # Market price at signal generation
                     
-                    logger.info(f"✅ BUY order executed: {tx_sig}")
-                    logger.info(f"📊 EXECUTION: Signal @ ${price:.2f} | Market @ ${execution_price:.2f} | Slippage: {slippage:.2f}%")
-                    
-                    if slippage > 1.0:  # Warn if slippage > 1%
-                        logger.warning(f"⚠️ HIGH SLIPPAGE: {slippage:.2f}% - Market moved significantly during execution")
-                    
-                except Exception as e:
-                    execution_price = price  # Fallback to signal price
-                    logger.warning(f"Could not determine execution price: {e}")
+                logger.info(f"✅ BUY order executed: {tx_sig}")
+                logger.info(f"📊 EXECUTION: Market @ ${execution_price:.2f}")
                 
                 # Set position tracking with enhanced parameters
                 self.position_entry_price = execution_price  # Use execution price instead of signal price
@@ -525,8 +533,8 @@ class DriftMACDStrategy:
                 logger.warning("Insufficient balance for sell order")
                 return
             
-            # Calculate position size (90% allocation for Drift minimums)
-            position_value = balance * POSITION_PCT
+            # Calculate position size with leverage (50% allocation × 2x leverage)
+            position_value = balance * POSITION_PCT * LEVERAGE_MULTIPLIER
             quantity = position_value / price
             
             # Validate minimum order size for Drift (0.001 BTC)
@@ -535,7 +543,7 @@ class DriftMACDStrategy:
                 logger.warning(f"Order size {quantity:.6f} BTC below Drift minimum {min_order_size} BTC")
                 return
             
-            logger.info(f"💰 Sell Signal: ${position_value:.2f} ({POSITION_PCT*100}%) = {quantity:.6f} BTC")
+            logger.info(f"💰 Sell Signal: ${position_value:.2f} ({POSITION_PCT*100}% × {LEVERAGE_MULTIPLIER}x) = {quantity:.6f} BTC")
             
             # Calculate risk management levels
             initial_stop_loss = price + (self.initial_stop_atr_multiplier * atr_value)
@@ -553,21 +561,11 @@ class DriftMACDStrategy:
             )
             
             if tx_sig:
-                # Get actual market price at execution time for more accurate logging
-                try:
-                    current_market_price = df['close'].iloc[-1]  # Most recent close price
-                    execution_price = current_market_price  # Use current market price as proxy
-                    slippage = abs(execution_price - price) / price * 100
-                    
-                    logger.info(f"✅ SELL order executed: {tx_sig}")
-                    logger.info(f"📊 EXECUTION: Signal @ ${price:.2f} | Market @ ${execution_price:.2f} | Slippage: {slippage:.2f}%")
-                    
-                    if slippage > 1.0:  # Warn if slippage > 1%
-                        logger.warning(f"⚠️ HIGH SLIPPAGE: {slippage:.2f}% - Market moved significantly during execution")
-                    
-                except Exception as e:
-                    execution_price = price  # Fallback to signal price
-                    logger.warning(f"Could not determine execution price: {e}")
+                # Log successful execution - price parameter already contains current market price
+                execution_price = price  # Market price at signal generation
+                
+                logger.info(f"✅ SELL order executed: {tx_sig}")
+                logger.info(f"📊 EXECUTION: Market @ ${execution_price:.2f}")
                 
                 # Set position tracking with enhanced parameters
                 self.position_entry_price = execution_price  # Use execution price instead of signal price
@@ -748,6 +746,21 @@ class DriftMACDStrategy:
             if not self.position_entry_price or not self.position_side:
                 logger.warning("No bot position to close")
                 return
+            
+            # Get current market price BEFORE closing (this is the actual close price)
+            try:
+                data_handler = self.data_handler if hasattr(self, 'data_handler') else None
+                if data_handler:
+                    df = await data_handler.get_historical_data(symbol, periods=1, timeframe_minutes=1)
+                    if not df.empty:
+                        current_market_price = float(df['close'].iloc[-1])
+                    else:
+                        current_market_price = None
+                else:
+                    current_market_price = None
+            except Exception as e:
+                logger.warning(f"Could not get current market price: {e}")
+                current_market_price = None
                 
             # Get current position from broker
             open_positions = await self.broker.get_open_positions()
@@ -785,23 +798,42 @@ class DriftMACDStrategy:
             )
             
             if tx_sig:
-                # Get execution details for actual closing price
-                execution_details = await self.broker.get_execution_details(symbol, tx_sig)
-                execution_price = execution_details.get('execution_price') if execution_details else 0.001
+                # Use current market price as execution price (captured before closing)
+                # Fallback to get_execution_details if market price not available
+                if current_market_price:
+                    execution_price = current_market_price
+                    logger.info(f"💰 Using market price as close price: ${execution_price:.2f}")
+                else:
+                    execution_details = await self.broker.get_execution_details(symbol, tx_sig)
+                    execution_price = execution_details.get('execution_price') if execution_details else self.position_entry_price
+                    logger.warning(f"⚠️ Using fallback close price: ${execution_price:.2f}")
                 
-                # Record the CLOSE trade with actual execution price
+                # Calculate actual realized P&L
+                entry_price = self.position_entry_price
+                if self.position_side == "BUY":
+                    # LONG: profit = (close - entry) * qty
+                    realized_pnl = quantity * (execution_price - entry_price)
+                else:  # SELL
+                    # SHORT: profit = (entry - close) * qty
+                    realized_pnl = quantity * (entry_price - execution_price)
+                
+                logger.info(f"💰 Realized P&L: ${realized_pnl:.2f} (Entry: ${entry_price:.2f}, Close: ${execution_price:.2f})")
+                
+                # Record the CLOSE trade with actual execution price AND P&L
                 self.portfolio_tracker.record_trade(
                     symbol=symbol,
                     side="CLOSE",
-                    price=execution_price,  # Use actual execution price
-                    quantity=quantity,  # Use actual quantity closed
+                    price=execution_price,  # Actual close price
+                    quantity=quantity,  # Actual quantity closed
                     sl=0.0,
                     tp=0.0,
-                    tx_signature=tx_sig,  # Use actual transaction signature
-                    market_index=self.market_index
+                    tx_signature=tx_sig,
+                    market_index=self.market_index,
+                    pnl=realized_pnl,  # ✅ Actual realized P&L
+                    status="CLOSED"
                 )
                 
-                logger.info(f"💰 CLOSE trade recorded: {close_side} {quantity} @ ${execution_price}")
+                logger.info(f"💰 CLOSE trade recorded: {close_side} {quantity} @ ${execution_price:.2f}, P&L: ${realized_pnl:.2f}")
                 
                 # Reset position tracking
                 self.position_entry_price = None
@@ -815,3 +847,79 @@ class DriftMACDStrategy:
             
         except Exception as e:
             logger.error(f"Error closing position: {e}")
+    
+    async def close_all_positions(self):
+        """
+        Close all open PERP positions for this strategy's symbol
+        Called during shutdown or end of trading session
+        """
+        try:
+            logger.info("🚪 Attempting to close all positions...")
+            
+            # Get all open positions
+            open_positions = await self.broker.get_open_positions()
+            if not open_positions:
+                logger.info("✅ No positions to close")
+                return
+            
+            # Find any PERP position for our target symbol
+            target_market_index = get_market_index_by_symbol(MACD_TARGET_SYMBOL)
+            
+            for pos in open_positions:
+                if pos.get('market_type') == 'perp' and pos.get('market_index') == target_market_index:
+                    qty = pos.get('qty', 0)
+                    if abs(qty) > 0:
+                        # Determine close side (opposite of position direction)
+                        close_side = 'SELL' if qty > 0 else 'BUY'
+                        
+                        logger.info(f"🚪 Closing {MACD_TARGET_SYMBOL} position: {close_side} {abs(qty)}")
+                        
+                        tx_sig = await self.broker.place_market_order(
+                            symbol=MACD_TARGET_SYMBOL,
+                            quantity=abs(qty),
+                            side=close_side
+                        )
+                        
+                        if tx_sig:
+                            # Record CLOSE trade
+                            execution_details = await self.broker.get_execution_details(MACD_TARGET_SYMBOL, tx_sig)
+                            execution_price = execution_details.get('execution_price') if execution_details else 0.001
+                            
+                            self.portfolio_tracker.record_trade(
+                                symbol=MACD_TARGET_SYMBOL,
+                                side="CLOSE",
+                                price=execution_price,
+                                quantity=abs(qty),
+                                sl=0.0,
+                                tp=0.0,
+                                tx_signature=tx_sig,
+                                market_index=target_market_index
+                            )
+                            
+                            logger.info(f"✅ Position closed on shutdown: {tx_sig}")
+                            
+                            # Clear tracking
+                            self.position_entry_price = None
+                            self.position_side = None
+                            self.position_entry_time = None
+            
+            logger.info("✅ All positions closed successfully")
+            
+        except Exception as e:
+            logger.error(f"Error closing all positions: {e}")
+    
+    async def cleanup(self):
+        """Cleanup resources before shutdown"""
+        try:
+            logger.info("🧹 Cleaning up strategy resources...")
+            
+            # Close Drift client connection
+            if self.broker and hasattr(self.broker, 'drift_client'):
+                if self.broker.drift_client:
+                    await self.broker.drift_client.unsubscribe()
+                    logger.info("✅ Drift client unsubscribed")
+            
+            logger.info("✅ Cleanup completed")
+            
+        except Exception as e:
+            logger.error(f"Error during cleanup: {e}")

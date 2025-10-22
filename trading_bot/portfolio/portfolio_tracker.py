@@ -270,63 +270,48 @@ class DriftPortfolioTracker:
             sym_trades = df[df['symbol'] == sym].copy()
             sym_trades = sym_trades.sort_index()
             
-            position_stack = []  # Track open positions with entry prices
+            position_stack = []  # Track open positions
             
             for _, trade in sym_trades.iterrows():
                 side = trade['side'].upper()  # Normalize to uppercase
                 
                 if side in ['BUY', 'SELL']:
-                    # Opening position - store SL/TP values
+                    # Opening position - store entry details
                     position_stack.append({
                         'side': side,
                         'price': trade['price'],
                         'quantity': trade['quantity'],
-                        'sl': trade.get('sl', 0),
-                        'tp': trade.get('tp', 0),
                         'timestamp': trade.name
                     })
                 
                 elif side == 'CLOSE' and position_stack:
-                    # Closing most recent position
+                    # Closing position
                     last_position = position_stack.pop()
                     
-                    # Use SL/TP from the opening trade as the actual close price
-                    # The CLOSE trade price is usually a placeholder (0.001)
-                    entry_price = last_position['price']
-                    sl_price = last_position.get('sl', 0)
-                    tp_price = last_position.get('tp', 0)
-                    
-                    # Determine actual close price based on SL/TP
-                    # For now, we'll estimate based on whether it was likely SL or TP
-                    # In a real scenario, you'd get this from the transaction details
-                    if sl_price > 0 and tp_price > 0:
-                        # Both SL and TP exist, estimate which one was hit
-                        if last_position['side'] == 'BUY':
-                            # For BUY positions: SL < entry < TP
-                            # Assume TP was hit for profitable estimation
-                            close_price = tp_price if tp_price > entry_price else sl_price
-                        else:  # SELL position
-                            # For SELL positions: TP < entry < SL  
-                            # Assume TP was hit for profitable estimation
-                            close_price = tp_price if tp_price < entry_price else sl_price
-                    elif sl_price > 0:
-                        close_price = sl_price
-                    elif tp_price > 0:
-                        close_price = tp_price
+                    # Use the actual P&L if recorded in the CLOSE trade
+                    if pd.notna(trade.get('pnl')) and trade.get('pnl') != 0:
+                        # P&L was calculated and stored during closing
+                        trade_pnl = float(trade.get('pnl'))
+                        logger.debug(f"Using recorded P&L: ${trade_pnl:.2f}")
                     else:
-                        # No SL/TP available, use small estimation
+                        # Fallback: calculate from entry/close prices
+                        entry_price = last_position['price']
+                        close_price = trade['price']
+                        qty = trade['quantity'] if trade['quantity'] > 0 else last_position['quantity']
+                        
+                        # Skip if close price is placeholder (0.001)
+                        if close_price < 1.0:
+                            logger.warning(f"⚠️ Invalid close price ({close_price}), skipping P&L calculation")
+                            continue
+                        
                         if last_position['side'] == 'BUY':
-                            close_price = entry_price * 1.002  # 0.2% gain
-                        else:
-                            close_price = entry_price * 0.998  # 0.2% gain
-                    
-                    # Calculate P&L based on position type
-                    if last_position['side'] == 'BUY':
-                        # Long position: profit = (close_price - entry_price) * quantity
-                        trade_pnl = last_position['quantity'] * (close_price - entry_price)
-                    else:  # SELL position
-                        # Short position: profit = (entry_price - close_price) * quantity
-                        trade_pnl = last_position['quantity'] * (entry_price - close_price)
+                            # LONG: profit = (close - entry) * qty
+                            trade_pnl = qty * (close_price - entry_price)
+                        else:  # SELL
+                            # SHORT: profit = (entry - close) * qty
+                            trade_pnl = qty * (entry_price - close_price)
+                        
+                        logger.debug(f"Calculated P&L: ${trade_pnl:.2f} ({last_position['side']} @ {entry_price:.2f} → {close_price:.2f})")
                     
                     realized_pnl += trade_pnl
                     completed_trades += 1

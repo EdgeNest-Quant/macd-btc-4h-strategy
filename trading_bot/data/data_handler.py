@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
 from typing import Optional, Dict, Any
-from ..config import SOLANA_RPC_URL, DRIFT_ENV, get_market_index_by_symbol, TIMEZONE
+from ..config import RPC_ENDPOINTS, DRIFT_ENV, get_market_index_by_symbol, TIMEZONE
 from ..logger import logger
 
 try:
@@ -25,35 +25,80 @@ except ImportError as e:
 class DriftDataHandler:
     def __init__(self):
         """Initialize the Drift data handler"""
-        self.connection = AsyncClient(SOLANA_RPC_URL)
+        self.connection = None
         self.drift_client: Optional[DriftClient] = None
         self.data_cache = {}  # Cache for historical data
         self._initialized = False
+        self._init_retries = 3  # Number of retry attempts per RPC
         
     async def initialize(self):
-        """Initialize Drift client connection"""
+        """Initialize Drift client connection with RPC fallback logic"""
         if self._initialized:
             return
+        
+        import httpx
+        
+        # Try each RPC endpoint in order
+        for rpc_idx, rpc_url in enumerate(RPC_ENDPOINTS):
+            logger.info(f"🔄 Trying RPC endpoint {rpc_idx + 1}/{len(RPC_ENDPOINTS)}: {rpc_url[:60]}...")
             
-        try:
-            # Create dummy wallet for read-only operations
-            dummy_keypair = Keypair()
-            wallet = Wallet(dummy_keypair)
-            
-            self.drift_client = DriftClient(
-                connection=self.connection,
-                wallet=wallet,
-                env=DRIFT_ENV,
-                account_subscription=AccountSubscriptionConfig("cached")
-            )
-            
-            await self.drift_client.subscribe()
-            self._initialized = True
-            logger.info(f"Drift data handler initialized for {DRIFT_ENV}")
-            
-        except Exception as e:
-            logger.error(f"Failed to initialize Drift client: {e}")
-            raise
+            # Retry each endpoint multiple times before moving to next
+            for attempt in range(self._init_retries):
+                try:
+                    # Exponential timeout: 30s, 45s, 67s
+                    timeout_seconds = 30.0 * (1.5 ** attempt)
+                    logger.info(f"   Attempt {attempt + 1}/{self._init_retries} (timeout: {timeout_seconds:.0f}s)")
+                    
+                    # Create new connection with current RPC
+                    self.connection = AsyncClient(
+                        rpc_url,
+                        timeout=httpx.Timeout(timeout_seconds, connect=10.0)
+                    )
+                    
+                    # Create dummy wallet for read-only operations
+                    dummy_keypair = Keypair()
+                    wallet = Wallet(dummy_keypair)
+                    
+                    # Create Drift client with new connection
+                    self.drift_client = DriftClient(
+                        connection=self.connection,
+                        wallet=wallet,
+                        env=DRIFT_ENV,
+                        account_subscription=AccountSubscriptionConfig("cached")
+                    )
+                    
+                    # Subscribe with timeout
+                    await asyncio.wait_for(
+                        self.drift_client.subscribe(), 
+                        timeout=timeout_seconds
+                    )
+                    
+                    self._initialized = True
+                    logger.info(f"✅ Successfully connected using RPC: {rpc_url[:60]}")
+                    logger.info(f"✅ Drift data handler initialized for {DRIFT_ENV}")
+                    return
+                    
+                except asyncio.TimeoutError:
+                    logger.warning(f"   ⏱️  Subscription timed out after {timeout_seconds:.0f}s")
+                    if attempt < self._init_retries - 1:
+                        wait_time = 2 ** attempt  # 1s, 2s, 4s
+                        logger.info(f"   Waiting {wait_time}s before retry...")
+                        await asyncio.sleep(wait_time)
+                    else:
+                        logger.warning(f"   ❌ All attempts failed for this RPC endpoint")
+                        
+                except Exception as e:
+                    logger.warning(f"   ⚠️  Error: {str(e)[:100]}")
+                    if attempt < self._init_retries - 1:
+                        wait_time = 2 ** attempt
+                        logger.info(f"   Waiting {wait_time}s before retry...")
+                        await asyncio.sleep(wait_time)
+                    else:
+                        logger.warning(f"   ❌ All attempts failed for this RPC endpoint")
+        
+        # If we get here, all RPCs failed
+        logger.error(f"❌ Failed to connect to Drift using any of {len(RPC_ENDPOINTS)} RPC endpoints")
+        raise Exception("All RPC endpoints failed after multiple retry attempts")
     
     async def get_current_price(self, symbol: str) -> float:
         """

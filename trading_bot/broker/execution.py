@@ -40,52 +40,76 @@ class DriftOrderExecutor:
         """
         self.private_key = private_key
         self.sub_account_id = sub_account_id
-        self.connection = AsyncClient(SOLANA_RPC_URL)
+        # Use longer timeout for slow RPC endpoints
+        import httpx
+        self.connection = AsyncClient(
+            SOLANA_RPC_URL,
+            timeout=httpx.Timeout(30.0, connect=10.0)  # 30s read, 10s connect timeout
+        )
         self.drift_client: Optional[DriftClient] = None
         self._initialized = False
+        self._init_retries = 3  # Number of retry attempts
         
     async def initialize(self):
-        """Initialize Drift client and wallet"""
+        """Initialize Drift client and wallet with retry logic"""
         if self._initialized:
             return
-            
-        try:
-            # Load keypair
-            if self.private_key.startswith('/') or self.private_key.startswith('./'):
-                # File path
-                keypair = load_keypair(self.private_key)
-            else:
-                # Base58 string
-                keypair = Keypair.from_base58_string(self.private_key)
-            
-            wallet = Wallet(keypair)
-            
-            # Initialize Drift client
-            self.drift_client = DriftClient(
-                connection=self.connection,
-                wallet=wallet,
-                env=DRIFT_ENV,
-                account_subscription=AccountSubscriptionConfig("websocket"),
-                tx_params=TxParams(
-                    compute_units=TX_COMPUTE_UNITS,
-                    compute_units_price=TX_COMPUTE_UNIT_PRICE
-                )
-            )
-            
-            await self.drift_client.subscribe()
-            
-            # Add user subaccount if it doesn't exist
+        
+        for attempt in range(self._init_retries):
             try:
-                await self.drift_client.add_user(self.sub_account_id)
+                logger.info(f"Initializing Drift executor (attempt {attempt + 1}/{self._init_retries})...")
+                
+                # Load keypair
+                if self.private_key.startswith('/') or self.private_key.startswith('./'):
+                    # File path
+                    keypair = load_keypair(self.private_key)
+                else:
+                    # Base58 string
+                    keypair = Keypair.from_base58_string(self.private_key)
+                
+                wallet = Wallet(keypair)
+                
+                # Initialize Drift client
+                self.drift_client = DriftClient(
+                    connection=self.connection,
+                    wallet=wallet,
+                    env=DRIFT_ENV,
+                    account_subscription=AccountSubscriptionConfig("websocket"),
+                    tx_params=TxParams(
+                        compute_units=TX_COMPUTE_UNITS,
+                        compute_units_price=TX_COMPUTE_UNIT_PRICE
+                    )
+                )
+                
+                # Subscribe with timeout
+                try:
+                    await asyncio.wait_for(self.drift_client.subscribe(), timeout=30.0)
+                except asyncio.TimeoutError:
+                    logger.warning(f"Drift subscription timed out on attempt {attempt + 1}")
+                    if attempt < self._init_retries - 1:
+                        await asyncio.sleep(2 ** attempt)  # Exponential backoff
+                        continue
+                    raise
+                
+                # Add user subaccount if it doesn't exist
+                try:
+                    await self.drift_client.add_user(self.sub_account_id)
+                except Exception as e:
+                    logger.debug(f"Subaccount {self.sub_account_id} may already exist: {e}")
+                
+                self._initialized = True
+                logger.info(f"✅ Drift executor initialized for wallet: {keypair.pubkey()}")
+                return
+                
             except Exception as e:
-                logger.debug(f"Subaccount {self.sub_account_id} may already exist: {e}")
-            
-            self._initialized = True
-            logger.info(f"Drift executor initialized for wallet: {keypair.pubkey()}")
-            
-        except Exception as e:
-            logger.error(f"Failed to initialize Drift executor: {e}")
-            raise
+                logger.warning(f"Attempt {attempt + 1} failed: {e}")
+                if attempt < self._init_retries - 1:
+                    wait_time = 2 ** attempt
+                    logger.info(f"Retrying in {wait_time}s...")
+                    await asyncio.sleep(wait_time)
+                else:
+                    logger.error(f"❌ Failed to initialize Drift executor after {self._init_retries} attempts")
+                    raise
     
     async def get_account_balance(self) -> float:
         """Get total available collateral for trading"""
@@ -138,12 +162,36 @@ class DriftOrderExecutor:
             perp_positions = user.get_user_account().perp_positions
             for pos in perp_positions:
                 if pos.base_asset_amount != 0:  # Has position
+                    # Calculate entry price with proper Drift scaling
+                    # Base asset (e.g., BTC) is in BASE_PRECISION (1e9)
+                    # Quote entry amount (USD) is in PRICE_PRECISION (1e6)
+                    try:
+                        base_amt = float(pos.base_asset_amount) / BASE_PRECISION
+                        quote_amt = float(pos.quote_entry_amount) / PRICE_PRECISION
+                        
+                        if base_amt != 0:
+                            entry_price = abs(quote_amt / base_amt)
+                        else:
+                            entry_price = 0
+                        
+                        # Sanity check for BTC-PERP and similar high-value assets
+                        if entry_price < 100 or entry_price > 200000:
+                            logger.warning(f"⚠️ Abnormal entry price detected for MARKET_{pos.market_index}: {entry_price}")
+                            # Don't override, let it through for debugging but log it
+                    except Exception as e:
+                        logger.error(f"❌ Error computing entry price for MARKET_{pos.market_index}: {e}")
+                        entry_price = 0
+                    
+                    # CRITICAL: Keep sign for position direction (positive = LONG, negative = SHORT)
+                    qty_signed = float(pos.base_asset_amount) / BASE_PRECISION
+                    
                     positions.append({
                         'symbol': f"MARKET_{pos.market_index}",
                         'market_index': pos.market_index,
-                        'qty': float(pos.base_asset_amount) / BASE_PRECISION,
+                        'qty': qty_signed,  # Keep sign: positive=LONG, negative=SHORT
                         'market_type': 'perp',
-                        'entry_price': float(pos.quote_entry_amount) / float(pos.base_asset_amount) if pos.base_asset_amount != 0 else 0,
+                        'entry_price': entry_price,
+                        'direction': 'LONG' if qty_signed > 0 else 'SHORT',  # Explicit direction
                     })
             
             # Get spot positions (excluding USDC)
@@ -229,12 +277,29 @@ class DriftOrderExecutor:
             position = user.get_perp_position(market_index)
             
             if position and position.base_asset_amount != 0:
+                # Calculate entry price with proper Drift scaling
+                try:
+                    base_amt = float(position.base_asset_amount) / BASE_PRECISION
+                    quote_amt = float(position.quote_entry_amount) / PRICE_PRECISION
+                    
+                    if base_amt != 0:
+                        entry_price = abs(quote_amt / base_amt)
+                    else:
+                        entry_price = 0
+                    
+                    # Sanity check
+                    if entry_price < 100 or entry_price > 200000:
+                        logger.warning(f"⚠️ Abnormal entry price detected for {symbol}: {entry_price}")
+                except Exception as e:
+                    logger.error(f"❌ Error computing entry price for {symbol}: {e}")
+                    entry_price = 0
+                
                 return {
                     'symbol': symbol,
                     'market_index': market_index,
-                    'size': float(position.base_asset_amount) / BASE_PRECISION,
+                    'size': abs(float(position.base_asset_amount) / BASE_PRECISION),
                     'side': 'long' if position.base_asset_amount > 0 else 'short',
-                    'entry_price': float(position.quote_entry_amount) / float(position.base_asset_amount) if position.base_asset_amount != 0 else 0,
+                    'entry_price': entry_price,
                     'unrealized_pnl': float(position.quote_asset_amount) / PRICE_PRECISION,
                     'open': True
                 }
@@ -282,6 +347,7 @@ class DriftOrderExecutor:
             direction = PositionDirection.Long() if side.upper() == "BUY" else PositionDirection.Short()
             market_type = MarketType.Perp() if symbol.endswith("-PERP") else MarketType.Spot()
             
+            
             # Add debugging info
             base_asset_amount = int(quantity * BASE_PRECISION)
             logger.info(f"Order debug: symbol={symbol}, quantity={quantity}, BASE_PRECISION={BASE_PRECISION}, base_asset_amount={base_asset_amount}")
@@ -305,9 +371,22 @@ class DriftOrderExecutor:
                 await asyncio.sleep(2)  # Allow time for order processing
                 execution_details = await self.get_execution_details(symbol, tx_sig)
                 if execution_details:
-                    actual_price = execution_details.get('execution_price', 'Unknown')
-                    actual_qty = execution_details.get('execution_quantity', quantity)
-                    logger.info(f"📊 EXECUTION DETAILS: {symbol} {side} - Intended: {quantity}@{quantity*100000 if side=='BUY' else 'market'} | Actual: {actual_qty}@{actual_price}")
+                    actual_price = execution_details.get('execution_price', 'market')
+                    actual_qty = execution_details.get('execution_quantity', 0)
+                    logger.info(f"📊 EXECUTION DETAILS: {symbol} {side} - Intended: {quantity}@market | Actual: {actual_qty}@{actual_price}")
+                    
+                    # Check if order was actually filled
+                    if actual_qty == 0:
+                        logger.error(f"❌ ORDER REJECTED! Actual quantity = 0")
+                        logger.error(f"💰 Possible reasons:")
+                        logger.error(f"   1. Insufficient margin/collateral")
+                        logger.error(f"   2. Position size exceeds account leverage limits")
+                        logger.error(f"   3. Market conditions preventing fill")
+                        logger.error(f"💡 Solutions:")
+                        logger.error(f"   • Reduce POSITION_PCT from 0.5 to 0.3 in config")
+                        logger.error(f"   • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5")
+                        logger.error(f"   • Check Drift UI for pending orders or margin issues")
+                        return None  # Return None to indicate failed order
             
             return tx_sig
             
@@ -503,367 +582,3 @@ class DriftOrderExecutor:
 
 # Backwards compatibility alias
 OrderExecutor = DriftOrderExecutor
-            
-#         Returns:
-#             int: 1 if no market order exists, 0 if exists
-#         """
-#         order_df = self.get_open_orders()
-#         if not order_df.empty:
-#             order_df = order_df[order_df['order_type'] == 'market']
-#             if not order_df.empty and (ticker in order_df['symbol'].to_list()):
-#                 return 0
-#         return 1
-    
-#     def place_market_order(self, symbol, quantity, side):
-#         """
-#         Place a market order
-        
-#         Args:
-#             symbol (str): Ticker symbol
-#             quantity (float): Quantity to trade
-#             side (OrderSide): BUY or SELL
-            
-#         Returns:
-#             order object or None
-#         """
-#         if self.check_market_order_placed(symbol):
-#             try:
-#                 market_order_data = MarketOrderRequest(
-#                     symbol=symbol,
-#                     qty=quantity,
-#                     side=side,
-#                     time_in_force=TimeInForce.GTC
-#                 )
-                
-#                 market_order = self.trading_client.submit_order(order_data=market_order_data)
-#                 print(market_order)
-#                 logger.info(f"Order placed: {side} {quantity} {symbol}")
-#                 return market_order
-#             except Exception as e:
-#                 error_msg = str(e)
-#                 logger.error(f"Failed to place order for {symbol}: {error_msg}")
-#                 print(f"❌ Order failed: {error_msg}")
-                
-#                 # Parse insufficient balance error
-#                 if "insufficient balance" in error_msg.lower():
-#                     print(f"💡 Try reducing position size or check available balance")
-                
-#                 return None
-#         return None
-    
-#     def place_stop_order(self, symbol, stop_price, quantity, side):
-#         """
-#         Place a stop limit order
-        
-#         Args:
-#             symbol (str): Ticker symbol
-#             stop_price (float): Stop price
-#             quantity (float): Quantity
-#             side (OrderSide): BUY or SELL
-#         """
-#         logger.info(f'Placing stop order for {quantity} of {symbol} at {stop_price}')
-#         print('placing stop order')
-        
-#         req = StopLimitOrderRequest(
-#             symbol=symbol,
-#             qty=quantity,
-#             side=side,
-#             time_in_force=TimeInForce.GTC,
-#             limit_price=round(stop_price, 2),
-#             stop_price=round(stop_price, 2)
-#         )
-        
-#         res = self.trading_client.submit_order(req)
-#         print(res)
-#         return res
-    
-#     def check_and_place_stop_orders(self, pos_df, order_df):
-#         """
-#         Check positions and place stop orders if needed
-        
-#         Args:
-#             pos_df (pd.DataFrame): Positions dataframe
-#             order_df (pd.DataFrame): Orders dataframe
-#         """
-#         if not pos_df.empty:
-#             print('inside check and place stop order')
-#             l1 = pos_df['symbol'].to_list()
-#             print(l1)
-#             print(LIST_OF_TICKERS)
-            
-#             l1 = list(set(l1).intersection(set([l.replace('/', '') for l in LIST_OF_TICKERS])))
-#             print(l1)
-            
-#             for ticker in LIST_OF_TICKERS:
-#                 try:
-#                     t = self.trading_client.get_open_position(ticker.replace('/', ''))
-#                     buy_price = float(t.avg_entry_price)
-#                     quantity = abs(round(float(t.qty), 2))
-#                     s = t.side
-                    
-#                     if s == OrderSide.BUY:
-#                         s = OrderSide.SELL
-#                         stop_price = buy_price * (1 - (STOP_PERC / 100))  # correct SL for long
-
-#                     else:
-#                         s = OrderSide.BUY
-#                         stop_price = buy_price * (1 - (STOP_PERC / 100))  # correct SL for long
-
-
-#                     if order_df.empty or (ticker not in order_df['symbol'].to_list()):
-#                         self.place_stop_order(ticker, stop_price, quantity, s)
-                    
-#                     print('stop order already placed')
-#                 except Exception as e:
-#                     print(e)
-#                     print('stop order cannot be placed')
-#                     logger.info(f'Stop order cannot be placed for {ticker}')
-    
-#     def get_account_cash(self):
-#         """Get available cash in account"""
-#         return float(self.trading_client.get_account().cash)
-
-
-# """
-# Order execution handler for interacting with Alpaca broker
-# """
-# import pandas as pd
-# from alpaca.trading.client import TradingClient
-# from alpaca.trading.requests import (
-#     MarketOrderRequest, 
-#     StopLimitOrderRequest,
-#     GetOrdersRequest
-# )
-# from alpaca.trading.enums import OrderSide, QueryOrderStatus, TimeInForce
-# from ..config import API_KEY, SECRET_KEY, LIST_OF_TICKERS, STOP_PERC, normalize_symbol
-# from ..logger import logger
-
-
-# class OrderExecutor:
-#     def __init__(self):
-#         self.trading_client = TradingClient(API_KEY, SECRET_KEY, paper=True)
-    
-#     def get_open_position(self):
-#         pos = self.trading_client.get_all_positions()
-#         new_pos = [dict(elem) for elem in pos]
-#         pos_df = pd.DataFrame(new_pos)
-        
-#         if pos_df.empty:
-#             return pos_df
-        
-#         # Normalize tickers for matching
-#         ticker_list = [normalize_symbol(i) for i in LIST_OF_TICKERS]
-#         pos_df = pos_df[pos_df['symbol'].isin(ticker_list)]
-#         return pos_df
-    
-#     def get_open_orders(self):
-#         request_params = GetOrdersRequest(status=QueryOrderStatus.OPEN)
-#         orders = self.trading_client.get_orders(filter=request_params)
-#         new_order = [dict(elem) for elem in orders]
-#         order_df = pd.DataFrame(new_order)
-        
-#         if not order_df.empty:
-#             ticker_list = [normalize_symbol(i) for i in LIST_OF_TICKERS]
-#             order_df = order_df[order_df['symbol'].isin(ticker_list)]
-#         return order_df
-    
-#     def place_market_order(self, symbol, quantity, side):
-#         """
-#         Place a market order and auto-attach stop-loss
-#         """
-#         norm_symbol = normalize_symbol(symbol)
-
-#         try:
-#             market_order_data = MarketOrderRequest(
-#                 symbol=norm_symbol,
-#                 qty=quantity,
-#                 side=side,
-#                 time_in_force=TimeInForce.GTC
-#             )
-#             market_order = self.trading_client.submit_order(order_data=market_order_data)
-#             logger.info(f"Order placed: {side} {quantity} {norm_symbol}")
-#             print(market_order)
-#             return market_order
-#         except Exception as e:
-#             logger.error(f"❌ Order failed for {norm_symbol}: {e}")
-#             return None
-    
-#     def place_stop_order(self, symbol, stop_price, quantity, side):
-#         """
-#         Place a stop order to protect position
-#         """
-#         norm_symbol = normalize_symbol(symbol)
-#         logger.info(f'Placing stop order for {quantity} of {norm_symbol} at {stop_price}')
-
-#         req = StopLimitOrderRequest(
-#             symbol=norm_symbol,
-#             qty=quantity,
-#             side=side,
-#             time_in_force=TimeInForce.GTC,
-#             limit_price=round(stop_price, 2),
-#             stop_price=round(stop_price, 2)
-#         )
-#         res = self.trading_client.submit_order(req)
-#         return res
-    
-#     def check_and_place_stop_orders(self, pos_df, order_df):
-#         """
-#         Ensure stop orders exist for each open position
-#         """
-#         if not pos_df.empty:
-#             for ticker in LIST_OF_TICKERS:
-#                 norm_symbol = normalize_symbol(ticker)
-#                 try:
-#                     pos = self.trading_client.get_open_position(norm_symbol)
-#                     buy_price = float(pos.avg_entry_price)
-#                     quantity = abs(round(float(pos.qty), 2))
-#                     side = pos.side
-
-#                     if side == "long":
-#                         exit_side = OrderSide.SELL
-#                         stop_price = buy_price * (1 - STOP_PERC / 100)
-#                     else:
-#                         exit_side = OrderSide.BUY
-#                         stop_price = buy_price * (1 + STOP_PERC / 100)
-                    
-#                     if order_df.empty or (norm_symbol not in order_df['symbol'].to_list()):
-#                         self.place_stop_order(norm_symbol, stop_price, quantity, exit_side)
-#                 except Exception as e:
-#                     logger.info(f'Stop order cannot be placed for {ticker}: {e}')
-
-
-
-
-"""
-Order execution module: handles placing, closing, and managing orders
-"""
-import pandas as pd
-import logging
-from alpaca.trading.client import TradingClient
-from alpaca.trading.enums import OrderSide, TimeInForce
-from alpaca.trading.requests import (
-    MarketOrderRequest,
-    StopLimitOrderRequest,
-    GetOrdersRequest
-)
-
-
-class OrderExecutor:
-    def __init__(self, api_key, secret_key, paper=True):
-        """
-        Initialize trading client
-        """
-        self.client = TradingClient(api_key, secret_key, paper=paper)
-        self.logger = logging.getLogger(__name__)
-
-    def get_account_cash(self):
-        """Fetch available cash balance from the trading account"""
-        try:
-            account = self.client.get_account()
-            cash = float(account.cash)
-            self.logger.debug(f"[OrderExecutor] Account cash available: {cash}")
-            return cash
-        except Exception as e:
-            self.logger.error(f"[OrderExecutor] Failed to fetch account cash: {e}")
-            return 0.0
-
-    def place_market_order(self, symbol, qty, side: OrderSide):
-        """Place a market order"""
-        try:
-            order_data = MarketOrderRequest(
-                symbol=symbol,
-                qty=qty,
-                side=side,
-                time_in_force=TimeInForce.GTC
-            )
-            order = self.client.submit_order(order_data=order_data)
-            self.logger.info(f"[OrderExecutor] Market order placed: {side} {qty} {symbol}")
-            return order
-        except Exception as e:
-            self.logger.error(f"[OrderExecutor] Market order failed: {e}")
-            return None
-
-    def place_stop_order(self, symbol, stop_price, qty, side: OrderSide):
-        """Place a stop-limit order"""
-        try:
-            order_data = StopLimitOrderRequest(
-                symbol=symbol,
-                qty=qty,
-                side=side,
-                time_in_force=TimeInForce.GTC,
-                stop_price=round(stop_price, 2),
-                limit_price=round(stop_price, 2)
-            )
-            order = self.client.submit_order(order_data=order_data)
-            self.logger.info(f"[OrderExecutor] Stop order placed: {side} {qty} {symbol} @ {stop_price}")
-            return order
-        except Exception as e:
-            self.logger.error(f"[OrderExecutor] Stop order failed: {e}")
-            return None
-
-    def close_order(self, symbol):
-        """Cancel all open orders for a given symbol"""
-        try:
-            req = GetOrdersRequest(status="open")
-            orders = self.client.get_orders(filter=req)
-            for order in orders:
-                if order.symbol == symbol:
-                    self.client.cancel_order_by_id(order.id)
-                    self.logger.info(f"[OrderExecutor] Cancelled order {order.id} for {symbol}")
-        except Exception as e:
-            self.logger.error(f"[OrderExecutor] Failed to cancel orders for {symbol}: {e}")
-
-    def close_position(self, symbol):
-        """Close an open position for a given symbol"""
-        try:
-            pos = self.client.get_open_position(symbol)
-            qty = float(pos.qty)
-            exit_price = float(pos.current_price)
-            self.client.close_position(symbol)
-            self.logger.info(f"[OrderExecutor] Closed position {symbol}: {qty} @ {exit_price}")
-            return True, qty, exit_price
-        except Exception as e:
-            self.logger.error(f"[OrderExecutor] Failed to close position {symbol}: {e}")
-            return False, 0, 0.0
-
-    def get_open_orders(self):
-        """Get all open orders as DataFrame"""
-        try:
-            req = GetOrdersRequest(status="open")
-            orders = self.client.get_orders(filter=req)
-            df = pd.DataFrame([o.__dict__ for o in orders])
-            return df
-        except Exception as e:
-            self.logger.error(f"[OrderExecutor] Failed to fetch open orders: {e}")
-            return pd.DataFrame()
-
-    def get_open_position(self, symbol=None):
-        """
-        Get open positions, optionally filtered by symbol
-        Returns DataFrame
-        """
-        try:
-            if symbol:
-                pos = self.client.get_open_position(symbol)
-                return pd.DataFrame([{
-                    "symbol": pos.symbol,
-                    "qty": float(pos.qty),
-                    "avg_entry": float(pos.avg_entry_price),
-                    "current_price": float(pos.current_price),
-                    "market_value": float(pos.market_value),
-                    "unrealized_pl": float(pos.unrealized_pl)
-                }])
-
-            positions = self.client.get_all_positions()
-            data = [{
-                "symbol": p.symbol,
-                "qty": float(p.qty),
-                "avg_entry": float(p.avg_entry_price),
-                "current_price": float(p.current_price),
-                "market_value": float(p.market_value),
-                "unrealized_pl": float(p.unrealized_pl)
-            } for p in positions]
-            return pd.DataFrame(data)
-        except Exception as e:
-            self.logger.error(f"[OrderExecutor] Failed to fetch positions: {e}")
-            return pd.DataFrame(columns=["symbol", "qty", "avg_entry", "current_price", "market_value", "unrealized_pl"])

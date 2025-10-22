@@ -6,8 +6,7 @@ import signal
 import sys
 from datetime import datetime, timedelta
 from .config import (
-    TIME_ZONE, START_HOUR, START_MIN, END_HOUR, END_MIN, 
-    PRIVATE_KEY, SUB_ACCOUNT_ID, STRATEGY_CHECK_INTERVAL, TIMEZONE
+    TIME_ZONE, PRIVATE_KEY, SUB_ACCOUNT_ID, STRATEGY_CHECK_INTERVAL, TIMEZONE
 )
 from .logger import logger, setup_logger
 from .data.data_handler import DriftDataHandler
@@ -75,67 +74,21 @@ class DriftTradingBot:
         signal.signal(signal.SIGINT, signal_handler)
         signal.signal(signal.SIGTERM, signal_handler)
     
-    async def wait_for_start_time(self):
-        """Wait until trading start time"""
-        now = datetime.now(TIMEZONE)
-        
-        # Create start and end times for today
-        start_time = now.replace(
-            hour=START_HOUR,
-            minute=START_MIN,
-            second=0,
-            microsecond=0
-        )
-        
-        end_time = now.replace(
-            hour=END_HOUR,
-            minute=END_MIN,
-            second=0,
-            microsecond=0
-        )
-        
-        # If end time is before start time, it's next day
-        if end_time <= start_time:
-            end_time += timedelta(days=1)
-        
-        # If we're past today's end time, wait for tomorrow's start
-        if now > end_time:
-            start_time += timedelta(days=1)
-            end_time += timedelta(days=1)
-        
-        logger.info(f"Current time: {now}")
-        logger.info(f"Trading window: {start_time} to {end_time}")
-        
-        if now < start_time:
-            wait_seconds = (start_time - now).total_seconds()
-            logger.info(f"Waiting {wait_seconds:.0f} seconds until start time...")
-            
-            while datetime.now(TIMEZONE) < start_time and self.running:
-                await asyncio.sleep(1)
-        
-        return start_time, end_time
-    
     async def run_trading_loop(self):
-        """Main trading loop"""
+        """Main trading loop - runs 24/7 for crypto markets"""
         try:
-            start_time, end_time = await self.wait_for_start_time()
-            
             if not self.running:
                 return
-                
-            logger.info("Starting trading loop...")
+            
+            now = datetime.now(TIMEZONE)
+            logger.info(f"Current time: {now}")
+            logger.info("Starting 24/7 trading loop...")
             logger.info("Strategy execution begins!")
             
             last_run = datetime.now(TIMEZONE)
             
             while self.running:
                 now = datetime.now(TIMEZONE)
-                
-                # Check if we're past end time
-                if now > end_time:
-                    logger.info("Trading hours ended, closing all positions...")
-                    await self.strategy.close_all_positions()
-                    break
                 
                 # Check if it's time to run strategy
                 time_since_last_run = (now - last_run).total_seconds()
