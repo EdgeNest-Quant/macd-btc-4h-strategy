@@ -123,7 +123,7 @@ MAX_DRAWDOWN_PCT = 0.10                 # Account-level emergency cutoff at 10%
 # Position sizing
 POSITION_PCT = 0.30  # Use 30% of available balance per trade
 MAX_POSITION_PCT = 0.30  # Maximum position size (same as POSITION_PCT for risk manager)
-LEVERAGE_MULTIPLIER = 1.0  # Use 2x leverage (double the exposure)
+LEVERAGE_MULTIPLIER = 2.0  # Use 2x leverage (double the exposure)
 
 # --- RISK MANAGEMENT BEHAVIOR ---
 STOP_LOSS_BUFFER = 5                    # Small slippage allowance
@@ -140,7 +140,7 @@ ENABLE_EARLY_REVERSAL_OVERRIDE = True   # Allow strong signals to override hold 
 
 # --- TIMEFRAMES ---
 PRIMARY_TIMEFRAME = '4h'                # Main trading timeframe
-CONFIRM_TIMEFRAME = '4h'                 # Confirmation layer for entry validation
+CONFIRM_TIMEFRAME = '1h'                 # Confirmation layer for entry validation
 PRIMARY_PERIODS = 100                    # MACD + EMA smoothing depth
 CONFIRM_PERIODS = 100                    # Trend validation depth
 

@@ -1,0 +1,1307 @@
+2025-10-23 10:30:04 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-23 10:30:04 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251023.log
+2025-10-23 10:30:04 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251023.log
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - 📊 Symbol: BTC-PERP | Timeframe: 240 | Position %: 0.3
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - ⚡ MACD: Fast(6), Slow(10), Signal(2)
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - 🔒 STRICT HOLD MODE: 480 minutes (4H strategy)
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - 🎯 STRONG REVERSAL OVERRIDE: Enabled with 0.5 MACD threshold
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Risk Management: Initial Stop: 2.8x ATR, Take Profit: 6.0x ATR
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - 📈 Position Sizing: 0.3% of balance (90% for Drift minimums)
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - 🚀 Initializing DriftMACDStrategy strategy...
+2025-10-23 10:30:06 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
+2025-10-23 10:30:16 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt
+2025-10-23 10:30:16 UTC -     INFO - drift_macd_momentum_strategy - 💰 Starting equity tracked: $734.75
+2025-10-23 10:30:16 UTC -     INFO - drift_macd_momentum_strategy - ✅ DriftMACDStrategy strategy initialized successfully
+2025-10-23 10:30:16 UTC -     INFO - drift_macd_momentum_strategy - All components initialized successfully
+2025-10-23 10:30:16 UTC -     INFO - drift_macd_momentum_strategy - Current time: 2025-10-23 09:30:16.931008+00:00
+2025-10-23 10:30:16 UTC -     INFO - drift_macd_momentum_strategy - Starting 24/7 trading loop...
+2025-10-23 10:30:16 UTC -     INFO - drift_macd_momentum_strategy - Strategy execution begins!
+2025-10-23 10:31:17 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 1/4: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90...
+2025-10-23 10:31:17 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 10:31:39 UTC -     INFO - drift_macd_momentum_strategy - ✅ Successfully connected using RPC: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90
+2025-10-23 10:31:39 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift data handler initialized for devnet
+2025-10-23 10:31:39 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110590.82 | ATR: $2034.68 | Buy: False | Sell: False | Strength: 152.7196
+2025-10-23 10:31:39 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:31:39 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:31:39 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:32:17 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110283.57 | ATR: $2098.51 | Buy: False | Sell: False | Strength: 43.0215
+2025-10-23 10:32:17 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:32:17 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:32:17 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:32:38 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 10:32:38 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 10:32:38 UTC -     INFO - drift_macd_momentum_strategy - Trading loop ended
+2025-10-23 10:32:38 UTC -     INFO - drift_macd_momentum_strategy - Shutting down trading bot...
+2025-10-23 10:32:38 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Attempting to close all positions...
+2025-10-23 10:32:38 UTC -     INFO - drift_macd_momentum_strategy - ✅ All positions closed successfully
+2025-10-23 10:32:38 UTC -     INFO - drift_macd_momentum_strategy - 🧹 Cleaning up strategy resources...
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift client unsubscribed
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - ✅ Cleanup completed
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - Final portfolio state:
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - Shutdown completed successfully
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - Strategy stopped
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251023.log
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - 📊 Symbol: BTC-PERP | Timeframe: 240 | Position %: 0.3
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - ⚡ MACD: Fast(6), Slow(10), Signal(2)
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - 🔒 STRICT HOLD MODE: 480 minutes (4H strategy)
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - 🎯 STRONG REVERSAL OVERRIDE: Enabled with 0.5 MACD threshold
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Risk Management: Initial Stop: 2.8x ATR, Take Profit: 6.0x ATR
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - 📈 Position Sizing: 0.3% of balance (90% for Drift minimums)
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - 🚀 Initializing DriftMACDStrategy strategy...
+2025-10-23 10:32:49 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
+2025-10-23 10:32:52 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt
+2025-10-23 10:32:52 UTC -     INFO - drift_macd_momentum_strategy - 💰 Starting equity tracked: $734.78
+2025-10-23 10:32:52 UTC -     INFO - drift_macd_momentum_strategy - ✅ DriftMACDStrategy strategy initialized successfully
+2025-10-23 10:32:52 UTC -     INFO - drift_macd_momentum_strategy - All components initialized successfully
+2025-10-23 10:32:52 UTC -     INFO - drift_macd_momentum_strategy - Current time: 2025-10-23 09:32:52.808443+00:00
+2025-10-23 10:32:52 UTC -     INFO - drift_macd_momentum_strategy - Starting 24/7 trading loop...
+2025-10-23 10:32:52 UTC -     INFO - drift_macd_momentum_strategy - Strategy execution begins!
+2025-10-23 10:32:53 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 10:32:53 UTC -     INFO - drift_macd_momentum_strategy - Trading loop ended
+2025-10-23 10:32:53 UTC -     INFO - drift_macd_momentum_strategy - Shutting down trading bot...
+2025-10-23 10:32:53 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Attempting to close all positions...
+2025-10-23 10:32:53 UTC -     INFO - drift_macd_momentum_strategy - ✅ All positions closed successfully
+2025-10-23 10:32:53 UTC -     INFO - drift_macd_momentum_strategy - 🧹 Cleaning up strategy resources...
+2025-10-23 10:32:56 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 10:33:03 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift client unsubscribed
+2025-10-23 10:33:03 UTC -     INFO - drift_macd_momentum_strategy - ✅ Cleanup completed
+2025-10-23 10:33:03 UTC -     INFO - drift_macd_momentum_strategy - Final portfolio state:
+2025-10-23 10:33:03 UTC -     INFO - drift_macd_momentum_strategy - Shutdown completed successfully
+2025-10-23 10:33:11 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-23 10:33:11 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251023.log
+2025-10-23 10:33:11 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251023.log
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - 📊 Symbol: BTC-PERP | Timeframe: 240 | Position %: 0.3
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - ⚡ MACD: Fast(6), Slow(10), Signal(2)
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - 🔒 STRICT HOLD MODE: 480 minutes (4H strategy)
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - 🎯 STRONG REVERSAL OVERRIDE: Enabled with 0.5 MACD threshold
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Risk Management: Initial Stop: 2.8x ATR, Take Profit: 6.0x ATR
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - 📈 Position Sizing: 0.3% of balance (90% for Drift minimums)
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - 🚀 Initializing DriftMACDStrategy strategy...
+2025-10-23 10:33:12 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
+2025-10-23 10:33:19 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt
+2025-10-23 10:33:19 UTC -     INFO - drift_macd_momentum_strategy - 💰 Starting equity tracked: $734.86
+2025-10-23 10:33:19 UTC -     INFO - drift_macd_momentum_strategy - ✅ DriftMACDStrategy strategy initialized successfully
+2025-10-23 10:33:19 UTC -     INFO - drift_macd_momentum_strategy - All components initialized successfully
+2025-10-23 10:33:19 UTC -     INFO - drift_macd_momentum_strategy - Current time: 2025-10-23 09:33:19.552881+00:00
+2025-10-23 10:33:19 UTC -     INFO - drift_macd_momentum_strategy - Starting 24/7 trading loop...
+2025-10-23 10:33:19 UTC -     INFO - drift_macd_momentum_strategy - Strategy execution begins!
+2025-10-23 10:34:19 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 1/4: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90...
+2025-10-23 10:34:19 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 10:34:41 UTC -     INFO - drift_macd_momentum_strategy - ✅ Successfully connected using RPC: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90
+2025-10-23 10:34:41 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift data handler initialized for devnet
+2025-10-23 10:34:42 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107362.81 | ATR: $2027.66 | Buy: False | Sell: False | Strength: 17.0391
+2025-10-23 10:34:42 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:34:42 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:34:42 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:35:20 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108775.21 | ATR: $1855.53 | Buy: False | Sell: False | Strength: 21.7789
+2025-10-23 10:35:20 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:35:20 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:35:20 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:36:20 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108274.91 | ATR: $1746.67 | Buy: False | Sell: False | Strength: 38.4016
+2025-10-23 10:36:20 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:36:20 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:36:20 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:37:20 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107809.09 | ATR: $1839.26 | Buy: False | Sell: False | Strength: 89.4660
+2025-10-23 10:37:20 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:37:20 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:37:20 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:38:20 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108243.93 | ATR: $1731.31 | Buy: False | Sell: False | Strength: 101.5060
+2025-10-23 10:38:20 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:38:20 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:38:20 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:39:21 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109032.88 | ATR: $1850.06 | Buy: False | Sell: False | Strength: 61.6476
+2025-10-23 10:39:21 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:39:21 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:39:21 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:40:21 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109411.76 | ATR: $2176.51 | Buy: False | Sell: False | Strength: 110.7867
+2025-10-23 10:40:21 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:40:21 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:40:21 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:41:21 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108168.44 | ATR: $1727.45 | Buy: False | Sell: False | Strength: 33.8661
+2025-10-23 10:41:21 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:41:21 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:41:21 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:42:21 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108615.09 | ATR: $2099.86 | Buy: False | Sell: True | Strength: 32.1469
+2025-10-23 10:42:21 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:42:21 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🎯 SELL SIGNAL - Ready to open SHORT position
+2025-10-23 10:42:21 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:42:21 UTC - CRITICAL - drift_macd_momentum_strategy - 🚀 EXECUTING REAL SELL ORDER ON DRIFT!
+2025-10-23 10:42:21 UTC -     INFO - drift_macd_momentum_strategy - 💰 Sell Signal: $440.90 (30.0% × 2.0x) = 0.004059 BTC
+2025-10-23 10:42:21 UTC -     INFO - drift_macd_momentum_strategy - 🎯 Risk Management: Entry $108615.09 | Stop $114494.69 | TP $96015.95
+2025-10-23 10:42:21 UTC -     INFO - drift_macd_momentum_strategy - 📊 ATR: $2099.86 | Stop Risk: 2.8x | TP: 6.0x
+2025-10-23 10:42:21 UTC -     INFO - drift_macd_momentum_strategy - 📤 Executing SELL order: 0.004059 BTC-PERP at market price
+2025-10-23 10:42:21 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.004059298722478386, BASE_PRECISION=1000000000, base_asset_amount=4059298
+2025-10-23 10:42:52 UTC -    ERROR - drift_macd_momentum_strategy - Error placing market order for BTC-PERP: 
+2025-10-23 10:43:22 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110809.86 | ATR: $1728.98 | Buy: False | Sell: False | Strength: 92.7565
+2025-10-23 10:43:22 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:43:22 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:43:22 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:44:22 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107694.84 | ATR: $1718.84 | Buy: False | Sell: False | Strength: 78.3816
+2025-10-23 10:44:22 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:44:22 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:44:22 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:45:22 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107585.52 | ATR: $1883.82 | Buy: False | Sell: False | Strength: 71.6977
+2025-10-23 10:45:22 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:45:22 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:45:22 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:46:23 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107794.94 | ATR: $1852.54 | Buy: False | Sell: False | Strength: 97.1262
+2025-10-23 10:46:23 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 10:46:23 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.0188, 'market_type': 'perp', 'entry_price': 109375.97973404254, 'direction': 'LONG'}
+2025-10-23 10:46:23 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 10:46:23 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: 0.0188
+2025-10-23 10:46:23 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 10:47:23 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109899.01 | ATR: $1935.58 | Buy: False | Sell: False | Strength: 93.8607
+2025-10-23 10:47:23 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 10:47:23 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.0188, 'market_type': 'perp', 'entry_price': 109375.97973404254, 'direction': 'LONG'}
+2025-10-23 10:47:23 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 10:47:23 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: 0.0188
+2025-10-23 10:47:23 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 10:48:23 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108089.43 | ATR: $1863.54 | Buy: False | Sell: False | Strength: 143.3998
+2025-10-23 10:48:23 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:48:23 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:48:23 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:49:23 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110358.87 | ATR: $1969.83 | Buy: False | Sell: True | Strength: 22.8950
+2025-10-23 10:49:23 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:49:23 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🎯 SELL SIGNAL - Ready to open SHORT position
+2025-10-23 10:49:23 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:49:23 UTC - CRITICAL - drift_macd_momentum_strategy - 🚀 EXECUTING REAL SELL ORDER ON DRIFT!
+2025-10-23 10:49:23 UTC -     INFO - drift_macd_momentum_strategy - 💰 Sell Signal: $440.55 (30.0% × 2.0x) = 0.003992 BTC
+2025-10-23 10:49:23 UTC -     INFO - drift_macd_momentum_strategy - 🎯 Risk Management: Entry $110358.87 | Stop $115874.41 | TP $98539.87
+2025-10-23 10:49:23 UTC -     INFO - drift_macd_momentum_strategy - 📊 ATR: $1969.83 | Stop Risk: 2.8x | TP: 6.0x
+2025-10-23 10:49:23 UTC -     INFO - drift_macd_momentum_strategy - 📤 Executing SELL order: 0.003992 BTC-PERP at market price
+2025-10-23 10:49:23 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.0039920033887116515, BASE_PRECISION=1000000000, base_asset_amount=3992003
+2025-10-23 10:49:27 UTC -     INFO - drift_macd_momentum_strategy - Market order placed: BTC-PERP SELL 0.0039920033887116515, tx: 4foJG5N4hoNWoq9NG2RNaB9hWSA7C4kzY5JL5orEMxDK3wAviTY6zuDnd3L1AaUvDonn7YxziCXrgF4hTtkeUDmx
+2025-10-23 10:49:29 UTC -     INFO - drift_macd_momentum_strategy - 📊 EXECUTION DETAILS: BTC-PERP SELL - Intended: 0.0039920033887116515@market | Actual: 0@109343.687147
+2025-10-23 10:49:29 UTC -    ERROR - drift_macd_momentum_strategy - ❌ ORDER REJECTED! Actual quantity = 0
+2025-10-23 10:49:29 UTC -    ERROR - drift_macd_momentum_strategy - 💰 Possible reasons:
+2025-10-23 10:49:29 UTC -    ERROR - drift_macd_momentum_strategy -    1. Insufficient margin/collateral
+2025-10-23 10:49:29 UTC -    ERROR - drift_macd_momentum_strategy -    2. Position size exceeds account leverage limits
+2025-10-23 10:49:29 UTC -    ERROR - drift_macd_momentum_strategy -    3. Market conditions preventing fill
+2025-10-23 10:49:29 UTC -    ERROR - drift_macd_momentum_strategy - 💡 Solutions:
+2025-10-23 10:49:29 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce POSITION_PCT from 0.5 to 0.3 in config
+2025-10-23 10:49:29 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5
+2025-10-23 10:49:29 UTC -    ERROR - drift_macd_momentum_strategy -    • Check Drift UI for pending orders or margin issues
+2025-10-23 10:50:24 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110906.82 | ATR: $2071.49 | Buy: False | Sell: False | Strength: 4.9876
+2025-10-23 10:50:24 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:50:24 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:50:24 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:51:24 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108153.13 | ATR: $1797.59 | Buy: False | Sell: True | Strength: 6.3679
+2025-10-23 10:51:24 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:51:24 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🎯 SELL SIGNAL - Ready to open SHORT position
+2025-10-23 10:51:24 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:51:24 UTC - CRITICAL - drift_macd_momentum_strategy - 🚀 EXECUTING REAL SELL ORDER ON DRIFT!
+2025-10-23 10:51:24 UTC -     INFO - drift_macd_momentum_strategy - 💰 Sell Signal: $427.82 (30.0% × 2.0x) = 0.003956 BTC
+2025-10-23 10:51:24 UTC -     INFO - drift_macd_momentum_strategy - 🎯 Risk Management: Entry $108153.13 | Stop $113186.39 | TP $97367.57
+2025-10-23 10:51:24 UTC -     INFO - drift_macd_momentum_strategy - 📊 ATR: $1797.59 | Stop Risk: 2.8x | TP: 6.0x
+2025-10-23 10:51:24 UTC -     INFO - drift_macd_momentum_strategy - 📤 Executing SELL order: 0.003956 BTC-PERP at market price
+2025-10-23 10:51:24 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.003955729823383428, BASE_PRECISION=1000000000, base_asset_amount=3955729
+2025-10-23 10:51:28 UTC -     INFO - drift_macd_momentum_strategy - Market order placed: BTC-PERP SELL 0.003955729823383428, tx: 5dq3fjaQfvyTcGgQU1RbA6XHJt82g4TzyfbEh5VJvZggdt65wemwMZnnXWXsyfxAnLNcejfXEv9D4QbE8QHD1zEH
+2025-10-23 10:51:30 UTC -     INFO - drift_macd_momentum_strategy - 📊 EXECUTION DETAILS: BTC-PERP SELL - Intended: 0.003955729823383428@market | Actual: 0@109398.911556
+2025-10-23 10:51:30 UTC -    ERROR - drift_macd_momentum_strategy - ❌ ORDER REJECTED! Actual quantity = 0
+2025-10-23 10:51:30 UTC -    ERROR - drift_macd_momentum_strategy - 💰 Possible reasons:
+2025-10-23 10:51:30 UTC -    ERROR - drift_macd_momentum_strategy -    1. Insufficient margin/collateral
+2025-10-23 10:51:30 UTC -    ERROR - drift_macd_momentum_strategy -    2. Position size exceeds account leverage limits
+2025-10-23 10:51:30 UTC -    ERROR - drift_macd_momentum_strategy -    3. Market conditions preventing fill
+2025-10-23 10:51:30 UTC -    ERROR - drift_macd_momentum_strategy - 💡 Solutions:
+2025-10-23 10:51:30 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce POSITION_PCT from 0.5 to 0.3 in config
+2025-10-23 10:51:30 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5
+2025-10-23 10:51:30 UTC -    ERROR - drift_macd_momentum_strategy -    • Check Drift UI for pending orders or margin issues
+2025-10-23 10:52:25 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111198.36 | ATR: $1867.30 | Buy: False | Sell: False | Strength: 107.2317
+2025-10-23 10:52:25 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:52:25 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:52:25 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:53:25 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108466.72 | ATR: $1807.82 | Buy: False | Sell: False | Strength: 95.3200
+2025-10-23 10:53:25 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:53:25 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:53:25 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 10:54:25 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108831.61 | ATR: $2109.92 | Buy: False | Sell: False | Strength: 104.0889
+2025-10-23 10:54:25 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 10:54:25 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 10:54:25 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:01:41 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-23 16:01:41 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251023.log
+2025-10-23 16:01:41 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251023.log
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - 📊 Symbol: BTC-PERP | Timeframe: 240 | Position %: 0.3
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - ⚡ MACD: Fast(6), Slow(10), Signal(2)
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - 🔒 STRICT HOLD MODE: 480 minutes (4H strategy)
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - 🎯 STRONG REVERSAL OVERRIDE: Enabled with 0.5 MACD threshold
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Risk Management: Initial Stop: 2.8x ATR, Take Profit: 6.0x ATR
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - 📈 Position Sizing: 0.3% of balance (90% for Drift minimums)
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - 🚀 Initializing DriftMACDStrategy strategy...
+2025-10-23 16:01:43 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
+2025-10-23 16:01:46 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt
+2025-10-23 16:01:46 UTC -     INFO - drift_macd_momentum_strategy - 💰 Starting equity tracked: $734.32
+2025-10-23 16:01:46 UTC -     INFO - drift_macd_momentum_strategy - ✅ DriftMACDStrategy strategy initialized successfully
+2025-10-23 16:01:46 UTC -     INFO - drift_macd_momentum_strategy - All components initialized successfully
+2025-10-23 16:01:46 UTC -     INFO - drift_macd_momentum_strategy - Current time: 2025-10-23 15:01:46.665442+00:00
+2025-10-23 16:01:46 UTC -     INFO - drift_macd_momentum_strategy - Starting 24/7 trading loop...
+2025-10-23 16:01:46 UTC -     INFO - drift_macd_momentum_strategy - Strategy execution begins!
+2025-10-23 16:02:46 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 1/4: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90...
+2025-10-23 16:02:46 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:02:47 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:02:47 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:02:48 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:02:48 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:02:48 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:02:50 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:02:50 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:02:50 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:02:50 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 2/4: https://api.devnet.solana.com...
+2025-10-23 16:02:50 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:02:50 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:02:50 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:02:51 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:02:51 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:02:51 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:02:53 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:02:53 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:02:53 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:02:53 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 3/4: https://rpc-devnet.helius.xyz...
+2025-10-23 16:02:53 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:02:53 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:02:53 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:02:54 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:02:55 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:02:55 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:02:57 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:02:57 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:02:57 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:02:57 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 4/4: https://api.devnet.solana.com...
+2025-10-23 16:02:57 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:02:57 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:02:57 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:02:58 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:02:58 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:02:58 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:03:00 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:03:00 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:00 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:03:00 UTC -    ERROR - drift_macd_momentum_strategy - ❌ Failed to connect to Drift using any of 4 RPC endpoints
+2025-10-23 16:03:00 UTC -    ERROR - drift_macd_momentum_strategy - Error in MACD strategy execution: All RPC endpoints failed after multiple retry attempts
+Traceback (most recent call last):
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/strategies/macd_strategy_btc_4h_advanced.py", line 196, in execute
+    df = await self.data_handler.get_historical_crypto_data(symbol, duration_days, "Hour")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/data/data_handler.py", line 237, in get_historical_crypto_data
+    await self.initialize()
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/data/data_handler.py", line 101, in initialize
+    raise Exception("All RPC endpoints failed after multiple retry attempts")
+Exception: All RPC endpoints failed after multiple retry attempts
+2025-10-23 16:03:47 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 1/4: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90...
+2025-10-23 16:03:47 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:03:47 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:47 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:03:48 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:03:48 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:48 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:03:50 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:03:51 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:51 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:03:51 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 2/4: https://api.devnet.solana.com...
+2025-10-23 16:03:51 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:03:51 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:51 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:03:52 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:03:52 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:52 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:03:54 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:03:54 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:54 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:03:54 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 3/4: https://rpc-devnet.helius.xyz...
+2025-10-23 16:03:54 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:03:54 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:54 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:03:55 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:03:55 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:55 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:03:57 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:03:57 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:57 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:03:57 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 4/4: https://api.devnet.solana.com...
+2025-10-23 16:03:57 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:03:58 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:58 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:03:59 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:03:59 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:03:59 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:04:01 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:04:01 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:01 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:04:01 UTC -    ERROR - drift_macd_momentum_strategy - ❌ Failed to connect to Drift using any of 4 RPC endpoints
+2025-10-23 16:04:01 UTC -    ERROR - drift_macd_momentum_strategy - Error in MACD strategy execution: All RPC endpoints failed after multiple retry attempts
+Traceback (most recent call last):
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/strategies/macd_strategy_btc_4h_advanced.py", line 196, in execute
+    df = await self.data_handler.get_historical_crypto_data(symbol, duration_days, "Hour")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/data/data_handler.py", line 237, in get_historical_crypto_data
+    await self.initialize()
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/data/data_handler.py", line 101, in initialize
+    raise Exception("All RPC endpoints failed after multiple retry attempts")
+Exception: All RPC endpoints failed after multiple retry attempts
+2025-10-23 16:04:48 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 1/4: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90...
+2025-10-23 16:04:48 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:04:48 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:48 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:04:49 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:04:49 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:49 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:04:51 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:04:51 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:51 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:04:51 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 2/4: https://api.devnet.solana.com...
+2025-10-23 16:04:51 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:04:51 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:51 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:04:52 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:04:53 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:53 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:04:55 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:04:55 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:55 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:04:55 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 3/4: https://rpc-devnet.helius.xyz...
+2025-10-23 16:04:55 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:04:55 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:55 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:04:56 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:04:56 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:56 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:04:58 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:04:58 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:58 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:04:58 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 4/4: https://api.devnet.solana.com...
+2025-10-23 16:04:58 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:04:58 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:58 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:04:59 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:04:59 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:04:59 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:05:01 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:05:02 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:05:02 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:05:02 UTC -    ERROR - drift_macd_momentum_strategy - ❌ Failed to connect to Drift using any of 4 RPC endpoints
+2025-10-23 16:05:02 UTC -    ERROR - drift_macd_momentum_strategy - Error in MACD strategy execution: All RPC endpoints failed after multiple retry attempts
+Traceback (most recent call last):
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/strategies/macd_strategy_btc_4h_advanced.py", line 196, in execute
+    df = await self.data_handler.get_historical_crypto_data(symbol, duration_days, "Hour")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/data/data_handler.py", line 237, in get_historical_crypto_data
+    await self.initialize()
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/data/data_handler.py", line 101, in initialize
+    raise Exception("All RPC endpoints failed after multiple retry attempts")
+Exception: All RPC endpoints failed after multiple retry attempts
+2025-10-23 16:05:49 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 1/4: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90...
+2025-10-23 16:05:49 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:05:49 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:05:49 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:05:50 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:05:50 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:05:50 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:05:52 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:05:52 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:05:52 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:05:52 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 2/4: https://api.devnet.solana.com...
+2025-10-23 16:05:52 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:05:52 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:05:52 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:05:53 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:05:53 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:05:53 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:05:55 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:05:55 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:05:55 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:05:55 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 3/4: https://rpc-devnet.helius.xyz...
+2025-10-23 16:05:55 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:05:56 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:05:56 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:05:57 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:05:57 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:05:57 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:05:59 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:05:59 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:05:59 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:05:59 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 4/4: https://api.devnet.solana.com...
+2025-10-23 16:05:59 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:05:59 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:05:59 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:06:00 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:06:00 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:06:00 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:06:02 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:06:02 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:06:02 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:06:02 UTC -    ERROR - drift_macd_momentum_strategy - ❌ Failed to connect to Drift using any of 4 RPC endpoints
+2025-10-23 16:06:02 UTC -    ERROR - drift_macd_momentum_strategy - Error in MACD strategy execution: All RPC endpoints failed after multiple retry attempts
+Traceback (most recent call last):
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/strategies/macd_strategy_btc_4h_advanced.py", line 196, in execute
+    df = await self.data_handler.get_historical_crypto_data(symbol, duration_days, "Hour")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/data/data_handler.py", line 237, in get_historical_crypto_data
+    await self.initialize()
+  File "/Users/olaoluwatunmise/dex-perp-trader-template/trading_bot/data/data_handler.py", line 101, in initialize
+    raise Exception("All RPC endpoints failed after multiple retry attempts")
+Exception: All RPC endpoints failed after multiple retry attempts
+2025-10-23 16:06:49 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 1/4: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90...
+2025-10-23 16:06:49 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:06:49 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:06:49 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:06:50 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:06:51 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:06:51 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:06:53 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:06:53 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:06:53 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:06:53 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 2/4: https://api.devnet.solana.com...
+2025-10-23 16:06:53 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:06:53 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:06:53 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:06:54 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:06:54 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:06:54 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:06:56 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:07:06 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:07:06 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:07:06 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 3/4: https://rpc-devnet.helius.xyz...
+2025-10-23 16:07:06 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:07:16 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:07:16 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:07:17 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:07:19 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:07:19 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 2s before retry...
+2025-10-23 16:07:21 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 3/3 (timeout: 68s)
+2025-10-23 16:07:21 UTC -  WARNING - drift_macd_momentum_strategy -    ⚠️  Error: 
+2025-10-23 16:07:21 UTC -  WARNING - drift_macd_momentum_strategy -    ❌ All attempts failed for this RPC endpoint
+2025-10-23 16:07:21 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 4/4: https://api.devnet.solana.com...
+2025-10-23 16:07:21 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 16:07:51 UTC -  WARNING - drift_macd_momentum_strategy -    ⏱️  Subscription timed out after 30s
+2025-10-23 16:07:51 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 16:07:52 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 16:08:32 UTC -     INFO - drift_macd_momentum_strategy - ✅ Successfully connected using RPC: https://api.devnet.solana.com
+2025-10-23 16:08:32 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift data handler initialized for devnet
+2025-10-23 16:08:32 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109373.71 | ATR: $1926.75 | Buy: False | Sell: False | Strength: 104.4555
+2025-10-23 16:08:32 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:08:32 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:08:32 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:08:33 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111821.19 | ATR: $1945.56 | Buy: False | Sell: False | Strength: 2.5550
+2025-10-23 16:08:33 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:08:33 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:08:33 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:09:34 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108253.98 | ATR: $1746.46 | Buy: False | Sell: False | Strength: 124.3320
+2025-10-23 16:09:34 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:09:34 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:09:34 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:10:34 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110283.62 | ATR: $1706.25 | Buy: False | Sell: False | Strength: 65.9984
+2025-10-23 16:10:34 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:10:34 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:10:34 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:11:34 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111378.79 | ATR: $1829.19 | Buy: False | Sell: False | Strength: 26.1479
+2025-10-23 16:11:34 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:11:34 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:11:34 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:12:34 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107750.40 | ATR: $1962.78 | Buy: False | Sell: False | Strength: 2.6829
+2025-10-23 16:12:34 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:12:34 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:12:34 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:13:34 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108201.68 | ATR: $1827.34 | Buy: False | Sell: False | Strength: 16.6814
+2025-10-23 16:13:34 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:13:34 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:13:34 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:14:35 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110358.19 | ATR: $1951.54 | Buy: True | Sell: False | Strength: 12.6094
+2025-10-23 16:14:35 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:14:35 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚀 BUY SIGNAL - Ready to open LONG position
+2025-10-23 16:14:35 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:14:35 UTC - CRITICAL - drift_macd_momentum_strategy - 🚀 EXECUTING REAL BUY ORDER ON DRIFT!
+2025-10-23 16:14:35 UTC -     INFO - drift_macd_momentum_strategy - 💰 Buy Signal: $440.56 (30.0% × 2.0x) = 0.003992 BTC
+2025-10-23 16:14:35 UTC -     INFO - drift_macd_momentum_strategy - 🎯 Risk Management: Entry $110358.19 | Stop $104893.86 | TP $122067.45
+2025-10-23 16:14:35 UTC -     INFO - drift_macd_momentum_strategy - 📊 ATR: $1951.54 | Stop Risk: 2.8x | TP: 6.0x
+2025-10-23 16:14:35 UTC -     INFO - drift_macd_momentum_strategy - 📤 Executing BUY order: 0.003992 BTC-PERP at market price
+2025-10-23 16:14:35 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.003992117987848089, BASE_PRECISION=1000000000, base_asset_amount=3992117
+2025-10-23 16:14:38 UTC -     INFO - drift_macd_momentum_strategy - Market order placed: BTC-PERP BUY 0.003992117987848089, tx: 4R7WCxUrNMKgKsRF2RGdqwgDnKjC563EQjYbMtHN1tf96jD8Swe9HhB8GGzq5d7W4oFkL3WB9aNbsaCF3ys46Yo7
+2025-10-23 16:14:40 UTC -     INFO - drift_macd_momentum_strategy - 📊 EXECUTION DETAILS: BTC-PERP BUY - Intended: 0.003992117987848089@market | Actual: 0@109865.833521
+2025-10-23 16:14:40 UTC -    ERROR - drift_macd_momentum_strategy - ❌ ORDER REJECTED! Actual quantity = 0
+2025-10-23 16:14:40 UTC -    ERROR - drift_macd_momentum_strategy - 💰 Possible reasons:
+2025-10-23 16:14:40 UTC -    ERROR - drift_macd_momentum_strategy -    1. Insufficient margin/collateral
+2025-10-23 16:14:40 UTC -    ERROR - drift_macd_momentum_strategy -    2. Position size exceeds account leverage limits
+2025-10-23 16:14:40 UTC -    ERROR - drift_macd_momentum_strategy -    3. Market conditions preventing fill
+2025-10-23 16:14:40 UTC -    ERROR - drift_macd_momentum_strategy - 💡 Solutions:
+2025-10-23 16:14:40 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce POSITION_PCT from 0.5 to 0.3 in config
+2025-10-23 16:14:40 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5
+2025-10-23 16:14:40 UTC -    ERROR - drift_macd_momentum_strategy -    • Check Drift UI for pending orders or margin issues
+2025-10-23 16:15:35 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109601.35 | ATR: $2108.79 | Buy: False | Sell: False | Strength: 26.2278
+2025-10-23 16:15:35 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:15:35 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.0039, 'market_type': 'perp', 'entry_price': 109889.60717948718, 'direction': 'LONG'}
+2025-10-23 16:15:35 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:15:35 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: 0.0039
+2025-10-23 16:15:35 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:16:35 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108171.94 | ATR: $1819.96 | Buy: False | Sell: False | Strength: 43.5149
+2025-10-23 16:16:35 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:16:35 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.0039, 'market_type': 'perp', 'entry_price': 109889.60717948718, 'direction': 'LONG'}
+2025-10-23 16:16:35 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:16:35 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: 0.0039
+2025-10-23 16:16:35 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:17:35 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108563.77 | ATR: $1987.96 | Buy: False | Sell: False | Strength: 29.7048
+2025-10-23 16:17:35 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:17:35 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.0039, 'market_type': 'perp', 'entry_price': 109889.60717948718, 'direction': 'LONG'}
+2025-10-23 16:17:35 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:17:35 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: 0.0039
+2025-10-23 16:17:35 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:18:36 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108441.17 | ATR: $1960.48 | Buy: False | Sell: False | Strength: 50.9506
+2025-10-23 16:18:36 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:18:36 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.0039, 'market_type': 'perp', 'entry_price': 109889.60717948718, 'direction': 'LONG'}
+2025-10-23 16:18:36 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:18:36 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: 0.0039
+2025-10-23 16:18:36 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:19:36 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108702.19 | ATR: $1764.37 | Buy: False | Sell: False | Strength: 10.7231
+2025-10-23 16:19:36 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:19:36 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.0039, 'market_type': 'perp', 'entry_price': 109889.60717948718, 'direction': 'LONG'}
+2025-10-23 16:19:36 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:19:36 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: 0.0039
+2025-10-23 16:19:36 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:20:36 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110803.72 | ATR: $2104.37 | Buy: False | Sell: False | Strength: 131.5391
+2025-10-23 16:20:36 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:20:36 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.0039, 'market_type': 'perp', 'entry_price': 109889.60717948718, 'direction': 'LONG'}
+2025-10-23 16:20:36 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:20:36 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: 0.0039
+2025-10-23 16:20:36 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:21:36 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107761.59 | ATR: $1719.97 | Buy: False | Sell: False | Strength: 27.0644
+2025-10-23 16:21:36 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:21:36 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': 0.0039, 'market_type': 'perp', 'entry_price': 109889.60717948718, 'direction': 'LONG'}
+2025-10-23 16:21:36 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:21:36 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: 0.0039
+2025-10-23 16:21:36 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:22:36 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111272.84 | ATR: $1895.89 | Buy: False | Sell: False | Strength: 32.2500
+2025-10-23 16:22:36 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:22:36 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:22:36 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:23:37 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108839.20 | ATR: $1816.97 | Buy: False | Sell: False | Strength: 51.9455
+2025-10-23 16:23:37 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:23:37 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:23:37 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:24:37 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108860.40 | ATR: $1706.21 | Buy: False | Sell: False | Strength: 14.6740
+2025-10-23 16:24:37 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:24:37 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:24:37 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:25:37 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109084.16 | ATR: $1891.30 | Buy: False | Sell: True | Strength: 5.8573
+2025-10-23 16:25:37 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:25:37 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🎯 SELL SIGNAL - Ready to open SHORT position
+2025-10-23 16:25:37 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:25:37 UTC - CRITICAL - drift_macd_momentum_strategy - 🚀 EXECUTING REAL SELL ORDER ON DRIFT!
+2025-10-23 16:25:37 UTC -     INFO - drift_macd_momentum_strategy - 💰 Sell Signal: $439.93 (30.0% × 2.0x) = 0.004033 BTC
+2025-10-23 16:25:37 UTC -     INFO - drift_macd_momentum_strategy - 🎯 Risk Management: Entry $109084.16 | Stop $114379.79 | TP $97736.39
+2025-10-23 16:25:37 UTC -     INFO - drift_macd_momentum_strategy - 📊 ATR: $1891.30 | Stop Risk: 2.8x | TP: 6.0x
+2025-10-23 16:25:37 UTC -     INFO - drift_macd_momentum_strategy - 📤 Executing SELL order: 0.004033 BTC-PERP at market price
+2025-10-23 16:25:37 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.004032981463404938, BASE_PRECISION=1000000000, base_asset_amount=4032981
+2025-10-23 16:25:40 UTC -     INFO - drift_macd_momentum_strategy - Market order placed: BTC-PERP SELL 0.004032981463404938, tx: 2d4tjQX9rLYks72bScAnM3jp2HYJSkGeBE8FawsgwwtCnXsjG61ALgRtGgFnSCThcCApM54FwoHLqVJ3WNCm9qfD
+2025-10-23 16:25:42 UTC -     INFO - drift_macd_momentum_strategy - 📊 EXECUTION DETAILS: BTC-PERP SELL - Intended: 0.004032981463404938@market | Actual: 0@109673.488288
+2025-10-23 16:25:42 UTC -    ERROR - drift_macd_momentum_strategy - ❌ ORDER REJECTED! Actual quantity = 0
+2025-10-23 16:25:42 UTC -    ERROR - drift_macd_momentum_strategy - 💰 Possible reasons:
+2025-10-23 16:25:42 UTC -    ERROR - drift_macd_momentum_strategy -    1. Insufficient margin/collateral
+2025-10-23 16:25:42 UTC -    ERROR - drift_macd_momentum_strategy -    2. Position size exceeds account leverage limits
+2025-10-23 16:25:42 UTC -    ERROR - drift_macd_momentum_strategy -    3. Market conditions preventing fill
+2025-10-23 16:25:42 UTC -    ERROR - drift_macd_momentum_strategy - 💡 Solutions:
+2025-10-23 16:25:42 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce POSITION_PCT from 0.5 to 0.3 in config
+2025-10-23 16:25:42 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5
+2025-10-23 16:25:42 UTC -    ERROR - drift_macd_momentum_strategy -    • Check Drift UI for pending orders or margin issues
+2025-10-23 16:26:38 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107991.36 | ATR: $1694.22 | Buy: False | Sell: False | Strength: 70.0397
+2025-10-23 16:26:38 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:26:38 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:26:38 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:26:38 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:26:38 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:27:38 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108149.11 | ATR: $1858.19 | Buy: False | Sell: False | Strength: 54.3778
+2025-10-23 16:27:38 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:27:38 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:27:38 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:27:38 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:27:38 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:28:39 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108741.20 | ATR: $1866.79 | Buy: True | Sell: False | Strength: 28.4407
+2025-10-23 16:28:39 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:28:39 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:28:39 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:28:39 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:28:39 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:29:39 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109688.28 | ATR: $1925.83 | Buy: False | Sell: False | Strength: 29.0427
+2025-10-23 16:29:39 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:29:39 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:29:39 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:29:39 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:29:39 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:30:39 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111532.01 | ATR: $1981.03 | Buy: False | Sell: False | Strength: 0.0574
+2025-10-23 16:30:39 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:30:39 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:30:39 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:30:39 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:30:39 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:31:39 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109708.58 | ATR: $1875.39 | Buy: False | Sell: False | Strength: 90.2633
+2025-10-23 16:31:39 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:31:39 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:31:39 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:31:39 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:31:39 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:32:39 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107895.75 | ATR: $1815.79 | Buy: False | Sell: False | Strength: 9.6319
+2025-10-23 16:32:39 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:32:39 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:32:39 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:32:39 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:32:39 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:33:40 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109980.01 | ATR: $2072.22 | Buy: False | Sell: False | Strength: 143.4999
+2025-10-23 16:33:40 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:33:40 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:33:40 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:33:40 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:33:40 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:34:40 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108994.97 | ATR: $1704.12 | Buy: False | Sell: False | Strength: 2.3319
+2025-10-23 16:34:40 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:34:40 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:34:40 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:34:40 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:34:40 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:35:40 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109865.18 | ATR: $1908.04 | Buy: False | Sell: False | Strength: 135.8395
+2025-10-23 16:35:40 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:35:40 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:35:40 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:35:40 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:35:40 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:36:40 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109846.30 | ATR: $1851.46 | Buy: False | Sell: False | Strength: 132.8251
+2025-10-23 16:36:40 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:36:40 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:36:40 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:36:40 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:36:40 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:37:41 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109001.09 | ATR: $1580.28 | Buy: False | Sell: True | Strength: 23.5083
+2025-10-23 16:37:41 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:37:41 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:37:41 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:37:41 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:37:41 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:38:41 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110260.67 | ATR: $1976.61 | Buy: False | Sell: False | Strength: 17.7031
+2025-10-23 16:38:41 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:38:41 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:38:41 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:38:41 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:38:41 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:39:41 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107605.19 | ATR: $1563.09 | Buy: False | Sell: False | Strength: 67.9087
+2025-10-23 16:39:41 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:39:41 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:39:41 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:39:41 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:39:41 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:40:41 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108381.10 | ATR: $1989.18 | Buy: False | Sell: False | Strength: 66.3372
+2025-10-23 16:40:41 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:40:41 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:40:41 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:40:41 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:40:41 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:41:41 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109533.07 | ATR: $1812.04 | Buy: False | Sell: False | Strength: 89.0767
+2025-10-23 16:41:41 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:41:41 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:41:41 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:41:41 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:41:41 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:42:42 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108594.56 | ATR: $2068.92 | Buy: False | Sell: False | Strength: 105.7884
+2025-10-23 16:42:42 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:42:42 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:42:42 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:42:42 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:42:42 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:43:42 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109077.13 | ATR: $1996.15 | Buy: False | Sell: False | Strength: 29.1856
+2025-10-23 16:43:42 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:43:42 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:43:42 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:43:42 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:43:42 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:44:42 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109188.17 | ATR: $1911.04 | Buy: False | Sell: True | Strength: 27.1371
+2025-10-23 16:44:42 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:44:42 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:44:42 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:44:42 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:44:42 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:45:42 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108272.16 | ATR: $1723.12 | Buy: False | Sell: False | Strength: 15.9476
+2025-10-23 16:45:42 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:45:42 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:45:42 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:45:42 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:45:42 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:46:43 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111224.40 | ATR: $1990.37 | Buy: False | Sell: False | Strength: 91.6846
+2025-10-23 16:46:43 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:46:43 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:46:43 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:46:43 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:46:43 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:47:43 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109763.79 | ATR: $1834.19 | Buy: False | Sell: False | Strength: 11.0651
+2025-10-23 16:47:43 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:47:43 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109713.50499999999, 'direction': 'SHORT'}
+2025-10-23 16:47:43 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:47:43 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 16:47:43 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:48:43 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109498.55 | ATR: $1821.02 | Buy: False | Sell: False | Strength: 128.9964
+2025-10-23 16:48:43 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:48:43 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:48:43 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:49:43 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109674.90 | ATR: $1927.54 | Buy: False | Sell: False | Strength: 0.0807
+2025-10-23 16:49:43 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:49:43 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:49:43 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:50:43 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111290.06 | ATR: $1964.67 | Buy: False | Sell: False | Strength: 149.6141
+2025-10-23 16:50:43 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:50:43 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:50:43 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:51:44 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111117.04 | ATR: $1898.66 | Buy: False | Sell: True | Strength: 5.0038
+2025-10-23 16:51:44 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:51:44 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🎯 SELL SIGNAL - Ready to open SHORT position
+2025-10-23 16:51:44 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:51:44 UTC - CRITICAL - drift_macd_momentum_strategy - 🚀 EXECUTING REAL SELL ORDER ON DRIFT!
+2025-10-23 16:51:44 UTC -     INFO - drift_macd_momentum_strategy - 💰 Sell Signal: $439.55 (30.0% × 2.0x) = 0.003956 BTC
+2025-10-23 16:51:44 UTC -     INFO - drift_macd_momentum_strategy - 🎯 Risk Management: Entry $111117.04 | Stop $116433.30 | TP $99725.05
+2025-10-23 16:51:44 UTC -     INFO - drift_macd_momentum_strategy - 📊 ATR: $1898.66 | Stop Risk: 2.8x | TP: 6.0x
+2025-10-23 16:51:44 UTC -     INFO - drift_macd_momentum_strategy - 📤 Executing SELL order: 0.003956 BTC-PERP at market price
+2025-10-23 16:51:44 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.003955714125571246, BASE_PRECISION=1000000000, base_asset_amount=3955714
+2025-10-23 16:51:48 UTC -     INFO - drift_macd_momentum_strategy - Market order placed: BTC-PERP SELL 0.003955714125571246, tx: 2PyeKLrWGvR42RCry4cxhwb9c1qG9Y5k4VCmaDjKuGg23VgHFkB1KaEMUjvps3dNzp33NY9P3qrVQWg3FzSTjE5v
+2025-10-23 16:51:50 UTC -     INFO - drift_macd_momentum_strategy - 📊 EXECUTION DETAILS: BTC-PERP SELL - Intended: 0.003955714125571246@market | Actual: 0@109919.375958
+2025-10-23 16:51:50 UTC -    ERROR - drift_macd_momentum_strategy - ❌ ORDER REJECTED! Actual quantity = 0
+2025-10-23 16:51:50 UTC -    ERROR - drift_macd_momentum_strategy - 💰 Possible reasons:
+2025-10-23 16:51:50 UTC -    ERROR - drift_macd_momentum_strategy -    1. Insufficient margin/collateral
+2025-10-23 16:51:50 UTC -    ERROR - drift_macd_momentum_strategy -    2. Position size exceeds account leverage limits
+2025-10-23 16:51:50 UTC -    ERROR - drift_macd_momentum_strategy -    3. Market conditions preventing fill
+2025-10-23 16:51:50 UTC -    ERROR - drift_macd_momentum_strategy - 💡 Solutions:
+2025-10-23 16:51:50 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce POSITION_PCT from 0.5 to 0.3 in config
+2025-10-23 16:51:50 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5
+2025-10-23 16:51:50 UTC -    ERROR - drift_macd_momentum_strategy -    • Check Drift UI for pending orders or margin issues
+2025-10-23 16:52:44 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111149.33 | ATR: $1941.80 | Buy: False | Sell: False | Strength: 54.8181
+2025-10-23 16:52:44 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:52:44 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 16:52:44 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:53:44 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109782.56 | ATR: $1940.98 | Buy: False | Sell: True | Strength: 52.7879
+2025-10-23 16:53:44 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 16:53:44 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🎯 SELL SIGNAL - Ready to open SHORT position
+2025-10-23 16:53:44 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 16:53:44 UTC - CRITICAL - drift_macd_momentum_strategy - 🚀 EXECUTING REAL SELL ORDER ON DRIFT!
+2025-10-23 16:53:44 UTC -     INFO - drift_macd_momentum_strategy - 💰 Sell Signal: $426.62 (30.0% × 2.0x) = 0.003886 BTC
+2025-10-23 16:53:44 UTC -     INFO - drift_macd_momentum_strategy - 🎯 Risk Management: Entry $109782.56 | Stop $115217.31 | TP $98136.67
+2025-10-23 16:53:44 UTC -     INFO - drift_macd_momentum_strategy - 📊 ATR: $1940.98 | Stop Risk: 2.8x | TP: 6.0x
+2025-10-23 16:53:44 UTC -     INFO - drift_macd_momentum_strategy - 📤 Executing SELL order: 0.003886 BTC-PERP at market price
+2025-10-23 16:53:44 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.00388604251217451, BASE_PRECISION=1000000000, base_asset_amount=3886042
+2025-10-23 16:53:48 UTC -     INFO - drift_macd_momentum_strategy - Market order placed: BTC-PERP SELL 0.00388604251217451, tx: 5pmuDqwyWWaaxTp8bGLVdJittNBDw5nq6Nm8zT1WBjZE2rTj1cEsvUHrdxysadp4SDjX8nzVXjLGD1YNZDHgk3CM
+2025-10-23 16:53:50 UTC -     INFO - drift_macd_momentum_strategy - 📊 EXECUTION DETAILS: BTC-PERP SELL - Intended: 0.00388604251217451@market | Actual: 0@110085.610876
+2025-10-23 16:53:50 UTC -    ERROR - drift_macd_momentum_strategy - ❌ ORDER REJECTED! Actual quantity = 0
+2025-10-23 16:53:50 UTC -    ERROR - drift_macd_momentum_strategy - 💰 Possible reasons:
+2025-10-23 16:53:50 UTC -    ERROR - drift_macd_momentum_strategy -    1. Insufficient margin/collateral
+2025-10-23 16:53:50 UTC -    ERROR - drift_macd_momentum_strategy -    2. Position size exceeds account leverage limits
+2025-10-23 16:53:50 UTC -    ERROR - drift_macd_momentum_strategy -    3. Market conditions preventing fill
+2025-10-23 16:53:50 UTC -    ERROR - drift_macd_momentum_strategy - 💡 Solutions:
+2025-10-23 16:53:50 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce POSITION_PCT from 0.5 to 0.3 in config
+2025-10-23 16:53:50 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5
+2025-10-23 16:53:50 UTC -    ERROR - drift_macd_momentum_strategy -    • Check Drift UI for pending orders or margin issues
+2025-10-23 16:54:44 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107822.51 | ATR: $1698.22 | Buy: False | Sell: False | Strength: 11.8671
+2025-10-23 16:54:44 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:54:44 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 16:54:44 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:54:44 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 16:54:44 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:55:44 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111808.82 | ATR: $1910.52 | Buy: False | Sell: False | Strength: 9.4387
+2025-10-23 16:55:44 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:55:44 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 16:55:44 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:55:44 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 16:55:44 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:56:45 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109969.91 | ATR: $2045.09 | Buy: False | Sell: False | Strength: 50.3039
+2025-10-23 16:56:45 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:56:45 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 16:56:45 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:56:45 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 16:56:45 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:57:45 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111684.98 | ATR: $1907.66 | Buy: False | Sell: False | Strength: 17.6063
+2025-10-23 16:57:45 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:57:45 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 16:57:45 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:57:45 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 16:57:45 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:58:45 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111382.66 | ATR: $1850.82 | Buy: False | Sell: False | Strength: 23.2575
+2025-10-23 16:58:45 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:58:45 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 16:58:45 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:58:45 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 16:58:45 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 16:59:45 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111114.68 | ATR: $2095.33 | Buy: False | Sell: False | Strength: 79.9455
+2025-10-23 16:59:45 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 16:59:45 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 16:59:45 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 16:59:45 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 16:59:45 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:00:45 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111074.24 | ATR: $2088.95 | Buy: False | Sell: False | Strength: 64.2550
+2025-10-23 17:00:45 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:00:45 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:00:45 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:00:45 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:00:45 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:01:46 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108003.85 | ATR: $1767.06 | Buy: False | Sell: False | Strength: 9.3613
+2025-10-23 17:01:46 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:01:46 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:01:46 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:01:46 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:01:46 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:02:46 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110872.20 | ATR: $1967.54 | Buy: False | Sell: False | Strength: 49.0630
+2025-10-23 17:02:46 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:02:46 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:02:46 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:02:46 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:02:46 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:03:46 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108665.56 | ATR: $1914.40 | Buy: False | Sell: False | Strength: 173.3258
+2025-10-23 17:03:46 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:03:46 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:03:46 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:03:46 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:03:46 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:04:46 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110852.40 | ATR: $1964.60 | Buy: True | Sell: False | Strength: 28.7506
+2025-10-23 17:04:46 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:04:46 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:04:46 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:04:46 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:04:46 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:05:47 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111643.42 | ATR: $2073.65 | Buy: False | Sell: False | Strength: 86.2840
+2025-10-23 17:05:47 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:05:47 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:05:47 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:05:47 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:05:47 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:06:47 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109588.22 | ATR: $2197.73 | Buy: False | Sell: False | Strength: 105.0019
+2025-10-23 17:06:47 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:06:47 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:06:47 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:06:47 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:06:47 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:07:47 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111768.43 | ATR: $2001.89 | Buy: False | Sell: False | Strength: 91.1615
+2025-10-23 17:07:47 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:07:47 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:07:47 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:07:47 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:07:47 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:08:47 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108122.79 | ATR: $1834.94 | Buy: False | Sell: False | Strength: 95.8697
+2025-10-23 17:08:47 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:08:47 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:08:47 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:08:47 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:08:47 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:09:48 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109014.67 | ATR: $1725.65 | Buy: False | Sell: False | Strength: 106.6199
+2025-10-23 17:09:48 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:09:48 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:09:48 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:09:48 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:09:48 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:10:48 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107690.72 | ATR: $1899.22 | Buy: False | Sell: False | Strength: 8.8634
+2025-10-23 17:10:48 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:10:48 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:10:48 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:10:48 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:10:48 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:11:48 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109379.86 | ATR: $1912.28 | Buy: False | Sell: False | Strength: 140.9165
+2025-10-23 17:11:48 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:11:48 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:11:48 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:11:48 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:11:48 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:12:48 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110445.33 | ATR: $1816.37 | Buy: False | Sell: False | Strength: 12.6166
+2025-10-23 17:12:48 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:12:48 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:12:48 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:12:48 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:12:48 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:13:49 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111702.09 | ATR: $2034.94 | Buy: False | Sell: False | Strength: 16.0619
+2025-10-23 17:13:49 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:13:49 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:13:49 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:13:49 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:13:49 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:14:49 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108871.91 | ATR: $1916.69 | Buy: False | Sell: False | Strength: 64.5188
+2025-10-23 17:14:49 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:14:49 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:14:49 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:14:49 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:14:49 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:15:49 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110978.85 | ATR: $1998.75 | Buy: False | Sell: False | Strength: 90.8792
+2025-10-23 17:15:49 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:15:49 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:15:49 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:15:49 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:15:49 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:16:49 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109871.46 | ATR: $1917.37 | Buy: False | Sell: False | Strength: 48.3966
+2025-10-23 17:16:49 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:16:49 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:16:49 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:16:49 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:16:49 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:17:50 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109099.16 | ATR: $1767.66 | Buy: False | Sell: False | Strength: 55.8833
+2025-10-23 17:17:50 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:17:50 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0038, 'market_type': 'perp', 'entry_price': 110085.14710526315, 'direction': 'SHORT'}
+2025-10-23 17:17:50 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:17:50 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.0038
+2025-10-23 17:17:50 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:18:12 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 17:18:12 UTC -     INFO - drift_macd_momentum_strategy - Trading loop ended
+2025-10-23 17:18:12 UTC -     INFO - drift_macd_momentum_strategy - Shutting down trading bot...
+2025-10-23 17:18:12 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Attempting to close all positions...
+2025-10-23 17:18:12 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Closing BTC-PERP position: BUY 0.0038
+2025-10-23 17:18:12 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.0038, BASE_PRECISION=1000000000, base_asset_amount=3800000
+2025-10-23 17:18:16 UTC -     INFO - drift_macd_momentum_strategy - Market order placed: BTC-PERP BUY 0.0038, tx: bftVKgpYMUMWLgPkFsJNAV2Hk4Qty93keBscQs4fFnCNpDEJh21DdJbCUoqeYBX25UQgrT2cn3bzhW1yKMDtJ9X
+2025-10-23 17:18:16 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 17:18:18 UTC -     INFO - drift_macd_momentum_strategy - 📊 EXECUTION DETAILS: BTC-PERP BUY - Intended: 0.0038@market | Actual: 0@110055.059585
+2025-10-23 17:18:18 UTC -    ERROR - drift_macd_momentum_strategy - ❌ ORDER REJECTED! Actual quantity = 0
+2025-10-23 17:18:18 UTC -    ERROR - drift_macd_momentum_strategy - 💰 Possible reasons:
+2025-10-23 17:18:18 UTC -    ERROR - drift_macd_momentum_strategy -    1. Insufficient margin/collateral
+2025-10-23 17:18:18 UTC -    ERROR - drift_macd_momentum_strategy -    2. Position size exceeds account leverage limits
+2025-10-23 17:18:18 UTC -    ERROR - drift_macd_momentum_strategy -    3. Market conditions preventing fill
+2025-10-23 17:18:18 UTC -    ERROR - drift_macd_momentum_strategy - 💡 Solutions:
+2025-10-23 17:18:18 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce POSITION_PCT from 0.5 to 0.3 in config
+2025-10-23 17:18:18 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5
+2025-10-23 17:18:18 UTC -    ERROR - drift_macd_momentum_strategy -    • Check Drift UI for pending orders or margin issues
+2025-10-23 17:18:18 UTC -     INFO - drift_macd_momentum_strategy - ✅ All positions closed successfully
+2025-10-23 17:18:18 UTC -     INFO - drift_macd_momentum_strategy - 🧹 Cleaning up strategy resources...
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift client unsubscribed
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - ✅ Cleanup completed
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - Final portfolio state:
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - Shutdown completed successfully
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - Strategy stopped
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251023.log
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Symbol: BTC-PERP | Timeframe: 240 | Position %: 0.3
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - ⚡ MACD: Fast(6), Slow(10), Signal(2)
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - 🔒 STRICT HOLD MODE: 480 minutes (4H strategy)
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - 🎯 STRONG REVERSAL OVERRIDE: Enabled with 0.5 MACD threshold
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Risk Management: Initial Stop: 2.8x ATR, Take Profit: 6.0x ATR
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - 📈 Position Sizing: 0.3% of balance (90% for Drift minimums)
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - 🚀 Initializing DriftMACDStrategy strategy...
+2025-10-23 17:18:28 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
+2025-10-23 17:18:32 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt
+2025-10-23 17:18:32 UTC -     INFO - drift_macd_momentum_strategy - 💰 Starting equity tracked: $732.46
+2025-10-23 17:18:32 UTC -     INFO - drift_macd_momentum_strategy - ✅ DriftMACDStrategy strategy initialized successfully
+2025-10-23 17:18:32 UTC -     INFO - drift_macd_momentum_strategy - All components initialized successfully
+2025-10-23 17:18:32 UTC -     INFO - drift_macd_momentum_strategy - Current time: 2025-10-23 16:18:32.985157+00:00
+2025-10-23 17:18:32 UTC -     INFO - drift_macd_momentum_strategy - Starting 24/7 trading loop...
+2025-10-23 17:18:32 UTC -     INFO - drift_macd_momentum_strategy - Strategy execution begins!
+2025-10-23 17:19:33 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 1/4: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90...
+2025-10-23 17:19:33 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 17:20:03 UTC -  WARNING - drift_macd_momentum_strategy -    ⏱️  Subscription timed out after 30s
+2025-10-23 17:20:03 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 17:20:04 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 17:20:40 UTC -     INFO - drift_macd_momentum_strategy - ✅ Successfully connected using RPC: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90
+2025-10-23 17:20:40 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift data handler initialized for devnet
+2025-10-23 17:20:41 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109861.02 | ATR: $2194.98 | Buy: False | Sell: False | Strength: 112.1185
+2025-10-23 17:20:41 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 17:20:41 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 17:20:41 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 17:20:42 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111216.47 | ATR: $1883.82 | Buy: False | Sell: False | Strength: 63.9197
+2025-10-23 17:20:42 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 17:20:42 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 17:20:42 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 17:21:42 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110015.21 | ATR: $1848.07 | Buy: False | Sell: False | Strength: 144.3022
+2025-10-23 17:21:42 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 17:21:42 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 17:21:42 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 17:22:42 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110287.30 | ATR: $1990.11 | Buy: False | Sell: False | Strength: 70.1383
+2025-10-23 17:22:42 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 17:22:42 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 17:22:42 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 17:23:42 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108128.71 | ATR: $1724.76 | Buy: False | Sell: True | Strength: 18.6982
+2025-10-23 17:23:42 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 17:23:42 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🎯 SELL SIGNAL - Ready to open SHORT position
+2025-10-23 17:23:42 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 17:23:42 UTC - CRITICAL - drift_macd_momentum_strategy - 🚀 EXECUTING REAL SELL ORDER ON DRIFT!
+2025-10-23 17:23:42 UTC -     INFO - drift_macd_momentum_strategy - 💰 Sell Signal: $439.45 (30.0% × 2.0x) = 0.004064 BTC
+2025-10-23 17:23:42 UTC -     INFO - drift_macd_momentum_strategy - 🎯 Risk Management: Entry $108128.71 | Stop $112958.05 | TP $97780.13
+2025-10-23 17:23:42 UTC -     INFO - drift_macd_momentum_strategy - 📊 ATR: $1724.76 | Stop Risk: 2.8x | TP: 6.0x
+2025-10-23 17:23:42 UTC -     INFO - drift_macd_momentum_strategy - 📤 Executing SELL order: 0.004064 BTC-PERP at market price
+2025-10-23 17:23:42 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.004064137264933912, BASE_PRECISION=1000000000, base_asset_amount=4064137
+2025-10-23 17:23:46 UTC -     INFO - drift_macd_momentum_strategy - Market order placed: BTC-PERP SELL 0.004064137264933912, tx: 3diP8NVnF5jLpZQ3652r6PJtmVtgr4fUzJFSipvriwDVQfb3KRojmKTDoMoEvT4kKvdKq31HyC9LRdsxFqj3PQTU
+2025-10-23 17:23:48 UTC -     INFO - drift_macd_momentum_strategy - 📊 EXECUTION DETAILS: BTC-PERP SELL - Intended: 0.004064137264933912@market | Actual: 0@109975.122134
+2025-10-23 17:23:48 UTC -    ERROR - drift_macd_momentum_strategy - ❌ ORDER REJECTED! Actual quantity = 0
+2025-10-23 17:23:48 UTC -    ERROR - drift_macd_momentum_strategy - 💰 Possible reasons:
+2025-10-23 17:23:48 UTC -    ERROR - drift_macd_momentum_strategy -    1. Insufficient margin/collateral
+2025-10-23 17:23:48 UTC -    ERROR - drift_macd_momentum_strategy -    2. Position size exceeds account leverage limits
+2025-10-23 17:23:48 UTC -    ERROR - drift_macd_momentum_strategy -    3. Market conditions preventing fill
+2025-10-23 17:23:48 UTC -    ERROR - drift_macd_momentum_strategy - 💡 Solutions:
+2025-10-23 17:23:48 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce POSITION_PCT from 0.5 to 0.3 in config
+2025-10-23 17:23:48 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5
+2025-10-23 17:23:48 UTC -    ERROR - drift_macd_momentum_strategy -    • Check Drift UI for pending orders or margin issues
+2025-10-23 17:24:43 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108244.44 | ATR: $1678.10 | Buy: False | Sell: False | Strength: 74.0103
+2025-10-23 17:24:43 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:24:43 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:24:43 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:24:43 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:24:43 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:25:43 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110804.33 | ATR: $2000.72 | Buy: False | Sell: False | Strength: 142.0286
+2025-10-23 17:25:43 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:25:43 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:25:43 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:25:43 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:25:43 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:26:43 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108965.49 | ATR: $1792.75 | Buy: False | Sell: False | Strength: 50.3157
+2025-10-23 17:26:44 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:26:44 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:26:44 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:26:44 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:26:44 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:27:44 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110215.18 | ATR: $1759.99 | Buy: True | Sell: False | Strength: 47.4166
+2025-10-23 17:27:44 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:27:44 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:27:44 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:27:44 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:27:44 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:28:44 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109307.11 | ATR: $2019.90 | Buy: False | Sell: False | Strength: 0.9209
+2025-10-23 17:28:44 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:28:44 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:28:44 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:28:44 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:28:44 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:29:44 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108360.68 | ATR: $1817.20 | Buy: False | Sell: False | Strength: 106.0979
+2025-10-23 17:29:44 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:29:44 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:29:44 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:29:44 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:29:44 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:30:44 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109524.78 | ATR: $2035.96 | Buy: False | Sell: False | Strength: 29.6904
+2025-10-23 17:30:44 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:30:44 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:30:44 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:30:44 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:30:44 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:31:44 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111502.07 | ATR: $1863.84 | Buy: False | Sell: False | Strength: 144.5179
+2025-10-23 17:31:44 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:31:44 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:31:44 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:31:44 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:31:44 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:32:45 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107830.64 | ATR: $2146.59 | Buy: False | Sell: False | Strength: 106.6883
+2025-10-23 17:32:45 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:32:45 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:32:45 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:32:45 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:32:45 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:33:45 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110242.72 | ATR: $1834.77 | Buy: False | Sell: False | Strength: 6.5706
+2025-10-23 17:33:45 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:33:45 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:33:45 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:33:45 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:33:45 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:34:45 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110660.89 | ATR: $2195.97 | Buy: False | Sell: False | Strength: 19.6910
+2025-10-23 17:34:45 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:34:45 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:34:45 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:34:45 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:34:45 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:35:45 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108430.73 | ATR: $1889.56 | Buy: False | Sell: False | Strength: 66.2795
+2025-10-23 17:35:45 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:35:45 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:35:45 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:35:45 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:35:45 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:36:45 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109890.00 | ATR: $1951.47 | Buy: False | Sell: False | Strength: 49.2901
+2025-10-23 17:36:45 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:36:45 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:36:45 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:36:45 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:36:45 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:37:46 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111731.19 | ATR: $2104.38 | Buy: False | Sell: False | Strength: 18.2244
+2025-10-23 17:37:46 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:37:46 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:37:46 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:37:46 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:37:46 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:38:46 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108502.58 | ATR: $2004.84 | Buy: False | Sell: False | Strength: 117.5987
+2025-10-23 17:38:46 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:38:46 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:38:46 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:38:46 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:38:46 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:39:46 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108117.14 | ATR: $1942.05 | Buy: False | Sell: False | Strength: 21.1729
+2025-10-23 17:39:46 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:39:46 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:39:46 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:39:46 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:39:46 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:40:47 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108753.18 | ATR: $1797.32 | Buy: False | Sell: True | Strength: 51.4797
+2025-10-23 17:40:47 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:40:47 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:40:47 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:40:47 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:40:47 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:41:47 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109158.90 | ATR: $1777.94 | Buy: False | Sell: False | Strength: 54.0453
+2025-10-23 17:41:47 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:41:47 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:41:47 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:41:47 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:41:47 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:42:47 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110815.00 | ATR: $1969.89 | Buy: False | Sell: False | Strength: 35.8584
+2025-10-23 17:42:47 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:42:47 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:42:47 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:42:47 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:42:47 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:43:47 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110897.25 | ATR: $1840.88 | Buy: False | Sell: False | Strength: 56.5603
+2025-10-23 17:43:47 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:43:47 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:43:47 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:43:47 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:43:47 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:44:48 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109687.48 | ATR: $2068.12 | Buy: False | Sell: False | Strength: 53.3355
+2025-10-23 17:44:48 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:44:48 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:44:48 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:44:48 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:44:48 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:45:48 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $107925.91 | ATR: $1964.51 | Buy: False | Sell: False | Strength: 40.6803
+2025-10-23 17:45:48 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2025-10-23 17:45:48 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.004, 'market_type': 'perp', 'entry_price': 109970.35925, 'direction': 'SHORT'}
+2025-10-23 17:45:48 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2025-10-23 17:45:48 UTC -     INFO - drift_macd_momentum_strategy - 🚫 EXTERNAL POSITION EXISTS - Size: -0.004
+2025-10-23 17:45:48 UTC -     INFO - drift_macd_momentum_strategy - 📊 Signals detected but will only act when account is clear
+2025-10-23 17:46:23 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 17:46:24 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 17:46:24 UTC -     INFO - drift_macd_momentum_strategy - Trading loop ended
+2025-10-23 17:46:24 UTC -     INFO - drift_macd_momentum_strategy - Shutting down trading bot...
+2025-10-23 17:46:24 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Attempting to close all positions...
+2025-10-23 17:46:24 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Closing BTC-PERP position: BUY 0.004
+2025-10-23 17:46:24 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.004, BASE_PRECISION=1000000000, base_asset_amount=4000000
+2025-10-23 17:46:24 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 17:46:24 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 17:46:24 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 17:46:24 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 17:46:25 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 17:46:28 UTC -     INFO - drift_macd_momentum_strategy - Market order placed: BTC-PERP BUY 0.004, tx: 49roCLvpfmNXpgjtpYu3a3tmXwv4UJPXbecqu1mZuVJjNoNdwD2ixK1ZyC3AgdoUPjM9fW9npUvFkdWYfVSXdBGL
+2025-10-23 17:46:30 UTC -     INFO - drift_macd_momentum_strategy - 📊 EXECUTION DETAILS: BTC-PERP BUY - Intended: 0.004@market | Actual: 0@109920.579822
+2025-10-23 17:46:30 UTC -    ERROR - drift_macd_momentum_strategy - ❌ ORDER REJECTED! Actual quantity = 0
+2025-10-23 17:46:30 UTC -    ERROR - drift_macd_momentum_strategy - 💰 Possible reasons:
+2025-10-23 17:46:30 UTC -    ERROR - drift_macd_momentum_strategy -    1. Insufficient margin/collateral
+2025-10-23 17:46:30 UTC -    ERROR - drift_macd_momentum_strategy -    2. Position size exceeds account leverage limits
+2025-10-23 17:46:30 UTC -    ERROR - drift_macd_momentum_strategy -    3. Market conditions preventing fill
+2025-10-23 17:46:30 UTC -    ERROR - drift_macd_momentum_strategy - 💡 Solutions:
+2025-10-23 17:46:30 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce POSITION_PCT from 0.5 to 0.3 in config
+2025-10-23 17:46:30 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5
+2025-10-23 17:46:30 UTC -    ERROR - drift_macd_momentum_strategy -    • Check Drift UI for pending orders or margin issues
+2025-10-23 17:46:30 UTC -     INFO - drift_macd_momentum_strategy - ✅ All positions closed successfully
+2025-10-23 17:46:30 UTC -     INFO - drift_macd_momentum_strategy - 🧹 Cleaning up strategy resources...
+2025-10-23 17:46:38 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 17:47:00 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift client unsubscribed
+2025-10-23 17:47:00 UTC -     INFO - drift_macd_momentum_strategy - ✅ Cleanup completed
+2025-10-23 17:47:00 UTC -     INFO - drift_macd_momentum_strategy - Final portfolio state:
+2025-10-23 17:47:01 UTC -     INFO - drift_macd_momentum_strategy - Shutdown completed successfully
+2025-10-23 22:23:54 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-23 22:23:54 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251023.log
+2025-10-23 22:23:54 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251023.log
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - 📊 Symbol: BTC-PERP | Timeframe: 240 | Position %: 0.3
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - ⚡ MACD: Fast(6), Slow(10), Signal(2)
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - 🔒 STRICT HOLD MODE: 480 minutes (4H strategy)
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - 🎯 STRONG REVERSAL OVERRIDE: Enabled with 0.5 MACD threshold
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Risk Management: Initial Stop: 2.8x ATR, Take Profit: 6.0x ATR
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - 📈 Position Sizing: 0.3% of balance (90% for Drift minimums)
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - 🚀 Initializing DriftMACDStrategy strategy...
+2025-10-23 22:23:56 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
+2025-10-23 22:23:59 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt
+2025-10-23 22:23:59 UTC -     INFO - drift_macd_momentum_strategy - 💰 Starting equity tracked: $732.47
+2025-10-23 22:23:59 UTC -     INFO - drift_macd_momentum_strategy - ✅ DriftMACDStrategy strategy initialized successfully
+2025-10-23 22:23:59 UTC -     INFO - drift_macd_momentum_strategy - All components initialized successfully
+2025-10-23 22:23:59 UTC -     INFO - drift_macd_momentum_strategy - Current time: 2025-10-23 21:23:59.705039+00:00
+2025-10-23 22:23:59 UTC -     INFO - drift_macd_momentum_strategy - Starting 24/7 trading loop...
+2025-10-23 22:23:59 UTC -     INFO - drift_macd_momentum_strategy - Strategy execution begins!
+2025-10-23 22:24:59 UTC -     INFO - drift_macd_momentum_strategy - 🔄 Trying RPC endpoint 1/4: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90...
+2025-10-23 22:24:59 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 1/3 (timeout: 30s)
+2025-10-23 22:25:29 UTC -  WARNING - drift_macd_momentum_strategy -    ⏱️  Subscription timed out after 30s
+2025-10-23 22:25:29 UTC -     INFO - drift_macd_momentum_strategy -    Waiting 1s before retry...
+2025-10-23 22:25:30 UTC -     INFO - drift_macd_momentum_strategy -    Attempt 2/3 (timeout: 45s)
+2025-10-23 22:25:57 UTC -     INFO - drift_macd_momentum_strategy - ✅ Successfully connected using RPC: https://devnet.helius-rpc.com/?api-key=82ed7012-4895-437a-90
+2025-10-23 22:25:57 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift data handler initialized for devnet
+2025-10-23 22:25:57 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $109396.22 | ATR: $1781.03 | Buy: False | Sell: False | Strength: 21.5050
+2025-10-23 22:25:57 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 22:25:57 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 22:25:57 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 22:26:00 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $111851.74 | ATR: $2212.62 | Buy: False | Sell: False | Strength: 53.9056
+2025-10-23 22:26:00 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 22:26:00 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 22:26:00 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 22:27:00 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108401.53 | ATR: $1867.92 | Buy: False | Sell: False | Strength: 9.1791
+2025-10-23 22:27:00 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 22:27:00 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 22:27:00 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 22:28:00 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108349.64 | ATR: $2036.32 | Buy: False | Sell: True | Strength: 16.7456
+2025-10-23 22:28:00 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 22:28:00 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🎯 SELL SIGNAL - Ready to open SHORT position
+2025-10-23 22:28:00 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 22:28:00 UTC - CRITICAL - drift_macd_momentum_strategy - 🚀 EXECUTING REAL SELL ORDER ON DRIFT!
+2025-10-23 22:28:00 UTC -     INFO - drift_macd_momentum_strategy - 💰 Sell Signal: $439.46 (30.0% × 2.0x) = 0.004056 BTC
+2025-10-23 22:28:00 UTC -     INFO - drift_macd_momentum_strategy - 🎯 Risk Management: Entry $108349.64 | Stop $114051.32 | TP $96131.75
+2025-10-23 22:28:00 UTC -     INFO - drift_macd_momentum_strategy - 📊 ATR: $2036.32 | Stop Risk: 2.8x | TP: 6.0x
+2025-10-23 22:28:00 UTC -     INFO - drift_macd_momentum_strategy - 📤 Executing SELL order: 0.004056 BTC-PERP at market price
+2025-10-23 22:28:00 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.004055920255842494, BASE_PRECISION=1000000000, base_asset_amount=4055920
+2025-10-23 22:28:04 UTC -     INFO - drift_macd_momentum_strategy - Market order placed: BTC-PERP SELL 0.004055920255842494, tx: 3Pbpg3RxRhkvqgG7MYeMBXxUQ6cyLLudYLJaexBKTuRkssgrKvj19Ym9rrxEzBrTg9dBGPbFvTpfLqz9MaBBUkxs
+2025-10-23 22:28:06 UTC -     INFO - drift_macd_momentum_strategy - 📊 EXECUTION DETAILS: BTC-PERP SELL - Intended: 0.004055920255842494@market | Actual: 0@109715.585167
+2025-10-23 22:28:06 UTC -    ERROR - drift_macd_momentum_strategy - ❌ ORDER REJECTED! Actual quantity = 0
+2025-10-23 22:28:06 UTC -    ERROR - drift_macd_momentum_strategy - 💰 Possible reasons:
+2025-10-23 22:28:06 UTC -    ERROR - drift_macd_momentum_strategy -    1. Insufficient margin/collateral
+2025-10-23 22:28:06 UTC -    ERROR - drift_macd_momentum_strategy -    2. Position size exceeds account leverage limits
+2025-10-23 22:28:06 UTC -    ERROR - drift_macd_momentum_strategy -    3. Market conditions preventing fill
+2025-10-23 22:28:06 UTC -    ERROR - drift_macd_momentum_strategy - 💡 Solutions:
+2025-10-23 22:28:06 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce POSITION_PCT from 0.5 to 0.3 in config
+2025-10-23 22:28:06 UTC -    ERROR - drift_macd_momentum_strategy -    • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5
+2025-10-23 22:28:06 UTC -    ERROR - drift_macd_momentum_strategy -    • Check Drift UI for pending orders or margin issues
+2025-10-23 22:29:01 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $110101.45 | ATR: $1931.44 | Buy: False | Sell: False | Strength: 79.6291
+2025-10-23 22:29:01 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 22:29:01 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 22:29:01 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 22:30:01 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108657.70 | ATR: $2156.78 | Buy: False | Sell: False | Strength: 20.4158
+2025-10-23 22:30:01 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 22:30:01 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 22:30:01 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 22:31:02 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108794.95 | ATR: $2089.48 | Buy: False | Sell: False | Strength: 46.7495
+2025-10-23 22:31:02 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 22:31:02 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 22:31:02 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 22:32:02 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $108632.55 | ATR: $2011.66 | Buy: False | Sell: False | Strength: 49.3187
+2025-10-23 22:32:02 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2025-10-23 22:32:02 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2025-10-23 22:32:02 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2025-10-23 22:32:52 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 22:32:52 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 22:32:52 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 22:32:53 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 22:32:53 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 22:32:53 UTC -     INFO - drift_macd_momentum_strategy - Trading loop ended
+2025-10-23 22:32:53 UTC -     INFO - drift_macd_momentum_strategy - Shutting down trading bot...
+2025-10-23 22:32:53 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Attempting to close all positions...
+2025-10-23 22:32:53 UTC -     INFO - drift_macd_momentum_strategy - ✅ All positions closed successfully
+2025-10-23 22:32:53 UTC -     INFO - drift_macd_momentum_strategy - 🧹 Cleaning up strategy resources...
+2025-10-23 22:32:53 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-23 22:33:08 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift client unsubscribed
+2025-10-23 22:33:08 UTC -     INFO - drift_macd_momentum_strategy - ✅ Cleanup completed
+2025-10-23 22:33:08 UTC -     INFO - drift_macd_momentum_strategy - Final portfolio state:
+2025-10-23 22:33:08 UTC -     INFO - drift_macd_momentum_strategy - Shutdown completed successfully
+2025-10-23 22:33:09 UTC -     INFO - drift_macd_momentum_strategy - Strategy stopped
+2025-10-23 22:33:09 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-23 22:33:09 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251023.log
+2025-10-23 22:33:09 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-23 22:33:09 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2025-10-23 22:33:09 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls

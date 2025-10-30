@@ -285,23 +285,97 @@ class DriftMACDStrategy:
             
             # SAFETY CHECK: Detect external positions vs bot-managed positions
             if has_position and not self.position_entry_price:
-                # External position exists - bot will NOT manage it
-                logger.info(f"🚫 EXTERNAL POSITION EXISTS - Size: {current_position.get('size', 0)}")
-                logger.info(f"📊 Signals detected but will only act when account is clear")
-                return
+                # External position exists - bot will now take control and manage it
+                self.position_entry_price = current_position.get('entry_price', 0)
+                self.position_entry_time = datetime.now(TIMEZONE)
+                self.position_side = "BUY" if current_position.get('qty', 0) > 0 else "SELL"
+                self.current_stop_loss = None
+                self.current_take_profit = None
+                logger.info(f"🤖 Bot has adopted external position: {self.position_side} @ {self.position_entry_price}")
+                # Now continue to normal management logic
             elif not has_position:
                 # Account is clear - bot can now trade!
                 logger.info(f"🎯 ACCOUNT CLEAR! Bot can execute trades based on signals")
             
             # Execute trading logic ONLY for bot-managed positions
             if buy_signal and not has_position:
-                # Open new long position
                 logger.critical(f"🚀 EXECUTING REAL BUY ORDER ON DRIFT!")
-                await self.execute_buy_signal(symbol, current_price, balance, atr_value)
+                tx_sig = await self.execute_buy_signal(symbol, current_price, balance, atr_value)
+                # Wait for position to appear after order (polling, up to 10 seconds)
+                found = False
+                for _ in range(10):
+                    open_positions = await self.broker.get_open_positions()
+                    for pos in open_positions:
+                        if pos.get('market_type') == 'perp' and (
+                            pos.get('symbol') == symbol or
+                            pos.get('symbol') == f"MARKET_{target_market_index}" or
+                            pos.get('market_index') == target_market_index
+                        ) and abs(pos.get('qty', 0)) > 0:
+                            self.position_entry_price = pos.get('entry_price', 0)
+                            self.position_entry_time = datetime.now(TIMEZONE)
+                            self.position_side = "BUY" if pos.get('qty', 0) > 0 else "SELL"
+                            found = True
+                            logger.info(f"✅ Bot-managed position detected after BUY: {self.position_side} @ {self.position_entry_price}")
+                            break
+                    if found:
+                        break
+                    await asyncio.sleep(1)
+                if not found:
+                    # Try one last time after polling
+                    open_positions = await self.broker.get_open_positions()
+                    for pos in open_positions:
+                        if pos.get('market_type') == 'perp' and (
+                            pos.get('symbol') == symbol or
+                            pos.get('symbol') == f"MARKET_{target_market_index}" or
+                            pos.get('market_index') == target_market_index
+                        ) and abs(pos.get('qty', 0)) > 0:
+                            self.position_entry_price = pos.get('entry_price', 0)
+                            self.position_entry_time = datetime.now(TIMEZONE)
+                            self.position_side = "BUY" if pos.get('qty', 0) > 0 else "SELL"
+                            logger.warning(f"⚠️ Bot-managed position detected after polling: {self.position_side} @ {self.position_entry_price}")
+                            found = True
+                            break
+                if not found:
+                    logger.warning("❌ No bot-managed position detected after BUY order. Will treat as external until next run.")
             elif sell_signal and not has_position:
-                # Open new short position  
                 logger.critical(f"🚀 EXECUTING REAL SELL ORDER ON DRIFT!")
-                await self.execute_sell_signal(symbol, current_price, balance, atr_value)
+                tx_sig = await self.execute_sell_signal(symbol, current_price, balance, atr_value)
+                # Wait for position to appear after order (polling, up to 10 seconds)
+                found = False
+                for _ in range(10):
+                    open_positions = await self.broker.get_open_positions()
+                    for pos in open_positions:
+                        if pos.get('market_type') == 'perp' and (
+                            pos.get('symbol') == symbol or
+                            pos.get('symbol') == f"MARKET_{target_market_index}" or
+                            pos.get('market_index') == target_market_index
+                        ) and abs(pos.get('qty', 0)) > 0:
+                            self.position_entry_price = pos.get('entry_price', 0)
+                            self.position_entry_time = datetime.now(TIMEZONE)
+                            self.position_side = "SELL" if pos.get('qty', 0) < 0 else "BUY"
+                            found = True
+                            logger.info(f"✅ Bot-managed position detected after SELL: {self.position_side} @ {self.position_entry_price}")
+                            break
+                    if found:
+                        break
+                    await asyncio.sleep(1)
+                if not found:
+                    # Try one last time after polling
+                    open_positions = await self.broker.get_open_positions()
+                    for pos in open_positions:
+                        if pos.get('market_type') == 'perp' and (
+                            pos.get('symbol') == symbol or
+                            pos.get('symbol') == f"MARKET_{target_market_index}" or
+                            pos.get('market_index') == target_market_index
+                        ) and abs(pos.get('qty', 0)) > 0:
+                            self.position_entry_price = pos.get('entry_price', 0)
+                            self.position_entry_time = datetime.now(TIMEZONE)
+                            self.position_side = "SELL" if pos.get('qty', 0) < 0 else "BUY"
+                            logger.warning(f"⚠️ Bot-managed position detected after polling: {self.position_side} @ {self.position_entry_price}")
+                            found = True
+                            break
+                if not found:
+                    logger.warning("❌ No bot-managed position detected after SELL order. Will treat as external until next run.")
             elif buy_signal and has_position and self.position_entry_price:
                 # Buy signal with bot-managed position - CHECK ADVANCED HOLD TIME FIRST
                 if self.position_side == "SELL":
@@ -694,6 +768,13 @@ class DriftMACDStrategy:
             
             # 🎯 TAKE PROFIT CHECK (Priority 1)
             take_profit_triggered = False
+            # Ensure take profit is set
+            if self.current_take_profit is None:
+                if side == "BUY":
+                    self.current_take_profit = entry_price + (self.take_profit_atr_multiplier * atr_value)
+                else:
+                    self.current_take_profit = entry_price - (self.take_profit_atr_multiplier * atr_value)
+                logger.warning(f"Take profit was None, initialized to ${self.current_take_profit:.2f}")
             if side == "BUY" and current_price >= self.current_take_profit:
                 take_profit_triggered = True
                 logger.info(f"🎯 TAKE PROFIT TRIGGERED! Target: ${self.current_take_profit:.2f}, Current: ${current_price:.2f}")
@@ -713,18 +794,25 @@ class DriftMACDStrategy:
                 if side == "BUY":
                     # Trail stop up for long positions
                     new_stop = current_price - (self.trailing_atr_multiplier * atr_value)
-                    if new_stop > self.current_stop_loss:
+                    if self.current_stop_loss is None or new_stop > self.current_stop_loss:
                         self.current_stop_loss = new_stop
                         logger.info(f"📈 TRAILING STOP UPDATED: ${new_stop:.2f} (trailing by {self.trailing_atr_multiplier}x ATR)")
                 else:  # SELL
                     # Trail stop down for short positions
                     new_stop = current_price + (self.trailing_atr_multiplier * atr_value)
-                    if new_stop < self.current_stop_loss:
+                    if self.current_stop_loss is None or new_stop < self.current_stop_loss:
                         self.current_stop_loss = new_stop
                         logger.info(f"📉 TRAILING STOP UPDATED: ${new_stop:.2f} (trailing by {self.trailing_atr_multiplier}x ATR)")
             
             # 🛑 STOP LOSS CHECK (Priority 3)
             stop_loss_triggered = False
+            # Ensure stop loss is set
+            if self.current_stop_loss is None:
+                if side == "BUY":
+                    self.current_stop_loss = entry_price - (self.initial_stop_atr_multiplier * atr_value)
+                else:
+                    self.current_stop_loss = entry_price + (self.initial_stop_atr_multiplier * atr_value)
+                logger.warning(f"Stop loss was None, initialized to ${self.current_stop_loss:.2f}")
             if side == "BUY" and current_price <= self.current_stop_loss:
                 stop_loss_triggered = True
                 logger.warning(f"🛑 STOP LOSS TRIGGERED! Stop: ${self.current_stop_loss:.2f}, Current: ${current_price:.2f}")
@@ -786,10 +874,12 @@ class DriftMACDStrategy:
             # Determine close side (opposite of entry)
             close_side = 'SELL' if self.position_side == 'BUY' else 'BUY'
             quantity = abs(position.get('qty', 0))
-            
+            min_order_size = 0.001
+            if quantity < min_order_size:
+                logger.warning(f"❌ Close order size {quantity:.6f} BTC below Drift minimum {min_order_size} BTC. Position not closed.")
+                return
             logger.critical(f"🚪 CLOSING POSITION: {reason}")
             logger.info(f"📤 Close order: {close_side} {quantity} {symbol}")
-            
             # Execute close order
             tx_sig = await self.broker.place_market_order(
                 symbol=symbol,
