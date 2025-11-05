@@ -193,7 +193,8 @@ class DriftMACDStrategy:
             required_bars = max(self.macd_slow, self.ema_filter) + 10  # 178 bars needed
             duration_days = max(8, required_bars // 24)  # At least 8 days for sufficient hourly data
             
-            df = await self.data_handler.get_historical_crypto_data(symbol, duration_days, "Hour")
+            # Ensure 4-hour timeframe is used for MACD signals
+            df = await self.data_handler.get_historical_crypto_data(symbol, duration_days, "4h")
             if df is None or len(df) < max(self.macd_slow, self.ema_filter) + 5:
                 logger.warning(f"Insufficient data for {symbol}. Skipping execution.")
                 return
@@ -475,6 +476,26 @@ class DriftMACDStrategy:
     def generate_macd_signals(self, df: pd.DataFrame) -> Optional[Dict]:
         """Generate MACD signals with enhanced filtering"""
         try:
+            # Signal generation logic
+            buy_signal = False
+            sell_signal = False
+            # MACD crossover logic
+            macd_bullish_cross = current_macd > current_signal and prev_macd <= prev_signal
+            macd_bearish_cross = current_macd < current_signal and prev_macd >= prev_signal
+            # EMA trend filter
+            price_above_ema = current_price > current_ema
+            price_below_ema = current_price < current_ema
+            # Debug logging for MACD signal generation
+            logger.debug(f"MACD Signal Debug: macd_bullish_cross={macd_bullish_cross}, price_above_ema={price_above_ema}, "
+                         f"macd_histogram={current_histogram:.4f}, min_signal_strength={self.min_signal_strength}")
+            logger.debug(f"MACD Signal Debug: macd_bearish_cross={macd_bearish_cross}, price_below_ema={price_below_ema}, "
+                         f"macd_histogram={current_histogram:.4f}, min_signal_strength={self.min_signal_strength}")
+            if not buy_signal:
+                logger.debug(f"No BUY signal: Conditions - bullish_cross={macd_bullish_cross}, price_above_ema={price_above_ema}, "
+                             f"histogram_strength={abs(current_histogram) > self.min_signal_strength}")
+            if not sell_signal:
+                logger.debug(f"No SELL signal: Conditions - bearish_cross={macd_bearish_cross}, price_below_ema={price_below_ema}, "
+                             f"histogram_strength={abs(current_histogram) > self.min_signal_strength}")
             if df is None or len(df) < max(self.macd_slow, self.ema_filter) + 5:
                 return None
             
@@ -706,31 +727,16 @@ class DriftMACDStrategy:
                 if hold_duration < effective_min_hold:
                     remaining_time = effective_min_hold - hold_duration
                     
-                    # Calculate current profit/loss for decision making
+                    # Calculate current profit/loss for decision making (always use total_profit)
                     entry_price = self.position_entry_price
                     side = self.position_side
-                    if side == "BUY":
-                        profit = current_price - entry_price
-                        profit_pct = (profit / entry_price) * 100
-                    else:  # SELL
-                        profit = entry_price - current_price
-                        profit_pct = (profit / entry_price) * 100
-                    
-                    # ALLOW emergency stop loss (if losing more than 3x ATR)
-                    # Calculate P&L based on ACTUAL Drift position data
-                    entry_price = self.position_entry_price
                     actual_qty = position.get('qty', 0)
-                    position_value = abs(actual_qty) * current_price
-                    
-                    # Calculate profit using actual position size
-                    if self.position_side == "BUY":
+                    if side == "BUY":
                         profit_per_unit = current_price - entry_price
                     else:  # SELL
                         profit_per_unit = entry_price - current_price
-                    
                     total_profit = profit_per_unit * abs(actual_qty)
                     profit_pct = (profit_per_unit / entry_price) * 100
-                    
                     # Emergency loss threshold based on actual position
                     emergency_loss_threshold = 3.0 * atr_value * abs(actual_qty)
                     if total_profit < -emergency_loss_threshold:
@@ -744,28 +750,23 @@ class DriftMACDStrategy:
                         logger.info(f"⏳ HOLD TIME CHECK: {hold_duration:.1f}min / {effective_min_hold}min "
                                   f"(⏰ {remaining_time:.1f}min remaining) [{hold_mode}]")
                         logger.info(f"💰 Position: {self.position_side} {abs(actual_qty):.6f} {symbol} @ ${entry_price:.2f}")
-                        logger.info(f"📊 Current: ${current_price:.2f} | P&L: ${total_profit:.2f} ({profit_pct:+.2f}%)")
+                        logger.info(f"📊 Current: ${current_price:.2f} | Total P&L: ${total_profit:.2f} ({profit_pct:+.2f}%)")
                         logger.info(f"🛡️ Emergency stop available if loss > ${emergency_loss_threshold:.2f}")
                         logger.info(f"🚫 Normal exits blocked until hold complete")
                         return  # 🚫 Exit early - prevent normal exits during minimum hold period
             
-            # Calculate current profit/loss based on ACTUAL position data
+            # Calculate current profit/loss based on ACTUAL position data (always use total_profit)
             entry_price = self.position_entry_price
             side = self.position_side
             actual_qty = position.get('qty', 0)
-            
-            # Calculate profit using actual position size
             if side == "BUY":
                 profit_per_unit = current_price - entry_price
             else:  # SELL
                 profit_per_unit = entry_price - current_price
-            
             total_profit = profit_per_unit * abs(actual_qty)
             profit_pct = (profit_per_unit / entry_price) * 100
-            
             logger.info(f"📊 Position Management: {side} {abs(actual_qty):.6f} {symbol} @ ${entry_price:.2f}")
             logger.info(f"📈 Current: ${current_price:.2f} | Total P&L: ${total_profit:.2f} ({profit_pct:+.2f}%)")
-            
             # 🎯 TAKE PROFIT CHECK (Priority 1)
             take_profit_triggered = False
             # Ensure take profit is set
@@ -781,16 +782,13 @@ class DriftMACDStrategy:
             elif side == "SELL" and current_price <= self.current_take_profit:
                 take_profit_triggered = True
                 logger.info(f"🎯 TAKE PROFIT TRIGGERED! Target: ${self.current_take_profit:.2f}, Current: ${current_price:.2f}")
-            
             if take_profit_triggered:
                 logger.critical(f"🎯 EXECUTING TAKE PROFIT TRADE ON DRIFT PLATFORM!")
                 await self.close_position_with_reason(symbol, "Take Profit Reached")
                 return
-            
             # 📈 TRAILING STOP LOGIC (Priority 2)
             activation_threshold = self.trailing_activation_atr * atr_value
-            
-            if profit > activation_threshold:  # Only trail when in profit
+            if total_profit > activation_threshold:  # Only trail when total profit exceeds threshold
                 if side == "BUY":
                     # Trail stop up for long positions
                     new_stop = current_price - (self.trailing_atr_multiplier * atr_value)
@@ -898,18 +896,40 @@ class DriftMACDStrategy:
                     execution_price = execution_details.get('execution_price') if execution_details else self.position_entry_price
                     logger.warning(f"⚠️ Using fallback close price: ${execution_price:.2f}")
                 
-                # Calculate actual realized P&L
+                # Calculate actual realized P&L with Drift fees and funding
+                from ..portfolio.portfolio_tracker import DriftPnLCalculator
+                
                 entry_price = self.position_entry_price
-                if self.position_side == "BUY":
-                    # LONG: profit = (close - entry) * qty
-                    realized_pnl = quantity * (execution_price - entry_price)
-                else:  # SELL
-                    # SHORT: profit = (entry - close) * qty
-                    realized_pnl = quantity * (entry_price - execution_price)
+                hold_duration_minutes = (datetime.now(TIMEZONE) - self.position_entry_time).total_seconds() / 60
+                hold_duration_hours = hold_duration_minutes / 60
                 
-                logger.info(f"💰 Realized P&L: ${realized_pnl:.2f} (Entry: ${entry_price:.2f}, Close: ${execution_price:.2f})")
+                # Get P&L breakdown including fees and funding
+                pnl_breakdown = DriftPnLCalculator.calculate_realized_pnl(
+                    entry_price=entry_price,
+                    close_price=execution_price,
+                    quantity=quantity,
+                    side=self.position_side,
+                    hold_hours=hold_duration_hours,
+                    funding_rate=0.0,  # TODO: Fetch actual funding rate from Drift API
+                    is_maker=False  # Market orders are taker orders
+                )
                 
-                # Record the CLOSE trade with actual execution price AND P&L
+                gross_pnl = pnl_breakdown['gross_pnl']
+                net_pnl = pnl_breakdown['net_pnl']
+                entry_fee = pnl_breakdown['entry_fee']
+                close_fee = pnl_breakdown['close_fee']
+                funding_paid = pnl_breakdown['funding_paid']
+                total_costs = pnl_breakdown['total_costs']
+                
+                logger.info(DriftPnLCalculator.format_pnl_report(pnl_breakdown))
+                logger.info(f"💰 Realized P&L Breakdown:")
+                logger.info(f"  Entry: ${entry_price:.2f} → Close: ${execution_price:.2f} | Hold: {hold_duration_minutes:.1f}min")
+                logger.info(f"  Gross P&L: ${gross_pnl:.2f}")
+                logger.info(f"  Fees (Entry+Close): ${entry_fee + close_fee:.2f}")
+                logger.info(f"  Funding Paid: ${funding_paid:.2f}")
+                logger.info(f"  ━━━ NET P&L: ${net_pnl:.2f} ({pnl_breakdown['net_pnl_pct']:+.2f}%)")
+                
+                # Record the CLOSE trade with complete P&L breakdown
                 self.portfolio_tracker.record_trade(
                     symbol=symbol,
                     side="CLOSE",
@@ -919,8 +939,17 @@ class DriftMACDStrategy:
                     tp=0.0,
                     tx_signature=tx_sig,
                     market_index=self.market_index,
-                    pnl=realized_pnl,  # ✅ Actual realized P&L
-                    status="CLOSED"
+                    pnl=gross_pnl,  # ✅ Gross realized P&L
+                    status="CLOSED",
+                    # Drift-specific data
+                    fee=entry_fee + close_fee,  # Total fees
+                    order_type="market",
+                    duration_seconds=hold_duration_minutes * 60,
+                    entry_hold_minutes=hold_duration_minutes,
+                    funding_paid=funding_paid,
+                    cumulative_funding=funding_paid,
+                    taker_fee_rate=DriftPnLCalculator.DEFAULT_TAKER_FEE,
+                    net_pnl_after_fees=net_pnl
                 )
                 
                 logger.info(f"💰 CLOSE trade recorded: {close_side} {quantity} @ ${execution_price:.2f}, P&L: ${realized_pnl:.2f}")

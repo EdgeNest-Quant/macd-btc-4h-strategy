@@ -30,10 +30,14 @@ class DriftPortfolioTracker:
             # Blockchain data
             'tx_signature', 'slot', 'block_time',
             # Execution quality
-            'oracle_price_at_entry', 'execution_latency_ms', 'bot_version', 'env'
+            'oracle_price_at_entry', 'execution_latency_ms', 'bot_version', 'env',
+            # Drift-specific costs
+            'funding_paid', 'cumulative_funding', 'entry_hold_minutes',
+            'taker_fee_rate', 'maker_fee_rate', 'net_pnl_after_fees'
         ]
         self.trades_info = self._load_trades()
         self.session_trades = []  # Track trades for current session
+        self.position_funding_tracker = {}  # Track cumulative funding for open positions
     
     def _load_trades(self):
         """Load trades from CSV or create new dataframe"""
@@ -72,7 +76,11 @@ class DriftPortfolioTracker:
                      strategy_id: str = "unknown", signal_confidence: float = 0.0,
                      signal_type: str = "unknown", slot: int = 0, block_time: str = "",
                      oracle_price_at_entry: float = 0.0, execution_latency_ms: float = 0.0,
-                     bot_version: str = "1.0", env: str = "devnet"):
+                     bot_version: str = "1.0", env: str = "devnet",
+                     # Drift-specific parameters
+                     funding_paid: float = 0.0, cumulative_funding: float = 0.0,
+                     entry_hold_minutes: float = 0.0, taker_fee_rate: float = 0.0005,
+                     maker_fee_rate: float = 0.0002, net_pnl_after_fees: float = 0.0):
         """
         Record a trade to the portfolio with comprehensive metadata
         
@@ -118,13 +126,95 @@ class DriftPortfolioTracker:
             execution_latency_ms: Signal → fill latency
             bot_version: Algorithm version
             env: 'mainnet-beta' or 'devnet'
+            
+            # Drift-specific costs
+            funding_paid: Funding fee paid during this trade session (in quote)
+            cumulative_funding: Total funding paid since position open
+            entry_hold_minutes: How long position was held
+            taker_fee_rate: Drift taker fee percentage (default 0.05%)
+            maker_fee_rate: Drift maker fee percentage (default 0.02%)
+            net_pnl_after_fees: PnL minus all fees and funding
         """
         timestamp = datetime.now(TIMEZONE)
         
-        # SAFEGUARD: Ensure price is always positive
+        # ============================================================
+        # VALIDATION LAYER: Prevent invalid/placeholder data
+        # ============================================================
+        
+        # Validate price
+        if price <= 0 or price < 1.0:
+            logger.error(f"❌ VALIDATION FAILED: Invalid price ${price:.2f}. Must be > $1.00")
+            return
+        
+        if price < 100 and symbol == "BTC-PERP":
+            logger.error(f"❌ VALIDATION FAILED: Unrealistic BTC price ${price:.2f}. Expected > $10,000")
+            return
+        
+        # Validate quantity
+        if quantity <= 0:
+            logger.error(f"❌ VALIDATION FAILED: Invalid quantity {quantity}. Must be > 0")
+            return
+        
+        if quantity < 0.001 and market_type == "perp":
+            logger.error(f"❌ VALIDATION FAILED: Quantity {quantity} below Drift minimum (0.001)")
+            return
+        
+        # Validate side
+        side_normalized = side.upper()
+        if side_normalized not in ['BUY', 'SELL', 'CLOSE']:
+            logger.error(f"❌ VALIDATION FAILED: Invalid side '{side}'. Must be BUY/SELL/CLOSE")
+            return
+        
+        # Validate transaction signature (should be non-empty for executed trades)
+        if not tx_signature or tx_signature == "":
+            logger.warning(f"⚠️  WARNING: Missing tx_signature for {side_normalized} {symbol}")
+        
+        # Validate risk levels for entry trades
+        if side_normalized in ['BUY', 'SELL']:
+            if sl <= 0 or tp <= 0:
+                logger.warning(f"⚠️  WARNING: Missing stop loss or take profit levels")
+            
+            # For BUY: SL should be < entry price, TP should be > entry price
+            if side_normalized == 'BUY':
+                if sl > price:
+                    logger.error(f"❌ VALIDATION FAILED: BUY stop loss ${sl:.2f} > entry price ${price:.2f}")
+                    return
+                if tp < price:
+                    logger.error(f"❌ VALIDATION FAILED: BUY take profit ${tp:.2f} < entry price ${price:.2f}")
+                    return
+            
+            # For SELL: SL should be > entry price, TP should be < entry price
+            elif side_normalized == 'SELL':
+                if sl < price:
+                    logger.error(f"❌ VALIDATION FAILED: SELL stop loss ${sl:.2f} < entry price ${price:.2f}")
+                    return
+                if tp > price:
+                    logger.error(f"❌ VALIDATION FAILED: SELL take profit ${tp:.2f} > entry price ${price:.2f}")
+                    return
+        
+        # SAFEGUARD: Ensure price is always positive (already checked above)
         if price < 0:
-            logger.warning(f"⚠️  Negative price detected ({price}), converting to positive")
-            price = abs(price)
+            logger.error(f"❌ VALIDATION FAILED: Negative price detected (${price:.2f})")
+            return
+        
+        # ============================================================
+        # Data passes all validation checks
+        # ============================================================
+        logger.debug(f"✅ Trade validation passed: {side_normalized} {quantity} {symbol} @ ${price:.2f}")
+        
+        # Calculate net P&L after Drift fees and funding
+        if side.upper() == 'BUY' or side.upper() == 'SELL':
+            # Entry trade - calculate entry fee
+            entry_fee = price * quantity * taker_fee_rate
+            net_entry = pnl - entry_fee if pnl > 0 else pnl - entry_fee
+        elif side.upper() == 'CLOSE':
+            # Close trade - calculate close fee + cumulative funding
+            close_fee = price * quantity * taker_fee_rate
+            total_costs = fee + close_fee + cumulative_funding
+            net_pnl_after_fees = pnl - total_costs
+            logger.debug(f"Close P&L breakdown: Gross=${pnl:.2f} - Fees=${total_costs:.2f} = Net=${net_pnl_after_fees:.2f}")
+        else:
+            net_pnl_after_fees = pnl
         
         # Prepare comprehensive trade data
         trade_data = {
@@ -163,7 +253,14 @@ class DriftPortfolioTracker:
             'oracle_price_at_entry': oracle_price_at_entry,
             'execution_latency_ms': execution_latency_ms,
             'bot_version': bot_version,
-            'env': env
+            'env': env,
+            # Drift-specific costs
+            'funding_paid': funding_paid,
+            'cumulative_funding': cumulative_funding,
+            'entry_hold_minutes': entry_hold_minutes,
+            'taker_fee_rate': taker_fee_rate,
+            'maker_fee_rate': maker_fee_rate,
+            'net_pnl_after_fees': net_pnl_after_fees
         }
         
         # Convert timestamp to pandas-compatible format
@@ -178,14 +275,45 @@ class DriftPortfolioTracker:
         trade_data['timestamp'] = timestamp
         self.session_trades.append(trade_data)
         
-        # Save immediately
-        self.save_trades()
+        # ============================================================
+        # AUDIT LOGGING: Log complete trade data for history
+        # ============================================================
+        logger.info(f"")
+        logger.info(f"{'='*80}")
+        logger.info(f"📊 TRADE RECORDED: {side_normalized.upper()} {quantity} {symbol}")
+        logger.info(f"{'='*80}")
+        logger.info(f"Timestamp: {timestamp.isoformat()}")
+        logger.info(f"Market: {symbol} (Market Index: {market_index}, Type: {market_type})")
+        logger.info(f"Side: {side_normalized} | Order Type: {order_type}")
+        logger.info(f"Price: ${price:.2f} | Quantity: {quantity:.8f}")
+        logger.info(f"Risk Levels: SL=${sl:.2f} | TP=${tp:.2f}")
         
-        logger.info(f"Trade recorded: {side.upper()} {quantity} {symbol} @ {price}")
+        if side_normalized == 'CLOSE':
+            logger.info(f"P&L Summary:")
+            logger.info(f"  Gross P&L: ${pnl:.2f}")
+            logger.info(f"  Entry Fee: ${fee/2:.4f} | Close Fee: ${fee/2:.4f}")
+            logger.info(f"  Funding Paid: ${funding_paid:.4f}")
+            logger.info(f"  Net P&L After Fees: ${net_pnl_after_fees:.2f}")
+            logger.info(f"  Hold Duration: {entry_hold_minutes:.1f} minutes")
         
-        # Log transaction signature if available
-        if tx_signature:
-            logger.info(f"Transaction: https://explorer.solana.com/tx/{tx_signature}?cluster=devnet")
+        logger.info(f"Account Context:")
+        logger.info(f"  Account Equity: ${account_equity:.2f}")
+        logger.info(f"  Leverage: {leverage}x")
+        logger.info(f"  Sub-Account: {sub_account_id}")
+        
+        logger.info(f"Execution Quality:")
+        logger.info(f"  Oracle Price: ${oracle_price_at_entry:.2f}")
+        logger.info(f"  Slippage: {slippage_bps:.1f} bps")
+        logger.info(f"  Latency: {execution_latency_ms:.0f} ms")
+        
+        logger.info(f"On-Chain Data:")
+        logger.info(f"  TX Signature: {tx_signature}")
+        logger.info(f"  Slot: {slot}")
+        logger.info(f"  Block Time: {block_time}")
+        
+        logger.info(f"Environment: {env} | Bot v{bot_version}")
+        logger.info(f"{'='*80}")
+        logger.info(f"")
     
     def save_trades(self):
         """Save trades to CSV"""
@@ -386,5 +514,120 @@ class DriftPortfolioTracker:
             logger.error(f"Error exporting trades: {e}")
 
 
-# Backwards compatibility alias
+        # Backwards compatibility alias
 PortfolioTracker = DriftPortfolioTracker
+
+
+# ============================================================================
+# Drift-Specific P&L Calculation Methods
+# ============================================================================
+
+class DriftPnLCalculator:
+    """Calculate accurate P&L including Drift protocol-specific costs"""
+    
+    DEFAULT_TAKER_FEE = 0.0005  # 0.05%
+    DEFAULT_MAKER_FEE = 0.0002  # 0.02%
+    FUNDING_INTERVAL = 1 / 24   # Hourly funding (1/24 of day)
+    
+    @staticmethod
+    def calculate_entry_fee(notional_value: float, is_maker: bool = False) -> float:
+        """
+        Calculate fee paid on entry
+        
+        Args:
+            notional_value: price * quantity
+            is_maker: True if maker order, False if taker
+            
+        Returns:
+            Fee amount in quote currency
+        """
+        rate = DriftPnLCalculator.DEFAULT_MAKER_FEE if is_maker else DriftPnLCalculator.DEFAULT_TAKER_FEE
+        return notional_value * rate
+    
+    @staticmethod
+    def calculate_close_fee(notional_value: float, is_maker: bool = False) -> float:
+        """Calculate fee paid on close"""
+        return DriftPnLCalculator.calculate_entry_fee(notional_value, is_maker)
+    
+    @staticmethod
+    def calculate_funding_payment(notional_value: float, funding_rate: float, hold_hours: float) -> float:
+        """
+        Calculate cumulative funding payments
+        
+        Args:
+            notional_value: price * quantity
+            funding_rate: 8-hour funding rate from Drift
+            hold_hours: How long position was held (in hours)
+            
+        Returns:
+            Total funding paid (negative = you paid, positive = you received)
+        """
+        # Funding is paid every 1 hour on Drift
+        num_periods = hold_hours
+        # Each period funding = notional_value * funding_rate
+        total_funding = notional_value * funding_rate * num_periods
+        return total_funding
+    
+    @staticmethod
+    def calculate_realized_pnl(entry_price: float, close_price: float, quantity: float, 
+                              side: str, hold_hours: float = 0.0, 
+                              funding_rate: float = 0.0, is_maker: bool = False) -> Dict[str, float]:
+        """
+        Calculate complete realized P&L breakdown for Drift position
+        
+        Args:
+            entry_price: Entry price per unit
+            close_price: Close price per unit
+            quantity: Position size
+            side: 'BUY' or 'SELL'
+            hold_hours: How long position was held
+            funding_rate: 8-hour funding rate (positive = longs pay, negative = shorts receive)
+            is_maker: True if both entry and close were maker orders
+            
+        Returns:
+            Dictionary with complete P&L breakdown
+        """
+        notional_value = entry_price * quantity
+        
+        # Calculate gross P&L
+        if side.upper() == 'BUY':
+            gross_pnl = quantity * (close_price - entry_price)
+        else:  # SELL
+            gross_pnl = quantity * (entry_price - close_price)
+        
+        # Calculate all costs
+        entry_fee = DriftPnLCalculator.calculate_entry_fee(notional_value, is_maker)
+        close_fee = DriftPnLCalculator.calculate_close_fee(notional_value, is_maker)
+        
+        # Funding payment (positive = you paid, negative = you received)
+        if side.upper() == 'BUY':
+            funding_paid = DriftPnLCalculator.calculate_funding_payment(notional_value, funding_rate, hold_hours)
+        else:  # SELL - funding direction is reversed
+            funding_paid = -DriftPnLCalculator.calculate_funding_payment(notional_value, funding_rate, hold_hours)
+        
+        total_costs = entry_fee + close_fee + funding_paid
+        net_pnl = gross_pnl - total_costs
+        
+        return {
+            'gross_pnl': gross_pnl,
+            'entry_fee': entry_fee,
+            'close_fee': close_fee,
+            'funding_paid': funding_paid,
+            'total_costs': total_costs,
+            'net_pnl': net_pnl,
+            'net_pnl_pct': (net_pnl / notional_value * 100) if notional_value > 0 else 0.0
+        }
+    
+    @staticmethod
+    def format_pnl_report(pnl_dict: Dict[str, float]) -> str:
+        """Format P&L calculation as readable report"""
+        return f"""
+P&L Breakdown:
+  Gross P&L:        ${pnl_dict['gross_pnl']:>10.2f}
+  Entry Fee:        ${pnl_dict['entry_fee']:>10.2f}
+  Close Fee:        ${pnl_dict['close_fee']:>10.2f}
+  Funding Paid:     ${pnl_dict['funding_paid']:>10.2f}
+  ─────────────────────────
+  Total Costs:      ${pnl_dict['total_costs']:>10.2f}
+  NET P&L:          ${pnl_dict['net_pnl']:>10.2f} ({pnl_dict['net_pnl_pct']:+.2f}%)
+"""

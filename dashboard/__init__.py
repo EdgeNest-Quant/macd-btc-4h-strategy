@@ -1,2 +1,1 @@
-# Dashboard Module
-__version__ = '1.0.0'
+"""Dashboard module for Drift Trading Bot"""

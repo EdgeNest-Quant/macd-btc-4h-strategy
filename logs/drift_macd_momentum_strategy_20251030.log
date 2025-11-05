@@ -430,3 +430,78 @@
 2025-10-30 03:29:32 UTC -     INFO - drift_macd_momentum_strategy - ✅ Cleanup completed
 2025-10-30 03:29:32 UTC -     INFO - drift_macd_momentum_strategy - Final portfolio state:
 2025-10-30 03:29:32 UTC -     INFO - drift_macd_momentum_strategy - Shutdown completed successfully
+2025-10-30 09:49:18 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-30 09:49:18 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251030.log
+2025-10-30 09:49:18 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251030.log
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - 📊 Symbol: BTC-PERP | Timeframe: 240 | Position %: 0.3
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - ⚡ MACD: Fast(6), Slow(10), Signal(2)
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - 🔒 STRICT HOLD MODE: 480 minutes (4H strategy)
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - 🎯 STRONG REVERSAL OVERRIDE: Enabled with 0.5 MACD threshold
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Risk Management: Initial Stop: 2.8x ATR, Take Profit: 6.0x ATR
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - 📈 Position Sizing: 0.3% of balance (90% for Drift minimums)
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - 🚀 Initializing DriftMACDStrategy strategy...
+2025-10-30 09:49:20 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
+2025-10-30 09:49:23 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt
+2025-10-30 09:49:23 UTC -     INFO - drift_macd_momentum_strategy - 💰 Starting equity tracked: $702.78
+2025-10-30 09:49:23 UTC -     INFO - drift_macd_momentum_strategy - ✅ DriftMACDStrategy strategy initialized successfully
+2025-10-30 09:49:23 UTC -     INFO - drift_macd_momentum_strategy - All components initialized successfully
+2025-10-30 09:49:23 UTC -     INFO - drift_macd_momentum_strategy - Current time: 2025-10-30 08:49:23.548171+00:00
+2025-10-30 09:49:23 UTC -     INFO - drift_macd_momentum_strategy - Starting 24/7 trading loop...
+2025-10-30 09:49:23 UTC -     INFO - drift_macd_momentum_strategy - Strategy execution begins!
+2025-10-30 09:49:27 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-30 09:49:27 UTC -     INFO - drift_macd_momentum_strategy - Trading loop ended
+2025-10-30 09:49:27 UTC -     INFO - drift_macd_momentum_strategy - Shutting down trading bot...
+2025-10-30 09:49:27 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Attempting to close all positions...
+2025-10-30 09:49:27 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Closing BTC-PERP position: BUY 0.0008
+2025-10-30 09:49:27 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.0008, BASE_PRECISION=1000000000, base_asset_amount=800000
+2025-10-30 09:49:28 UTC -    ERROR - drift_macd_momentum_strategy - Error placing market order for BTC-PERP: SendTransactionPreflightFailureMessage { message: "Transaction simulation failed: Error processing Instruction 2: custom program error: 0x17a8", data: RpcSimulateTransactionResult(RpcSimulateTransactionResult { err: Some(InstructionError(2, Custom(6056))), logs: Some(["Program ComputeBudget111111111111111111111111111111 invoke [1]", "Program ComputeBudget111111111111111111111111111111 success", "Program ComputeBudget111111111111111111111111111111 invoke [1]", "Program ComputeBudget111111111111111111111111111111 success", "Program dRiftyHA39MWEi3m9aunc5MzRF1JYuBsbn6VPcn33UH invoke [1]", "Program log: Instruction: PlaceOrders", "Program log: 4DRDR8LtbQGXJgNpAAAAAAEEAQABAAEAAAAAAAAAAAAAAAAAAAAAAXDOr/PFgtj06Vhg/aKQMvWu23lrhL3kCA70GbLRR+fVAWUBAAABAQHA+zkAAAAAAAEANQwAAAAAAAEKMjQFAAAAAAAAAAAAAHKRUckZAAAAAAAAAAAAAAA=", "Program log: Updating auction start price to 110462135065", "Program log: Updating auction end price to 110899183780", "Program log: Updating auction duration to 40", "Program log: Error InvalidOrderMinOrderSize thrown at programs/drift/src/validation/order.rs:358", "Program log: Order base_asset_amount (800000) < min_order_size (1000000)", "Program log: AnchorError occurred. Error Code: InvalidOrderMinOrderSize. Error Number: 6056. Error Message: InvalidOrderMinOrderSize.", "Program dRiftyHA39MWEi3m9aunc5MzRF1JYuBsbn6VPcn33UH consumed 27060 of 199700 compute units", "Program dRiftyHA39MWEi3m9aunc5MzRF1JYuBsbn6VPcn33UH failed: custom program error: 0x17a8"]), accounts: None, units_consumed: Some(27360), return_data: None, inner_instructions: None, replacement_blockhash: None }) }
+2025-10-30 09:49:28 UTC -     INFO - drift_macd_momentum_strategy - ✅ All positions closed successfully
+2025-10-30 09:49:28 UTC -     INFO - drift_macd_momentum_strategy - 🧹 Cleaning up strategy resources...
+2025-10-30 09:49:29 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-30 09:49:35 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift client unsubscribed
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - ✅ Cleanup completed
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - Final portfolio state:
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - Shutdown completed successfully
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - Strategy stopped
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251030.log
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - 📊 Symbol: BTC-PERP | Timeframe: 240 | Position %: 0.3
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - ⚡ MACD: Fast(6), Slow(10), Signal(2)
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - 🔒 STRICT HOLD MODE: 480 minutes (4H strategy)
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - 🎯 STRONG REVERSAL OVERRIDE: Enabled with 0.5 MACD threshold
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Risk Management: Initial Stop: 2.8x ATR, Take Profit: 6.0x ATR
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - 📈 Position Sizing: 0.3% of balance (90% for Drift minimums)
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - 🚀 Initializing DriftMACDStrategy strategy...
+2025-10-30 09:49:37 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
+2025-10-30 09:49:40 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt
+2025-10-30 09:49:40 UTC -     INFO - drift_macd_momentum_strategy - 💰 Starting equity tracked: $702.75
+2025-10-30 09:49:40 UTC -     INFO - drift_macd_momentum_strategy - ✅ DriftMACDStrategy strategy initialized successfully
+2025-10-30 09:49:40 UTC -     INFO - drift_macd_momentum_strategy - All components initialized successfully
+2025-10-30 09:49:40 UTC -     INFO - drift_macd_momentum_strategy - Current time: 2025-10-30 08:49:40.232781+00:00
+2025-10-30 09:49:40 UTC -     INFO - drift_macd_momentum_strategy - Starting 24/7 trading loop...
+2025-10-30 09:49:40 UTC -     INFO - drift_macd_momentum_strategy - Strategy execution begins!
+2025-10-30 09:50:39 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-30 09:50:39 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-30 09:50:39 UTC -     INFO - drift_macd_momentum_strategy - Trading loop ended
+2025-10-30 09:50:39 UTC -     INFO - drift_macd_momentum_strategy - Shutting down trading bot...
+2025-10-30 09:50:39 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Attempting to close all positions...
+2025-10-30 09:50:39 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Closing BTC-PERP position: BUY 0.0008
+2025-10-30 09:50:39 UTC -     INFO - drift_macd_momentum_strategy - Order debug: symbol=BTC-PERP, quantity=0.0008, BASE_PRECISION=1000000000, base_asset_amount=800000
+2025-10-30 09:50:39 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-30 09:50:39 UTC -     INFO - drift_macd_momentum_strategy - Received signal 2, initiating shutdown...
+2025-10-30 09:50:41 UTC -    ERROR - drift_macd_momentum_strategy - Error placing market order for BTC-PERP: SendTransactionPreflightFailureMessage { message: "Transaction simulation failed: Error processing Instruction 2: custom program error: 0x17a8", data: RpcSimulateTransactionResult(RpcSimulateTransactionResult { err: Some(InstructionError(2, Custom(6056))), logs: Some(["Program ComputeBudget111111111111111111111111111111 invoke [1]", "Program ComputeBudget111111111111111111111111111111 success", "Program ComputeBudget111111111111111111111111111111 invoke [1]", "Program ComputeBudget111111111111111111111111111111 success", "Program dRiftyHA39MWEi3m9aunc5MzRF1JYuBsbn6VPcn33UH invoke [1]", "Program log: Instruction: PlaceOrders", "Program log: 4DRDR8LtbQHgJgNpAAAAAAEEAQABAAEAAAAAAAAAAAAAAAAAAAAAAXDOr/PFgtj06Vhg/aKQMvWu23lrhL3kCA70GbLRR+fVAWUBAAABAQHA+zkAAAAAAAEANQwAAAAAAAEKMjQFAAAAAAAAAAAAAA1FossZAAAAAAAAAAAAAAA=", "Program log: Updating auction start price to 110501038475", "Program log: Updating auction end price to 110901375762", "Program log: Updating auction duration to 37", "Program log: Error InvalidOrderMinOrderSize thrown at programs/drift/src/validation/order.rs:358", "Program log: Order base_asset_amount (800000) < min_order_size (1000000)", "Program log: AnchorError occurred. Error Code: InvalidOrderMinOrderSize. Error Number: 6056. Error Message: InvalidOrderMinOrderSize.", "Program dRiftyHA39MWEi3m9aunc5MzRF1JYuBsbn6VPcn33UH consumed 27053 of 199700 compute units", "Program dRiftyHA39MWEi3m9aunc5MzRF1JYuBsbn6VPcn33UH failed: custom program error: 0x17a8"]), accounts: None, units_consumed: Some(27353), return_data: None, inner_instructions: None, replacement_blockhash: None }) }
+2025-10-30 09:50:41 UTC -     INFO - drift_macd_momentum_strategy - ✅ All positions closed successfully
+2025-10-30 09:50:41 UTC -     INFO - drift_macd_momentum_strategy - 🧹 Cleaning up strategy resources...
+2025-10-30 09:50:49 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift client unsubscribed
+2025-10-30 09:50:49 UTC -     INFO - drift_macd_momentum_strategy - ✅ Cleanup completed
+2025-10-30 09:50:49 UTC -     INFO - drift_macd_momentum_strategy - Final portfolio state:
+2025-10-30 09:50:49 UTC -     INFO - drift_macd_momentum_strategy - Shutdown completed successfully

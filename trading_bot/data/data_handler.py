@@ -285,6 +285,22 @@ class DriftDataHandler:
             except Exception as e:
                 logger.error(f"Error during cleanup: {e}")
 
+        async def get_historical_data(self, symbol: str, periods: int = 1, timeframe_minutes: int = 1):
+            """
+            Compatibility wrapper for strategy code expecting get_historical_data.
+            Calls get_historical_crypto_data with mapped arguments.
+            Args:
+                symbol: Market symbol (e.g., "BTC-PERP")
+                periods: Number of periods (default 1)
+                timeframe_minutes: Minutes per period (default 1)
+            Returns:
+                DataFrame with OHLCV and indicators
+            """
+            # Map periods and timeframe_minutes to duration and time_frame_unit
+            duration = periods
+            time_frame_unit = "Minute" if timeframe_minutes == 1 else "Hour" if timeframe_minutes == 60 else "Day"
+            return await self.get_historical_crypto_data(symbol, duration, time_frame_unit)
+
 
 # Backwards compatibility alias
 DataHandler = DriftDataHandler
