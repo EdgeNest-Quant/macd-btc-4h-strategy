@@ -1,0 +1,1031 @@
+2026-03-27 15:44:25 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2026-03-27 15:44:25 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20260327.log
+2026-03-27 15:44:25 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2026-03-27 15:57:53 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2026-03-27 15:57:53 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20260327.log
+2026-03-27 15:57:53 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20260327.log
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - 📊 Symbol: BTC-PERP | Timeframe: 240 | Position %: 0.3
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - ⚡ MACD: Fast(6), Slow(10), Signal(2)
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - 🔒 STRICT HOLD MODE: 480 minutes (4H strategy)
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - 🎯 STRONG REVERSAL OVERRIDE: Enabled with 0.5 MACD threshold
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Risk Management: Initial Stop: 2.8x ATR, Take Profit: 6.0x ATR
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - 📈 Position Sizing: 0.3% of balance (90% for Drift minimums)
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - 🚀 Initializing DriftMACDStrategy strategy...
+2026-03-27 15:57:55 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
+2026-03-27 15:58:09 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt
+2026-03-27 15:58:09 UTC -     INFO - drift_macd_momentum_strategy - 💰 Starting equity tracked: $706.53
+2026-03-27 15:58:09 UTC -     INFO - drift_macd_momentum_strategy - ✅ DriftMACDStrategy strategy initialized successfully
+2026-03-27 15:58:09 UTC -     INFO - drift_macd_momentum_strategy - All components initialized successfully
+2026-03-27 15:58:09 UTC -     INFO - drift_macd_momentum_strategy - Current time: 2026-03-27 15:58:09.191867+00:00
+2026-03-27 15:58:09 UTC -     INFO - drift_macd_momentum_strategy - Starting 24/7 trading loop...
+2026-03-27 15:58:09 UTC -     INFO - drift_macd_momentum_strategy - Strategy execution begins!
+2026-03-27 15:59:09 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 540 bars from BTC-PERP_4h.csv
+2026-03-27 15:59:15 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 15:59:15 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 588 bars to BTC-PERP_4h.csv
+2026-03-27 15:59:15 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 15:59:15 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:00:10 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 588 bars from BTC-PERP_4h.csv
+2026-03-27 16:00:13 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:00:13 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:00:13 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:00:13 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:01:11 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:01:20 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:01:20 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:01:20 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:01:20 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:02:11 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:02:25 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:02:25 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:02:25 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:02:25 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:03:12 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:03:24 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:03:24 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:03:24 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:03:24 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:04:12 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:04:29 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:04:29 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:04:29 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:05:13 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:05:40 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:05:41 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:05:41 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:06:13 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:06:30 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:06:30 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:06:30 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:07:14 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:07:34 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:07:34 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:07:34 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:08:14 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:08:31 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:08:31 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:08:31 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:09:15 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:09:33 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:09:33 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:09:33 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:10:15 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:10:32 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:10:32 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:10:32 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:11:16 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:11:37 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:11:37 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:11:37 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:12:16 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:12:31 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:12:32 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:12:32 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:13:17 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:13:35 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:13:35 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:13:35 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:14:18 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:14:44 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:14:44 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:14:44 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:15:18 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:15:38 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:15:38 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:15:38 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:16:19 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:16:33 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:16:33 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:16:33 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:16:33 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:17:19 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:17:34 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:17:34 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:17:34 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:18:19 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:18:25 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:18:25 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:18:25 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:18:25 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:19:20 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:19:33 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:19:33 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:19:33 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:19:33 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:20:20 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:20:42 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:20:42 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:20:42 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:21:21 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:21:36 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:21:36 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:21:36 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:21:36 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:22:22 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:22:30 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:22:30 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:22:30 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:22:30 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:23:22 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:23:42 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:23:42 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:23:42 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:24:23 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:24:40 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:24:40 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:24:40 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:24:40 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:25:24 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:25:27 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: [Errno -2] Name or service not known
+2026-03-27 16:25:27 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:25:27 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:29:20 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:29:47 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: 
+2026-03-27 16:29:47 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:29:47 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:30:20 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:45:47 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:45:47 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:45:48 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:45:48 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 16:45:49 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 16:45:50 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 16:45:50 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 16:45:50 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 16:45:50 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:30:55 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:30:56 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:30:56 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:30:56 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:30:56 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:31:55 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:31:56 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:31:56 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:31:56 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:31:56 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:32:55 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:32:56 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:32:56 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:32:56 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:32:56 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:33:56 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:33:57 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:33:57 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:33:57 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:33:57 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:34:56 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:34:56 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:34:57 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:34:57 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:34:57 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:35:56 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:35:57 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:35:57 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:35:57 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:35:57 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:36:56 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:36:58 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:36:58 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:36:58 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:36:58 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:37:57 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:37:58 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:37:58 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:37:58 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:37:58 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:38:57 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:38:58 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:38:58 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:38:58 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:38:58 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:39:58 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:39:59 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:39:59 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:39:59 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:39:59 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:40:58 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:40:59 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:40:59 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:40:59 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:40:59 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:41:59 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:42:01 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:42:01 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:42:01 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:42:01 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:42:59 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:43:00 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:43:00 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:43:00 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:43:00 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:43:59 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:44:00 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:44:00 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:44:00 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:44:00 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:45:00 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:45:01 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:45:01 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:45:01 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:45:01 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:46:01 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:46:03 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:46:03 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:46:03 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:46:03 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:47:02 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:47:02 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:47:02 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:47:02 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:47:02 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:48:02 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:48:03 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:48:03 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:48:03 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:48:03 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:49:02 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:49:03 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:49:03 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:49:03 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:49:03 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:50:02 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:50:03 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:50:03 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:50:03 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:50:03 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:51:03 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:51:03 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:51:04 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:51:04 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:51:04 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:52:03 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:52:04 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:52:04 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:52:04 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:52:04 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:53:04 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:53:05 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:53:05 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:53:05 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:53:05 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:54:04 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:54:05 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:54:05 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:54:05 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:54:05 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:55:04 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:55:06 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:55:06 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:55:06 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:55:06 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:56:05 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:56:06 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:56:06 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:56:06 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:56:06 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:57:06 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:57:06 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:57:06 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:57:06 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:57:06 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:58:07 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:58:08 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:58:08 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:58:08 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:58:08 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 17:59:07 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 17:59:08 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 17:59:08 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 17:59:08 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 17:59:08 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:00:08 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:00:09 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:00:09 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:00:09 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:00:09 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:01:08 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:01:09 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:01:09 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:01:09 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:01:09 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:02:09 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:02:10 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:02:10 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:02:10 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:02:10 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:03:09 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:03:10 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:03:10 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:03:10 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:03:10 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:04:10 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:04:11 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:04:11 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:04:11 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:04:11 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:05:10 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:05:11 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:05:11 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:05:11 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:05:11 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:06:11 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:06:12 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:06:12 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:06:12 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:06:12 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:07:11 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:07:12 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:07:12 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:07:12 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:07:12 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:08:12 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:08:12 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:08:12 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:08:12 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:08:12 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:09:12 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:09:13 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:09:13 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:09:13 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:09:13 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:10:12 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:10:13 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:10:13 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:10:13 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:10:13 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:11:13 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:11:13 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:11:13 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:11:14 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:11:14 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:12:13 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:12:23 UTC -  WARNING - drift_macd_momentum_strategy - Binance API request failed: [Errno -3] Temporary failure in name resolution
+2026-03-27 18:12:23 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:12:23 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:13:13 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:13:14 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:13:14 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:13:14 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:13:14 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:14:14 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:14:15 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:14:15 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:14:15 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:14:15 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:15:14 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:15:14 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:15:15 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:15:15 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:15:15 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:16:15 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:16:16 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:16:16 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:16:16 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:16:16 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:17:15 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:17:16 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:17:16 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:17:16 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:17:16 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:18:15 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:18:16 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:18:16 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:18:16 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:18:16 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:19:16 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:19:16 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:19:16 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:19:16 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:19:16 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:20:16 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:20:16 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:20:16 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:20:16 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:20:16 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:21:17 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:21:18 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:21:18 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:21:18 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:21:18 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:22:17 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:22:18 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:22:18 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:22:18 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:22:18 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:23:18 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:23:18 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:23:18 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:23:18 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:23:18 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:24:18 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:24:19 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:24:19 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:24:19 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:24:19 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:25:18 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:25:19 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:25:19 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:25:19 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:25:19 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:26:18 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:26:19 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:26:19 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:26:19 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:26:19 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:27:19 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:27:20 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:27:20 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:27:20 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:27:20 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:28:20 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:28:21 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:28:21 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:28:21 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:28:21 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:29:20 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:29:21 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:29:21 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:29:21 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:29:21 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:30:21 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:30:21 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:30:21 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:30:21 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:30:21 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:31:21 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:31:22 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:31:22 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:31:22 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:31:22 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:32:21 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:32:22 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:32:22 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:32:22 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:32:22 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:33:21 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:33:22 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:33:22 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:33:22 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:33:22 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:34:22 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:34:23 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:34:23 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:34:23 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:34:23 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:35:22 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:35:23 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:35:23 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:35:23 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:35:23 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:36:22 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:36:24 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:36:24 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:36:24 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:36:24 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:37:22 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:37:25 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:37:25 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:37:25 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:37:25 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:38:23 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:38:24 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:38:24 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:38:24 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:38:24 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:39:23 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:39:24 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:39:24 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:39:24 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:39:24 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:40:24 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:40:25 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:40:25 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:40:25 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:40:25 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:41:24 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:41:25 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:41:25 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:41:25 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:41:25 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:42:24 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:42:25 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:42:25 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:42:25 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:42:25 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:43:24 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:43:25 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:43:25 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:43:25 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:43:25 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:44:25 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:44:26 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:44:26 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:44:26 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:44:26 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:45:25 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:45:26 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:45:26 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:45:26 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:45:26 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:46:25 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:46:26 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:46:26 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:46:26 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:46:26 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:47:26 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:47:27 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:47:27 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:47:27 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:47:27 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:48:26 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:48:27 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:48:27 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:48:27 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:48:27 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:49:26 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:49:27 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:49:27 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:49:27 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:49:27 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:50:27 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:50:27 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:50:27 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:50:27 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:50:27 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:51:27 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:51:28 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:51:28 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:51:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:51:28 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:52:27 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:52:28 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:52:28 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:52:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:52:28 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:53:27 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:53:28 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:53:28 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:53:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:53:28 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:54:28 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:54:29 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:54:29 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:54:29 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:54:29 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:55:29 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:55:30 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:55:30 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:55:30 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:55:30 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:56:29 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:56:30 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:56:30 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:56:30 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:56:30 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:57:29 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:57:30 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:57:30 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:57:30 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:57:30 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:58:33 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:58:35 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:58:38 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:58:39 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:58:39 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 18:59:31 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 18:59:31 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 18:59:31 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 18:59:32 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 18:59:32 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 19:00:31 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 19:00:32 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:00:32 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 19:00:32 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 19:00:32 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 19:01:31 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 19:01:33 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:01:33 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 19:01:33 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 19:01:33 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 19:02:32 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 19:02:33 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:02:33 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 19:02:33 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 19:02:33 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 19:03:32 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 19:03:33 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:03:33 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 19:03:33 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 19:03:33 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 19:04:32 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 19:04:33 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:04:33 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 19:04:33 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 19:04:33 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 19:05:33 UTC -     INFO - drift_macd_momentum_strategy - 📂 Loaded 589 bars from BTC-PERP_4h.csv
+2026-03-27 19:05:33 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 48 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:05:33 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 589 bars to BTC-PERP_4h.csv
+2026-03-27 19:05:33 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 48 bars for BTC-PERP (4h)
+2026-03-27 19:05:33 UTC -  WARNING - drift_macd_momentum_strategy - Insufficient data for BTC-PERP. Skipping execution.
+2026-03-27 19:06:01 UTC -     INFO - drift_macd_momentum_strategy - Received signal 15, initiating shutdown...
+2026-03-27 19:06:02 UTC -     INFO - drift_macd_momentum_strategy - Trading loop ended
+2026-03-27 19:06:02 UTC -     INFO - drift_macd_momentum_strategy - Shutting down trading bot...
+2026-03-27 19:06:02 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Attempting to close all positions...
+2026-03-27 19:06:02 UTC -     INFO - drift_macd_momentum_strategy - ✅ All positions closed successfully
+2026-03-27 19:06:02 UTC -     INFO - drift_macd_momentum_strategy - 🧹 Cleaning up strategy resources...
+2026-03-27 19:06:10 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift client unsubscribed
+2026-03-27 19:06:10 UTC -     INFO - drift_macd_momentum_strategy - ✅ Cleanup completed
+2026-03-27 19:06:10 UTC -     INFO - drift_macd_momentum_strategy - Final portfolio state:
+2026-03-27 19:06:10 UTC -     INFO - drift_macd_momentum_strategy - Shutdown completed successfully
+2026-03-27 19:06:28 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2026-03-27 19:06:28 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20260327.log
+2026-03-27 19:06:28 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20260327.log
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - 📊 Symbol: BTC-PERP | Timeframe: 240 | Position %: 0.3
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - ⚡ MACD: Fast(6), Slow(10), Signal(2)
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - 🔒 STRICT HOLD MODE: 480 minutes (4H strategy)
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - 🎯 STRONG REVERSAL OVERRIDE: Enabled with 0.5 MACD threshold
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Risk Management: Initial Stop: 2.8x ATR, Take Profit: 6.0x ATR
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - 📈 Position Sizing: 0.3% of balance (90% for Drift minimums)
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - 🚀 Initializing DriftMACDStrategy strategy...
+2026-03-27 19:06:29 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
+2026-03-27 19:06:33 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt
+2026-03-27 19:06:33 UTC -     INFO - drift_macd_momentum_strategy - 💰 Starting equity tracked: $706.43
+2026-03-27 19:06:33 UTC -     INFO - drift_macd_momentum_strategy - ✅ DriftMACDStrategy strategy initialized successfully
+2026-03-27 19:06:33 UTC -     INFO - drift_macd_momentum_strategy - All components initialized successfully
+2026-03-27 19:06:33 UTC -     INFO - drift_macd_momentum_strategy - Current time: 2026-03-27 19:06:33.109100+00:00
+2026-03-27 19:06:33 UTC -     INFO - drift_macd_momentum_strategy - Starting 24/7 trading loop...
+2026-03-27 19:06:33 UTC -     INFO - drift_macd_momentum_strategy - Strategy execution begins!
+2026-03-27 19:07:34 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:07:34 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:07:34 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:07:34 UTC -    ERROR - drift_macd_momentum_strategy - Error generating MACD signals: cannot access local variable 'current_macd' where it is not associated with a value
+2026-03-27 19:08:34 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:08:34 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:08:34 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:08:34 UTC -    ERROR - drift_macd_momentum_strategy - Error generating MACD signals: cannot access local variable 'current_macd' where it is not associated with a value
+2026-03-27 19:09:35 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:09:35 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:09:35 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:09:35 UTC -    ERROR - drift_macd_momentum_strategy - Error generating MACD signals: cannot access local variable 'current_macd' where it is not associated with a value
+2026-03-27 19:10:35 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:10:35 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:10:35 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:10:35 UTC -    ERROR - drift_macd_momentum_strategy - Error generating MACD signals: cannot access local variable 'current_macd' where it is not associated with a value
+2026-03-27 19:11:35 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:11:35 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:11:35 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:11:35 UTC -    ERROR - drift_macd_momentum_strategy - Error generating MACD signals: cannot access local variable 'current_macd' where it is not associated with a value
+2026-03-27 19:12:33 UTC -     INFO - drift_macd_momentum_strategy - Received signal 15, initiating shutdown...
+2026-03-27 19:12:33 UTC -     INFO - drift_macd_momentum_strategy - Trading loop ended
+2026-03-27 19:12:33 UTC -     INFO - drift_macd_momentum_strategy - Shutting down trading bot...
+2026-03-27 19:12:33 UTC -     INFO - drift_macd_momentum_strategy - 🚪 Attempting to close all positions...
+2026-03-27 19:12:33 UTC -     INFO - drift_macd_momentum_strategy - ✅ All positions closed successfully
+2026-03-27 19:12:33 UTC -     INFO - drift_macd_momentum_strategy - 🧹 Cleaning up strategy resources...
+2026-03-27 19:12:41 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift client unsubscribed
+2026-03-27 19:12:41 UTC -     INFO - drift_macd_momentum_strategy - ✅ Cleanup completed
+2026-03-27 19:12:41 UTC -     INFO - drift_macd_momentum_strategy - Final portfolio state:
+2026-03-27 19:12:41 UTC -     INFO - drift_macd_momentum_strategy - Shutdown completed successfully
+2026-03-27 19:13:08 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2026-03-27 19:13:08 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20260327.log
+2026-03-27 19:13:08 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20260327.log
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift Protocol Trading Bot...
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - 🎯 MACD Strategy Enhanced - Advanced Hold Time & Reversal Controls
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - 📊 Symbol: BTC-PERP | Timeframe: 240 | Position %: 0.3
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - ⚡ MACD: Fast(6), Slow(10), Signal(2)
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - 🔒 STRICT HOLD MODE: 480 minutes (4H strategy)
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - 🎯 STRONG REVERSAL OVERRIDE: Enabled with 0.5 MACD threshold
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Risk Management: Initial Stop: 2.8x ATR, Take Profit: 6.0x ATR
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - 📈 Position Sizing: 0.3% of balance (90% for Drift minimums)
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - 🚀 Initializing DriftMACDStrategy strategy...
+2026-03-27 19:13:11 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
+2026-03-27 19:13:16 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt
+2026-03-27 19:13:16 UTC -     INFO - drift_macd_momentum_strategy - 💰 Starting equity tracked: $706.50
+2026-03-27 19:13:16 UTC -     INFO - drift_macd_momentum_strategy - ✅ DriftMACDStrategy strategy initialized successfully
+2026-03-27 19:13:16 UTC -     INFO - drift_macd_momentum_strategy - All components initialized successfully
+2026-03-27 19:13:16 UTC -     INFO - drift_macd_momentum_strategy - Current time: 2026-03-27 19:13:16.713517+00:00
+2026-03-27 19:13:16 UTC -     INFO - drift_macd_momentum_strategy - Starting 24/7 trading loop...
+2026-03-27 19:13:16 UTC -     INFO - drift_macd_momentum_strategy - Strategy execution begins!
+2026-03-27 19:14:18 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:14:18 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:14:18 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:14:18 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65747.39 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 49.2827
+2026-03-27 19:14:18 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:14:18 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:14:18 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:15:18 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:15:18 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:15:18 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:15:18 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65785.99 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 47.9459
+2026-03-27 19:15:18 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:15:18 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:15:18 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:16:18 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:16:18 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:16:18 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:16:18 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65759.74 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 48.8550
+2026-03-27 19:16:18 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:16:18 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:16:18 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:17:18 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:17:18 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:17:18 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:17:18 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65818.98 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 46.8034
+2026-03-27 19:17:18 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:17:18 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:17:18 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:18:18 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:18:18 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:18:18 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:18:18 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65928.02 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 43.0271
+2026-03-27 19:18:18 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:18:18 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:18:18 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:19:18 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:19:18 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:19:18 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:19:18 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65890.40 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 44.3299
+2026-03-27 19:19:18 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:19:18 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:19:18 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:20:19 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:20:19 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:20:19 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:20:19 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65916.37 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 43.4305
+2026-03-27 19:20:19 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:20:19 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:20:19 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:21:19 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:21:19 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:21:19 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:21:19 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65881.32 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 44.6444
+2026-03-27 19:21:19 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:21:19 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:21:19 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:22:20 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:22:20 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:22:20 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:22:20 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65881.79 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 44.6281
+2026-03-27 19:22:20 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:22:20 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:22:20 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:23:21 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:23:21 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:23:21 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:23:21 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65914.61 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 43.4915
+2026-03-27 19:23:21 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:23:21 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:23:21 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:24:21 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:24:21 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:24:21 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:24:21 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65854.67 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 45.5673
+2026-03-27 19:24:21 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:24:21 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:24:21 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:25:22 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:25:22 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:25:22 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:25:22 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65906.68 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 43.7661
+2026-03-27 19:25:22 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:25:22 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:25:22 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:26:23 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:26:23 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:26:23 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:26:23 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65865.09 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 45.2065
+2026-03-27 19:26:23 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:26:23 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:26:23 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:27:23 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:27:23 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:27:23 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:27:23 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65884.45 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 44.5360
+2026-03-27 19:27:23 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:27:23 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:27:23 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:28:23 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:28:23 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:28:23 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:28:23 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65902.74 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 43.9026
+2026-03-27 19:28:23 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:28:23 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:28:23 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:29:24 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:29:24 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:29:24 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:29:24 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65921.28 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 43.2605
+2026-03-27 19:29:24 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:29:24 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:29:24 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:30:25 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:30:25 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:30:25 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:30:25 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65963.01 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 41.8153
+2026-03-27 19:30:25 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:30:25 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:30:25 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:31:25 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:31:25 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:31:25 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:31:25 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65949.85 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 42.2711
+2026-03-27 19:31:25 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:31:25 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:31:25 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:32:25 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:32:25 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:32:25 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:32:25 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65986.73 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 40.9938
+2026-03-27 19:32:25 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:32:25 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:32:25 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:33:25 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:33:25 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:33:25 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:33:25 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65979.89 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 41.2307
+2026-03-27 19:33:25 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:33:25 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:33:25 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:34:26 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:34:26 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:34:26 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:34:26 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65986.27 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 41.0098
+2026-03-27 19:34:26 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:34:26 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:34:26 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:35:26 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:35:26 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:35:26 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:35:26 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65959.02 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 41.9535
+2026-03-27 19:35:26 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:35:26 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:35:26 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:36:26 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:36:26 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:36:26 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:36:26 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65966.00 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 41.7118
+2026-03-27 19:36:26 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:36:26 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:36:26 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:37:27 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:37:27 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:37:27 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:37:27 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66001.76 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 40.4733
+2026-03-27 19:37:27 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:37:27 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:37:27 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:38:27 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:38:27 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:38:27 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:38:27 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66000.00 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 40.5343
+2026-03-27 19:38:27 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:38:27 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:38:27 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:39:27 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:39:27 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:39:27 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:39:27 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66013.23 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 40.0761
+2026-03-27 19:39:27 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:39:27 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:39:27 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:40:28 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:40:28 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:40:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:40:28 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65981.98 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 41.1583
+2026-03-27 19:40:28 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:40:28 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:40:28 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:41:28 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:41:28 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:41:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:41:28 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65888.00 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 44.4131
+2026-03-27 19:41:28 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:41:28 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:41:28 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:42:28 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:42:28 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:42:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:42:28 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65913.44 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 43.5320
+2026-03-27 19:42:28 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-27 19:42:28 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-27 19:42:28 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65953.85 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 42.1325
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0063, 'market_type': 'perp', 'entry_price': 65885.52603174603, 'direction': 'SHORT'}
+2026-03-27 19:43:28 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 🚫 EXTERNAL POSITION - Not bot-managed, waiting for clear
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - 🤖 Bot has adopted external position: SELL @ 65885.52603174603
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 0.0min / 480min (⏰ 480.0min remaining) [Strict (4H)]
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: SELL 0.006300 BTC-PERP @ $65885.53
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $65953.85 | Total P&L: $-0.43 (-0.10%)
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $20.70
+2026-03-27 19:43:28 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2026-03-27 19:44:28 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:44:28 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:44:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:44:28 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65910.60 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 43.6304
+2026-03-27 19:44:28 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2026-03-27 19:44:28 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0063, 'market_type': 'perp', 'entry_price': 65885.52603174603, 'direction': 'SHORT'}
+2026-03-27 19:44:28 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring SELL position
+2026-03-27 19:44:28 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 1.0min / 480min (⏰ 479.0min remaining) [Strict (4H)]
+2026-03-27 19:44:28 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: SELL 0.006300 BTC-PERP @ $65885.53
+2026-03-27 19:44:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $65910.60 | Total P&L: $-0.16 (-0.04%)
+2026-03-27 19:44:28 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $20.70
+2026-03-27 19:44:28 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2026-03-27 19:45:28 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:45:28 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:45:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:45:28 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65940.15 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 42.6070
+2026-03-27 19:45:28 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2026-03-27 19:45:28 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0063, 'market_type': 'perp', 'entry_price': 65885.52603174603, 'direction': 'SHORT'}
+2026-03-27 19:45:28 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring SELL position
+2026-03-27 19:45:28 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 2.0min / 480min (⏰ 478.0min remaining) [Strict (4H)]
+2026-03-27 19:45:28 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: SELL 0.006300 BTC-PERP @ $65885.53
+2026-03-27 19:45:28 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $65940.15 | Total P&L: $-0.34 (-0.08%)
+2026-03-27 19:45:28 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $20.70
+2026-03-27 19:45:28 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2026-03-27 19:46:29 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:46:29 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:46:29 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:46:29 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65896.91 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 44.1045
+2026-03-27 19:46:29 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2026-03-27 19:46:29 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0063, 'market_type': 'perp', 'entry_price': 65885.52603174603, 'direction': 'SHORT'}
+2026-03-27 19:46:29 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring SELL position
+2026-03-27 19:46:29 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 3.0min / 480min (⏰ 477.0min remaining) [Strict (4H)]
+2026-03-27 19:46:29 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: SELL 0.006300 BTC-PERP @ $65885.53
+2026-03-27 19:46:29 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $65896.91 | Total P&L: $-0.07 (-0.02%)
+2026-03-27 19:46:29 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $20.70
+2026-03-27 19:46:29 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2026-03-27 19:47:30 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:47:30 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:47:30 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:47:30 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65936.54 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 42.7320
+2026-03-27 19:47:30 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2026-03-27 19:47:30 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0063, 'market_type': 'perp', 'entry_price': 65885.52603174603, 'direction': 'SHORT'}
+2026-03-27 19:47:30 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring SELL position
+2026-03-27 19:47:30 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 4.0min / 480min (⏰ 476.0min remaining) [Strict (4H)]
+2026-03-27 19:47:30 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: SELL 0.006300 BTC-PERP @ $65885.53
+2026-03-27 19:47:30 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $65936.54 | Total P&L: $-0.32 (-0.08%)
+2026-03-27 19:47:30 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $20.70
+2026-03-27 19:47:30 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2026-03-27 19:48:30 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:48:30 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:48:30 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:48:30 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65950.14 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 42.2610
+2026-03-27 19:48:30 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2026-03-27 19:48:30 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0063, 'market_type': 'perp', 'entry_price': 65885.52603174603, 'direction': 'SHORT'}
+2026-03-27 19:48:30 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring SELL position
+2026-03-27 19:48:30 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 5.0min / 480min (⏰ 475.0min remaining) [Strict (4H)]
+2026-03-27 19:48:30 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: SELL 0.006300 BTC-PERP @ $65885.53
+2026-03-27 19:48:30 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $65950.14 | Total P&L: $-0.41 (-0.10%)
+2026-03-27 19:48:30 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $20.70
+2026-03-27 19:48:30 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2026-03-27 19:49:31 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:49:31 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:49:31 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:49:31 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65944.19 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 42.4671
+2026-03-27 19:49:31 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2026-03-27 19:49:31 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0063, 'market_type': 'perp', 'entry_price': 65885.52603174603, 'direction': 'SHORT'}
+2026-03-27 19:49:31 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring SELL position
+2026-03-27 19:49:31 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 6.0min / 480min (⏰ 474.0min remaining) [Strict (4H)]
+2026-03-27 19:49:31 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: SELL 0.006300 BTC-PERP @ $65885.53
+2026-03-27 19:49:31 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $65944.19 | Total P&L: $-0.37 (-0.09%)
+2026-03-27 19:49:31 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $20.70
+2026-03-27 19:49:31 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2026-03-27 19:50:31 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:50:31 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:50:31 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:50:31 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65955.85 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 42.0633
+2026-03-27 19:50:31 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2026-03-27 19:50:31 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0063, 'market_type': 'perp', 'entry_price': 65885.52603174603, 'direction': 'SHORT'}
+2026-03-27 19:50:31 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring SELL position
+2026-03-27 19:50:31 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 7.0min / 480min (⏰ 473.0min remaining) [Strict (4H)]
+2026-03-27 19:50:31 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: SELL 0.006300 BTC-PERP @ $65885.53
+2026-03-27 19:50:31 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $65955.85 | Total P&L: $-0.44 (-0.11%)
+2026-03-27 19:50:31 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $20.70
+2026-03-27 19:50:31 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete
+2026-03-27 19:51:31 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-27 19:51:31 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-27 19:51:31 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-27 19:51:31 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $65908.01 | ATR: $1095.44 | Buy: False | Sell: False | Strength: 43.7201
+2026-03-27 19:51:31 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 1 | SPOT positions: 1
+2026-03-27 19:51:31 UTC -     INFO - drift_macd_momentum_strategy - 📍 Found PERP position for BTC-PERP (format: MARKET_1): {'symbol': 'MARKET_1', 'market_index': 1, 'qty': -0.0063, 'market_type': 'perp', 'entry_price': 65885.52603174603, 'direction': 'SHORT'}
+2026-03-27 19:51:31 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: 📊 MANAGING POSITION - Monitoring SELL position
+2026-03-27 19:51:31 UTC -     INFO - drift_macd_momentum_strategy - ⏳ HOLD TIME CHECK: 8.0min / 480min (⏰ 472.0min remaining) [Strict (4H)]
+2026-03-27 19:51:31 UTC -     INFO - drift_macd_momentum_strategy - 💰 Position: SELL 0.006300 BTC-PERP @ $65885.53
+2026-03-27 19:51:31 UTC -     INFO - drift_macd_momentum_strategy - 📊 Current: $65908.01 | Total P&L: $-0.14 (-0.03%)
+2026-03-27 19:51:31 UTC -     INFO - drift_macd_momentum_strategy - 🛡️ Emergency stop available if loss > $20.70
+2026-03-27 19:51:31 UTC -     INFO - drift_macd_momentum_strategy - 🚫 Normal exits blocked until hold complete

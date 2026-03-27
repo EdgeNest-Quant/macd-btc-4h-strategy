@@ -3,7 +3,9 @@
 Data handler for fetching historical crypto data from Drift Protocol and Solana
 """
 import asyncio
+import os
 from datetime import datetime, timedelta
+from pathlib import Path
 import pandas as pd
 import numpy as np
 from typing import Optional, Dict, Any
@@ -21,6 +23,30 @@ except ImportError as e:
     logger.error("Please install requirements: pip install -r requirements.txt")
     raise
 
+# Map of symbol names to Binance futures symbols
+_BINANCE_SYMBOL_MAP = {
+    "BTC-PERP": "BTCUSDT",
+    "ETH-PERP": "ETHUSDT",
+    "SOL-PERP": "SOLUSDT",
+}
+
+# Map timeframe strings to Binance interval codes and minutes per bar
+_TIMEFRAME_MAP = {
+    "1m":  ("1m", 1),
+    "5m":  ("5m", 5),
+    "15m": ("15m", 15),
+    "1h":  ("1h", 60),
+    "4h":  ("4h", 240),
+    "1d":  ("1d", 1440),
+    # aliases
+    "minute": ("1m", 1),
+    "min":    ("1m", 1),
+    "hour":   ("1h", 60),
+    "h":      ("1h", 60),
+    "day":    ("1d", 1440),
+    "d":      ("1d", 1440),
+}
+
 
 class DriftDataHandler:
     def __init__(self):
@@ -32,7 +58,11 @@ class DriftDataHandler:
         self._init_retries = 3  # Number of retry attempts per RPC
         
     async def initialize(self):
-        """Initialize Drift client connection with RPC fallback logic"""
+        """Initialize Drift client connection with RPC fallback logic.
+        
+        Only needed for oracle price lookups (get_current_price).
+        Historical OHLCV data uses Binance + local CSV and does NOT require this.
+        """
         if self._initialized:
             return
         
@@ -221,61 +251,182 @@ class DriftDataHandler:
                 df = df.drop('timestamp', axis=1)
             return df
     
+    def _resolve_timeframe(self, time_frame_unit: str):
+        """Resolve a timeframe string to (binance_interval, minutes_per_bar)."""
+        key = time_frame_unit.lower().strip()
+        if key in _TIMEFRAME_MAP:
+            return _TIMEFRAME_MAP[key]
+        # Default to 1h if unrecognised
+        logger.warning(f"Unrecognised timeframe '{time_frame_unit}', defaulting to 1h")
+        return ("1h", 60)
+
+    def _csv_path(self, ticker: str, timeframe_label: str) -> Path:
+        """Return the path to the local CSV cache for a symbol/timeframe."""
+        project_root = Path(__file__).resolve().parents[2]  # up from data/ -> trading_bot/ -> project root
+        safe_label = timeframe_label.replace("/", "").replace("\\", "")
+        return project_root / "data" / f"{ticker}_{safe_label}.csv"
+
+    def _load_local_csv(self, ticker: str, timeframe_label: str) -> Optional[pd.DataFrame]:
+        """Load OHLCV data from a local CSV file if it exists."""
+        csv_path = self._csv_path(ticker, timeframe_label)
+        if not csv_path.exists():
+            return None
+        try:
+            df = pd.read_csv(csv_path, parse_dates=["timestamp"])
+            if df.empty:
+                return None
+            df["timestamp"] = pd.to_datetime(df["timestamp"], utc=True)
+            df = df.set_index("timestamp").sort_index()
+            # Ensure required columns
+            for col in ("open", "high", "low", "close", "volume"):
+                if col not in df.columns:
+                    logger.warning(f"Local CSV missing column '{col}', discarding")
+                    return None
+            logger.info(f"📂 Loaded {len(df)} bars from {csv_path.name}")
+            return df
+        except Exception as e:
+            logger.warning(f"Failed to read local CSV {csv_path}: {e}")
+            return None
+
+    def _save_to_csv(self, df: pd.DataFrame, ticker: str, timeframe_label: str) -> None:
+        """Persist OHLCV DataFrame to local CSV for future runs."""
+        csv_path = self._csv_path(ticker, timeframe_label)
+        try:
+            csv_path.parent.mkdir(parents=True, exist_ok=True)
+            out = df.copy()
+            out.index.name = "timestamp"
+            out.to_csv(csv_path)
+            logger.info(f"💾 Saved {len(out)} bars to {csv_path.name}")
+        except Exception as e:
+            logger.warning(f"Failed to save CSV: {e}")
+
+    async def _fetch_from_binance(self, ticker: str, binance_interval: str,
+                                   bars_needed: int, end_time: Optional[datetime] = None) -> Optional[pd.DataFrame]:
+        """
+        Fetch OHLCV klines from Binance public API (no key required).
+        Returns a DataFrame indexed by UTC timestamp with columns: open, high, low, close, volume.
+        """
+        import httpx
+
+        binance_symbol = _BINANCE_SYMBOL_MAP.get(ticker)
+        if binance_symbol is None:
+            logger.warning(f"No Binance mapping for {ticker}, cannot fetch live data")
+            return None
+
+        url = "https://api.binance.com/api/v3/klines"
+        all_rows = []
+        remaining = bars_needed
+        end_ms = int((end_time or datetime.utcnow()).timestamp() * 1000)
+
+        async with httpx.AsyncClient(timeout=httpx.Timeout(15.0)) as client:
+            while remaining > 0:
+                limit = min(remaining, 1000)  # Binance max 1000 per request
+                params = {
+                    "symbol": binance_symbol,
+                    "interval": binance_interval,
+                    "limit": limit,
+                    "endTime": end_ms,
+                }
+                try:
+                    resp = await client.get(url, params=params)
+                    resp.raise_for_status()
+                    klines = resp.json()
+                except Exception as e:
+                    logger.warning(f"Binance API request failed: {e}")
+                    break
+
+                if not klines:
+                    break
+
+                for k in klines:
+                    all_rows.append({
+                        "timestamp": pd.Timestamp(k[0], unit="ms", tz="UTC"),
+                        "open": float(k[1]),
+                        "high": float(k[2]),
+                        "low": float(k[3]),
+                        "close": float(k[4]),
+                        "volume": float(k[5]),
+                    })
+
+                remaining -= len(klines)
+                # Move window backwards for next batch
+                end_ms = int(klines[0][0]) - 1
+                if len(klines) < limit:
+                    break  # no more historical data available
+
+        if not all_rows:
+            return None
+
+        df = pd.DataFrame(all_rows)
+        df = df.set_index("timestamp").sort_index()
+        df = df[~df.index.duplicated(keep="last")]
+        logger.info(f"🌐 Fetched {len(df)} bars from Binance for {ticker} ({binance_interval})")
+        return df
+
     async def get_historical_crypto_data(self, ticker: str, duration: int, time_frame_unit: str) -> pd.DataFrame:
         """
-        Get historical data for a cryptocurrency pair
-        
+        Get historical OHLCV data for a cryptocurrency.
+
+        Data source priority:
+          1. Local CSV cache (data/<SYMBOL>_<timeframe>.csv)
+          2. Binance public API (merged with local data and saved)
+          3. Synthetic random data (last resort)
+
         Args:
-            ticker: Symbol (e.g., "SOL-PERP")
-            duration: Number of days/hours/minutes to fetch
-            time_frame_unit: "Minute", "Hour", or "Day"
-            
+            ticker: Symbol (e.g., "BTC-PERP")
+            duration: Number of calendar days of history to fetch
+            time_frame_unit: Timeframe string – "4h", "1h", "Hour", "Day", etc.
+
         Returns:
             DataFrame with OHLCV data and technical indicators
         """
-        if not self._initialized:
-            await self.initialize()
-            
+        binance_interval, minutes_per_bar = self._resolve_timeframe(time_frame_unit)
+        timeframe_label = binance_interval  # e.g. "4h", "1h"
+        bars_needed = max(1, (duration * 24 * 60) // minutes_per_bar)
+
         cache_key = f"{ticker}_{duration}_{time_frame_unit}"
-        
+
+        # --- 1. Primary: Fetch from Binance API ---
+        df = None
         try:
-            # For now, we'll use synthetic data since Drift doesn't provide historical OHLCV
-            # In a real implementation, you'd fetch from a historical data provider
-            current_price = await self.get_current_price(ticker)
-            
-            if current_price == 0:
-                logger.warning(f"Could not get current price for {ticker}, using default")
-                current_price = 100.0  # Default price for testing
-            
-            # Generate duration based on time frame
-            if time_frame_unit.lower() in ["minute", "min"]:
-                duration_minutes = duration * 24 * 60  # days to minutes
-            elif time_frame_unit.lower() in ["hour", "h"]:  
-                duration_minutes = duration * 60  # hours to minutes
-            else:  # day
-                duration_minutes = duration * 24 * 60  # days to minutes
-                
-            # Limit to reasonable amount for performance
-            duration_minutes = min(duration_minutes, 10000)
-            
-            df = self._generate_synthetic_ohlcv(current_price, duration_minutes)
-            
-            # Add technical indicators
-            from ..indicators.indicators import IndicatorCalculator
-            indicator_calc = IndicatorCalculator()
-            df = indicator_calc.add_indicators(df)
-            
-            # Cache the result
-            self.data_cache[cache_key] = df
-            
-            logger.debug(f"Generated {len(df)} bars for {ticker}")
-            return df
-            
+            df = await self._fetch_from_binance(ticker, binance_interval, bars_needed)
+            if df is not None and not df.empty:
+                # Save to CSV as cache for future cold starts
+                self._save_to_csv(df, ticker, timeframe_label)
         except Exception as e:
-            logger.error(f"Error fetching historical data for {ticker}: {e}")
-            # Return empty DataFrame with expected columns
-            return pd.DataFrame(columns=['open', 'high', 'low', 'close', 'volume'])
-    
+            logger.warning(f"Could not fetch from Binance: {e}")
+
+        # --- 2. Fallback: local CSV cache (only if Binance failed) ---
+        if df is None or df.empty:
+            logger.info("Binance unavailable, falling back to local CSV cache")
+            df = self._load_local_csv(ticker, timeframe_label)
+
+        # --- 3. Last resort: synthetic data ---
+        if df is None or df.empty:
+            logger.warning(f"⚠️ No real data available for {ticker}, using synthetic data")
+            # Try to get price from Drift oracle, but don't fail if unavailable
+            current_price = 0.0
+            try:
+                current_price = await self.get_current_price(ticker)
+            except Exception as e:
+                logger.warning(f"Could not get oracle price for synthetic data: {e}")
+            if current_price == 0:
+                current_price = 100.0
+            df = self._generate_synthetic_ohlcv(current_price, bars_needed)
+
+        # Trim to requested duration
+        if len(df) > bars_needed:
+            df = df.iloc[-bars_needed:]
+
+        # Add technical indicators
+        from ..indicators.indicators import IndicatorCalculator
+        indicator_calc = IndicatorCalculator()
+        df = indicator_calc.add_indicators(df)
+
+        self.data_cache[cache_key] = df
+        logger.info(f"📊 Returning {len(df)} bars for {ticker} ({timeframe_label})")
+        return df
+
     async def cleanup(self):
         """Clean up resources"""
         if self.drift_client and self._initialized:
@@ -285,21 +436,23 @@ class DriftDataHandler:
             except Exception as e:
                 logger.error(f"Error during cleanup: {e}")
 
-        async def get_historical_data(self, symbol: str, periods: int = 1, timeframe_minutes: int = 1):
-            """
-            Compatibility wrapper for strategy code expecting get_historical_data.
-            Calls get_historical_crypto_data with mapped arguments.
-            Args:
-                symbol: Market symbol (e.g., "BTC-PERP")
-                periods: Number of periods (default 1)
-                timeframe_minutes: Minutes per period (default 1)
-            Returns:
-                DataFrame with OHLCV and indicators
-            """
-            # Map periods and timeframe_minutes to duration and time_frame_unit
-            duration = periods
-            time_frame_unit = "Minute" if timeframe_minutes == 1 else "Hour" if timeframe_minutes == 60 else "Day"
-            return await self.get_historical_crypto_data(symbol, duration, time_frame_unit)
+    async def get_historical_data(self, symbol: str, periods: int = 1, timeframe_minutes: int = 1):
+        """
+        Compatibility wrapper for strategy code expecting get_historical_data.
+        """
+        if timeframe_minutes <= 1:
+            tfu = "1m"
+        elif timeframe_minutes <= 5:
+            tfu = "5m"
+        elif timeframe_minutes <= 15:
+            tfu = "15m"
+        elif timeframe_minutes <= 60:
+            tfu = "1h"
+        elif timeframe_minutes <= 240:
+            tfu = "4h"
+        else:
+            tfu = "1d"
+        return await self.get_historical_crypto_data(symbol, periods, tfu)
 
 
 # Backwards compatibility alias

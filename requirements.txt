@@ -12,6 +12,7 @@ pendulum==3.0.0
 
 # Networking
 websockets==13.0
+httpx>=0.25.0
 
 # Fix for Python 3.13 compatibility
 cffi>=1.15.1            # Updated for Python 3.13 support

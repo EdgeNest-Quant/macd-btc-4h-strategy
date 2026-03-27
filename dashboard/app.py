@@ -1,322 +1,698 @@
-#!/usr/bin/env python3
-"""Drift Protocol Trading Bot Dashboard - Real-time Analytics"""
-import os
-import sys
+"""
+Drift Protocol Perpetual Trading Bot — Performance Dashboard
+"""
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 import plotly.graph_objects as go
-from datetime import datetime
+from plotly.subplots import make_subplots
+from pathlib import Path
+from datetime import timedelta
+import numpy as np
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
-from trading_bot.config import TRADES_FILE, SOLANA_RPC_URL, PRIVATE_KEY, SUB_ACCOUNT_ID
-from trading_bot.logger import logger
-from trading_bot.broker.execution import DriftOrderExecutor
-
+# ───────────────────── Page Config ─────────────────────
 st.set_page_config(
-    page_title="Drift Trading Bot Dashboard",
+    page_title="Drift Perp Trader Dashboard",
     page_icon="📊",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
 
-st.markdown("""<style>
-.positive { color: #09ab3b; font-weight: bold; }
-.negative { color: #ff2b2b; font-weight: bold; }
-</style>""", unsafe_allow_html=True)
+# ───────────────────── Constants ─────────────────────
+TRADES_FILE = Path(__file__).resolve().parent.parent / "trades.csv"
+EXPECTED_COLS = [
+    "timestamp", "symbol", "market_index", "market_type", "side",
+    "order_type", "price", "quantity", "fee", "slippage_bps",
+    "sl", "tp", "pnl", "unrealized_pnl", "status", "duration_seconds",
+    "account_equity", "leverage", "sub_account_id", "strategy_id",
+    "signal_confidence", "signal_type", "tx_signature", "slot",
+    "block_time", "oracle_price_at_entry", "execution_latency_ms",
+    "bot_version", "env", "funding_paid", "cumulative_funding",
+    "entry_hold_minutes", "taker_fee_rate", "maker_fee_rate",
+    "net_pnl_after_fees",
+]
 
-@st.cache_data(ttl=60)
-def load_trades_data():
-    """Load trades from CSV"""
-    try:
-        if not os.path.exists(TRADES_FILE):
-            return pd.DataFrame()
-        df = pd.read_csv(TRADES_FILE)
-        df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
-        if 'timestamp' in df.columns:
-            df['timestamp'] = pd.to_datetime(df['timestamp'], format='mixed', utc=True)
-        return df
-    except Exception as e:
-        st.error(f"Error loading trades: {e}")
-        return pd.DataFrame()
 
-@st.cache_resource
-def get_drift_executor():
-    """Get Drift executor instance"""
-    try:
-        return DriftOrderExecutor(private_key=PRIVATE_KEY, sub_account_id=SUB_ACCOUNT_ID)
-    except Exception as e:
-        logger.error(f"Error initializing executor: {e}")
-        return None
+# ───────────────────── Data Loading ─────────────────────
+@st.cache_data(ttl=30)
+def load_trades(path: Path) -> pd.DataFrame:
+    """Load and validate trades CSV."""
+    df = pd.read_csv(path)
+    df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
+    for col in EXPECTED_COLS:
+        if col not in df.columns:
+            df[col] = None
+    df["timestamp"] = pd.to_datetime(df["timestamp"], format="mixed", utc=True)
+    df.sort_values("timestamp", inplace=True)
+    df.reset_index(drop=True, inplace=True)
+    # Compute notional value
+    df["notional"] = df["price"] * df["quantity"]
+    return df
 
-def get_account_balance_sync():
-    """Synchronously get account balance"""
-    import asyncio
-    try:
-        executor = get_drift_executor()
-        if executor is None:
-            return 1000.0
-        loop = asyncio.new_event_loop()
-        balance = loop.run_until_complete(executor.get_account_balance())
-        loop.close()
-        return balance
-    except Exception as e:
-        logger.error(f"Error getting balance: {e}")
-        return 1000.0
 
-class DashboardMetrics:
-    """Calculate P&L metrics"""
-    @staticmethod
-    def calculate(trades_df):
-        metrics = {
-            'total_trades': 0, 'closed_trades': 0, 'open_trades': 0,
-            'total_gross_pnl': 0.0, 'total_fees': 0.0, 'total_funding': 0.0,
-            'net_pnl': 0.0, 'win_rate': 0.0,
-            'winning_trades': 0, 'losing_trades': 0,
-            'largest_win': 0.0, 'largest_loss': 0.0,
-        }
-        
-        if trades_df.empty:
-            return metrics
-        
-        valid_trades = trades_df[
-            (trades_df['price'] > 0) & 
-            (trades_df['quantity'] > 0) &
-            (trades_df['status'].notna())
-        ].copy()
-        
-        if valid_trades.empty:
-            return metrics
-        
-        metrics['total_trades'] = len(valid_trades)
-        closed = valid_trades[valid_trades['status'] == 'CLOSED']
-        open_trades = valid_trades[valid_trades['status'] == 'OPEN']
-        
-        metrics['closed_trades'] = len(closed)
-        metrics['open_trades'] = len(open_trades)
-        
-        if not closed.empty:
-            metrics['total_gross_pnl'] = float(closed['pnl'].sum())
-            metrics['total_fees'] = float(closed['fee'].sum())
-            if 'funding_paid' in closed.columns:
-                metrics['total_funding'] = float(closed['funding_paid'].sum())
-            
-            if 'net_pnl_after_fees' in closed.columns:
-                metrics['net_pnl'] = float(closed['net_pnl_after_fees'].sum())
-            else:
-                metrics['net_pnl'] = metrics['total_gross_pnl'] - metrics['total_fees'] - metrics['total_funding']
-            
-            winning = closed[closed['pnl'] > 0]
-            losing = closed[closed['pnl'] < 0]
-            
-            metrics['winning_trades'] = len(winning)
-            metrics['losing_trades'] = len(losing)
-            metrics['win_rate'] = (metrics['winning_trades'] / metrics['closed_trades'] * 100) if metrics['closed_trades'] > 0 else 0
-            
-            if not winning.empty:
-                metrics['largest_win'] = float(winning['pnl'].max())
-            if not losing.empty:
-                metrics['largest_loss'] = float(losing['pnl'].min())
-        
-        return metrics
+def _safe_float(series: pd.Series) -> pd.Series:
+    return pd.to_numeric(series, errors="coerce").fillna(0.0)
 
-st.title("🤖 Drift Protocol Trading Bot Dashboard")
-st.markdown("Real-time analytics with verified P&L calculations and real account balance")
 
-with st.sidebar:
-    st.header("Dashboard Info")
-    trades_df = load_trades_data()
-    
-    if not trades_df.empty:
-        st.metric("Total Records", len(trades_df))
-        st.metric("Date Range", f"{trades_df['timestamp'].min().strftime('%Y-%m-%d')} to {trades_df['timestamp'].max().strftime('%Y-%m-%d')}")
-    else:
-        st.warning("No trading data yet")
-    
-    st.divider()
-    st.subheader("Drift Connection")
-    try:
-        rpc_display = SOLANA_RPC_URL.replace("https://", "").replace("http://", "")
-        if len(rpc_display) > 30:
-            rpc_display = rpc_display[:27] + "..."
-        st.caption(f"RPC: {rpc_display}")
-        st.caption(f"Subaccount: {SUB_ACCOUNT_ID}")
-        executor = get_drift_executor()
-        if executor and executor._initialized:
-            st.success("✅ Connected to Drift")
-        else:
-            st.warning("⏳ Initializing...")
-    except Exception as e:
-        st.error(f"Connection error: {str(e)[:50]}")
+# ───────────────────── Sidebar ─────────────────────
+st.sidebar.title("🔧 Controls")
 
-st.markdown("## Account Overview")
-
-trades_df = load_trades_data()
-metrics = DashboardMetrics.calculate(trades_df)
-
-with st.spinner("Fetching real account balance..."):
-    account_balance = get_account_balance_sync()
-
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.metric("�� Account Balance", f"${account_balance:,.2f}", help="Real balance from Drift Protocol")
-
-with col2:
-    net_pnl_color = "🟢" if metrics['net_pnl'] >= 0 else "🔴"
-    roi = (metrics['net_pnl'] / account_balance * 100) if account_balance > 0 else 0
-    st.metric(f"{net_pnl_color} Net P&L", f"${metrics['net_pnl']:,.2f}", delta=f"{roi:.2f}% ROI")
-
-with col3:
-    win_rate_color = "🟢" if metrics['win_rate'] >= 50 else "🔴"
-    st.metric(f"{win_rate_color} Win Rate", f"{metrics['win_rate']:.1f}%", delta=f"{metrics['winning_trades']}W / {metrics['losing_trades']}L")
-
-with col4:
-    st.metric("📊 Total Trades", metrics['total_trades'], delta=f"{metrics['closed_trades']} closed, {metrics['open_trades']} open")
-
-st.markdown("## P&L Breakdown")
-
-col1, col2, col3, col4, col5 = st.columns(5)
-
-with col1:
-    st.metric("Gross P&L", f"${metrics['total_gross_pnl']:,.2f}")
-
-with col2:
-    st.metric("Trading Fees", f"-${metrics['total_fees']:,.2f}")
-
-with col3:
-    st.metric("Funding Paid", f"-${metrics['total_funding']:,.2f}")
-
-with col4:
-    st.metric("Largest Win", f"+${metrics['largest_win']:,.2f}")
-
-with col5:
-    st.metric("Largest Loss", f"-${abs(metrics['largest_loss']):,.2f}")
-
-st.markdown("## Trade Details")
-
-if not trades_df.empty:
-    display_df = trades_df.copy()
-    key_columns = ['timestamp', 'symbol', 'side', 'price', 'quantity', 'pnl', 'fee', 'status', 'leverage']
-    
-    if 'funding_paid' in display_df.columns:
-        key_columns.insert(8, 'funding_paid')
-    if 'net_pnl_after_fees' in display_df.columns:
-        key_columns.insert(9, 'net_pnl_after_fees')
-    
-    available_cols = [col for col in key_columns if col in display_df.columns]
-    display_df = display_df[available_cols].copy()
-    
-    numeric_cols = ['price', 'quantity', 'pnl', 'fee', 'funding_paid', 'net_pnl_after_fees']
-    for col in numeric_cols:
-        if col in display_df.columns:
-            display_df[col] = display_df[col].apply(lambda x: f"${x:.2f}" if pd.notna(x) and x != 0 else "$0.00")
-    
-    if 'timestamp' in display_df.columns:
-        display_df['timestamp'] = display_df['timestamp'].dt.strftime('%Y-%m-%d %H:%M:%S')
-    
-    st.dataframe(display_df.tail(20), use_container_width=True, hide_index=True)
-    st.caption(f"Showing last 20 trades out of {len(trades_df)} total")
+# Allow file upload — primary method on Cloud, optional locally
+uploaded = st.sidebar.file_uploader("Upload trades.csv", type=["csv"])
+if uploaded is not None:
+    df = pd.read_csv(uploaded)
+    df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
+    for col in EXPECTED_COLS:
+        if col not in df.columns:
+            df[col] = None
+    df["timestamp"] = pd.to_datetime(df["timestamp"], format="mixed", utc=True)
+    df.sort_values("timestamp", inplace=True)
+    df.reset_index(drop=True, inplace=True)
+    df["notional"] = df["price"] * df["quantity"]
+elif TRADES_FILE.exists():
+    df = load_trades(TRADES_FILE)
 else:
-    st.info("No trades recorded yet")
+    st.warning("⬆️ Upload your **trades.csv** file in the sidebar to get started.")
+    st.info("The dashboard reads the 35-column CSV produced by the Drift trading bot.")
+    st.stop()
 
-st.markdown("## Charts & Analytics")
+# Date range filter
+min_date = df["timestamp"].min().date()
+max_date = df["timestamp"].max().date()
+date_range = st.sidebar.date_input("Date range", value=(min_date, max_date), min_value=min_date, max_value=max_date)
+if isinstance(date_range, (list, tuple)) and len(date_range) == 2:
+    start, end = pd.Timestamp(date_range[0], tz="UTC"), pd.Timestamp(date_range[1], tz="UTC") + timedelta(days=1)
+    df = df[(df["timestamp"] >= start) & (df["timestamp"] < end)]
 
-if not trades_df.empty and metrics['closed_trades'] > 0:
-    tab1, tab2, tab3 = st.tabs(["P&L Over Time", "Trade Distribution", "Win/Loss Analysis"])
-    
-    with tab1:
-        closed_trades = trades_df[trades_df['status'] == 'CLOSED'].copy()
-        if not closed_trades.empty:
-            closed_trades = closed_trades.sort_values('timestamp')
-            if 'net_pnl_after_fees' in closed_trades.columns:
-                closed_trades['cumulative_pnl'] = closed_trades['net_pnl_after_fees'].cumsum()
-            else:
-                closed_trades['cumulative_pnl'] = closed_trades['pnl'].cumsum()
-            
-            fig = go.Figure()
-            fig.add_trace(go.Scatter(
-                x=closed_trades['timestamp'],
-                y=closed_trades['cumulative_pnl'],
-                mode='lines+markers',
-                name='Cumulative P&L',
-                line=dict(color='#1f77b4', width=2),
-                fill='tozeroy',
-                fillcolor='rgba(31, 119, 180, 0.2)'
-            ))
-            fig.update_layout(title="Cumulative P&L Over Time", xaxis_title="Time", yaxis_title="Cumulative P&L ($)", height=400, hovermode='x unified')
-            st.plotly_chart(fig, use_container_width=True)
-    
-    with tab2:
-        col1, col2 = st.columns(2)
-        with col1:
-            fig = go.Figure(data=[go.Pie(labels=['Wins', 'Losses'], values=[metrics['winning_trades'], metrics['losing_trades']], marker=dict(colors=['#09ab3b', '#ff2b2b']))])
-            fig.update_layout(title="Win/Loss Distribution", height=400)
-            st.plotly_chart(fig, use_container_width=True)
-        with col2:
-            side_counts = trades_df['side'].value_counts()
-            fig = go.Figure(data=[go.Bar(x=side_counts.index, y=side_counts.values, marker=dict(color=['#1f77b4', '#ff7f0e', '#2ca02c'][:len(side_counts)]))])
-            fig.update_layout(title="Trade Side Distribution", xaxis_title="Side", yaxis_title="Count", height=400)
-            st.plotly_chart(fig, use_container_width=True)
-    
-    with tab3:
-        closed_trades = trades_df[trades_df['status'] == 'CLOSED'].copy()
-        if not closed_trades.empty:
-            fig = go.Figure()
-            fig.add_trace(go.Box(y=closed_trades['pnl'], name='P&L Distribution', marker=dict(color='#1f77b4')))
-            fig.update_layout(title="P&L Distribution", yaxis_title="P&L ($)", height=400)
-            st.plotly_chart(fig, use_container_width=True)
-            
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.metric("Median P&L", f"${closed_trades['pnl'].median():,.2f}")
-            with col2:
-                st.metric("Mean P&L", f"${closed_trades['pnl'].mean():,.2f}")
-            with col3:
-                st.metric("Std Dev", f"${closed_trades['pnl'].std():,.2f}")
+# Side filter
+side_filter = st.sidebar.multiselect("Trade side", options=df["side"].dropna().unique().tolist(), default=df["side"].dropna().unique().tolist())
+df = df[df["side"].isin(side_filter)]
 
-st.markdown("## Data Integrity")
+# Environment filter
+env_opts = df["env"].dropna().unique().tolist()
+if env_opts:
+    env_filter = st.sidebar.multiselect("Environment", options=env_opts, default=env_opts)
+    df = df[df["env"].isin(env_filter)]
 
-with st.expander("View Audit Information", expanded=False):
-    if not trades_df.empty:
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            valid_sigs = trades_df[(trades_df['tx_signature'].notna()) & (trades_df['tx_signature'].str.len() > 20)]
-            st.metric("Valid TX Signatures", f"{len(valid_sigs)}/{len(trades_df)}")
-        with col2:
-            cost_fields = trades_df[(trades_df['fee'] > 0) | ((trades_df['funding_paid'] > 0) if 'funding_paid' in trades_df.columns else False)]
-            st.metric("Cost Tracking", f"{len(cost_fields)}/{len(trades_df)}")
-        with col3:
-            quality_checks = (
-                int((trades_df['price'] > 0).all()) +
-                int((trades_df['quantity'] > 0).all()) +
-                int(trades_df['side'].isin(['BUY', 'SELL', 'CLOSE']).all())
-            )
-            st.metric("Data Quality Score", f"{(quality_checks/3)*100:.0f}%")
-        
-        st.divider()
-        st.subheader("Sample Transactions (Last 5)")
-        sample_trades = trades_df[['timestamp', 'symbol', 'side', 'price', 'quantity', 'pnl', 'tx_signature', 'status']].tail(5).copy()
-        sample_trades['timestamp'] = sample_trades['timestamp'].dt.strftime('%Y-%m-%d %H:%M:%S')
-        sample_trades['tx_signature'] = sample_trades['tx_signature'].apply(lambda x: f"{x[:8]}...{x[-8:]}" if len(str(x)) > 16 else x)
-        st.dataframe(sample_trades, use_container_width=True, hide_index=True)
-    else:
-        st.info("No trades to audit yet")
+# Auto-refresh
+auto_refresh = st.sidebar.checkbox("Auto-refresh (30s)", value=False)
+if auto_refresh:
+    st.sidebar.info("Dashboard refreshes every 30 seconds.")
+    # Streamlit re-runs the script; cache ttl=30 handles freshness
+
+st.sidebar.markdown("---")
+st.sidebar.caption(f"Showing **{len(df)}** trades")
+
+
+# ───────────────────── Derived Data ─────────────────────
+closes = df[df["side"] == "CLOSE"].copy()
+entries = df[df["side"].isin(["BUY", "SELL"])].copy()
+closes["pnl_clean"] = _safe_float(closes["pnl"])
+closes["net_pnl_clean"] = _safe_float(closes["net_pnl_after_fees"])
+closes["fee_clean"] = _safe_float(closes["fee"])
+closes["funding_clean"] = _safe_float(closes["funding_paid"])
+closes["hold_mins"] = _safe_float(closes["entry_hold_minutes"])
+
+
+# ───────────────────── Header ─────────────────────
+st.title("📊 Drift Perp Trader — Dashboard")
+st.caption(f"BTC-PERP · MACD Momentum · Devnet  |  Data range: {min_date} → {max_date}")
+
+# ───────────────────── KPI Row ─────────────────────
+total_trades = len(df)
+total_closes = len(closes)
+wins = (closes["net_pnl_clean"] > 0).sum()
+losses = (closes["net_pnl_clean"] <= 0).sum()
+win_rate = (wins / total_closes * 100) if total_closes else 0
+
+gross_pnl = closes["pnl_clean"].sum()
+net_pnl = closes["net_pnl_clean"].sum()
+total_fees = _safe_float(df["fee"]).sum()
+total_funding = closes["funding_clean"].sum()
+
+avg_win = closes.loc[closes["net_pnl_clean"] > 0, "net_pnl_clean"].mean() if wins > 0 else 0
+avg_loss = closes.loc[closes["net_pnl_clean"] <= 0, "net_pnl_clean"].mean() if losses > 0 else 0
+profit_factor = abs(avg_win * wins / (avg_loss * losses)) if (losses > 0 and avg_loss != 0) else float("inf")
+expectancy = (win_rate / 100 * avg_win + (1 - win_rate / 100) * avg_loss) if total_closes else 0
+
+# Latest equity
+latest_equity = _safe_float(df["account_equity"]).iloc[-1] if len(df) else 0
+
+k1, k2, k3, k4, k5, k6 = st.columns(6)
+k1.metric("Total Trades", total_trades)
+k2.metric("Closed Trades", total_closes)
+k3.metric("Win Rate", f"{win_rate:.1f}%")
+k4.metric("Net PnL", f"${net_pnl:,.2f}", delta=f"${net_pnl:,.2f}")
+k5.metric("Profit Factor", f"{profit_factor:.2f}" if profit_factor != float("inf") else "∞")
+k6.metric("Account Equity", f"${latest_equity:,.2f}")
+
+k7, k8, k9, k10, k11, k12 = st.columns(6)
+k7.metric("Gross PnL", f"${gross_pnl:,.2f}")
+k8.metric("Total Fees", f"${total_fees:,.2f}")
+k9.metric("Total Funding", f"${total_funding:,.2f}")
+k10.metric("Avg Win", f"${avg_win:,.2f}")
+k11.metric("Avg Loss", f"${avg_loss:,.2f}")
+k12.metric("Expectancy", f"${expectancy:,.2f}")
 
 st.divider()
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.caption("📍 Dashboard Mode: LIVE")
-with col2:
-    st.caption(f"⏱️ Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-with col3:
-    st.caption("🔐 All data from Drift Protocol & On-Chain")
 
-st.markdown("""
----
-**Features:**
-- ✅ Real account balance from Drift Protocol (not generic figures)
-- ✅ P&L includes all costs (0.05% taker fees + hourly funding)
-- ✅ All trades backed by Solana transaction signatures
-- ✅ Data validation prevents invalid records
-""")
+# ─────────────────── Equity & Cumulative PnL ───────────────────
+st.subheader("💰 Equity & Cumulative PnL")
+
+col_eq, col_cum = st.columns(2)
+
+with col_eq:
+    eq_df = df[df["account_equity"] > 0][["timestamp", "account_equity"]].copy()
+    if not eq_df.empty:
+        fig_eq = px.area(
+            eq_df, x="timestamp", y="account_equity",
+            title="Account Equity Over Time",
+            labels={"account_equity": "Equity ($)", "timestamp": ""},
+        )
+        fig_eq.update_traces(line_color="#00d4aa", fillcolor="rgba(0,212,170,0.15)")
+        fig_eq.update_layout(height=380, template="plotly_dark", margin=dict(l=20, r=20, t=40, b=20))
+        st.plotly_chart(fig_eq, use_container_width=True)
+    else:
+        st.info("No equity data available.")
+
+with col_cum:
+    if not closes.empty:
+        cum_df = closes[["timestamp", "net_pnl_clean"]].copy()
+        cum_df["cumulative_pnl"] = cum_df["net_pnl_clean"].cumsum()
+        fig_cum = go.Figure()
+        fig_cum.add_trace(go.Scatter(
+            x=cum_df["timestamp"], y=cum_df["cumulative_pnl"],
+            mode="lines+markers", name="Cumulative Net PnL",
+            line=dict(color="#00d4aa", width=2),
+            marker=dict(size=5),
+            fill="tozeroy", fillcolor="rgba(0,212,170,0.1)",
+        ))
+        fig_cum.update_layout(
+            title="Cumulative Net PnL (After Fees & Funding)",
+            yaxis_title="PnL ($)", height=380, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_cum, use_container_width=True)
+    else:
+        st.info("No closed trades yet.")
+
+st.divider()
+
+# ─────────────────── PnL Analysis ───────────────────
+st.subheader("📈 PnL Analysis")
+
+col_dist, col_waterfall = st.columns(2)
+
+with col_dist:
+    if not closes.empty:
+        fig_dist = go.Figure()
+        fig_dist.add_trace(go.Histogram(
+            x=closes["net_pnl_clean"],
+            nbinsx=30,
+            marker_color=["#26a69a" if x > 0 else "#ef5350" for x in closes["net_pnl_clean"]],
+            name="Net PnL Distribution",
+        ))
+        fig_dist.update_layout(
+            title="PnL Distribution (per Trade)",
+            xaxis_title="Net PnL ($)", yaxis_title="Count",
+            height=380, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_dist, use_container_width=True)
+
+with col_waterfall:
+    if not closes.empty:
+        colors = ["#26a69a" if v > 0 else "#ef5350" for v in closes["net_pnl_clean"]]
+        fig_bar = go.Figure(go.Bar(
+            x=list(range(1, len(closes) + 1)),
+            y=closes["net_pnl_clean"].values,
+            marker_color=colors,
+            name="Trade PnL",
+        ))
+        fig_bar.update_layout(
+            title="Per-Trade Net PnL (Chronological)",
+            xaxis_title="Trade #", yaxis_title="Net PnL ($)",
+            height=380, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_bar, use_container_width=True)
+
+# PnL breakdown: gross vs fees vs funding
+col_break, col_scatter = st.columns(2)
+
+with col_break:
+    if not closes.empty:
+        breakdown = pd.DataFrame({
+            "Category": ["Gross PnL", "Fees Paid", "Funding Paid", "Net PnL"],
+            "Amount": [gross_pnl, -total_fees, -total_funding, net_pnl],
+        })
+        fig_break = px.bar(
+            breakdown, x="Category", y="Amount",
+            color="Category",
+            color_discrete_map={
+                "Gross PnL": "#42a5f5",
+                "Fees Paid": "#ef5350",
+                "Funding Paid": "#ffa726",
+                "Net PnL": "#26a69a",
+            },
+            title="PnL Breakdown: Gross → Net",
+        )
+        fig_break.update_layout(
+            height=380, template="plotly_dark", showlegend=False,
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_break, use_container_width=True)
+
+with col_scatter:
+    if not closes.empty and closes["hold_mins"].sum() > 0:
+        fig_hold = px.scatter(
+            closes, x="hold_mins", y="net_pnl_clean",
+            color=closes["net_pnl_clean"].apply(lambda x: "Win" if x > 0 else "Loss"),
+            color_discrete_map={"Win": "#26a69a", "Loss": "#ef5350"},
+            size=closes["notional"].abs().clip(lower=1),
+            title="PnL vs Hold Time",
+            labels={"hold_mins": "Hold Time (min)", "net_pnl_clean": "Net PnL ($)", "color": ""},
+        )
+        fig_hold.update_layout(
+            height=380, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_hold, use_container_width=True)
+    else:
+        st.info("No hold-time data available.")
+
+st.divider()
+
+# ─────────────────── Drawdown Analysis ───────────────────
+st.subheader("📉 Drawdown Analysis")
+
+if not closes.empty:
+    cum_pnl = closes["net_pnl_clean"].cumsum()
+    running_max = cum_pnl.cummax()
+    drawdown = cum_pnl - running_max
+
+    col_dd, col_streak = st.columns(2)
+
+    with col_dd:
+        dd_df = pd.DataFrame({
+            "timestamp": closes["timestamp"].values,
+            "Cumulative PnL": cum_pnl.values,
+            "Peak": running_max.values,
+            "Drawdown": drawdown.values,
+        })
+        fig_dd = make_subplots(rows=2, cols=1, shared_xaxes=True, row_heights=[0.6, 0.4],
+                               vertical_spacing=0.08)
+        fig_dd.add_trace(go.Scatter(
+            x=dd_df["timestamp"], y=dd_df["Cumulative PnL"],
+            mode="lines", name="Cumulative PnL", line=dict(color="#42a5f5", width=2),
+        ), row=1, col=1)
+        fig_dd.add_trace(go.Scatter(
+            x=dd_df["timestamp"], y=dd_df["Peak"],
+            mode="lines", name="Peak", line=dict(color="#ffa726", width=1, dash="dot"),
+        ), row=1, col=1)
+        fig_dd.add_trace(go.Scatter(
+            x=dd_df["timestamp"], y=dd_df["Drawdown"],
+            mode="lines", name="Drawdown", fill="tozeroy",
+            line=dict(color="#ef5350", width=1), fillcolor="rgba(239,83,80,0.3)",
+        ), row=2, col=1)
+        fig_dd.update_layout(
+            title="Cumulative PnL & Drawdown", height=450, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        fig_dd.update_yaxes(title_text="PnL ($)", row=1, col=1)
+        fig_dd.update_yaxes(title_text="Drawdown ($)", row=2, col=1)
+        st.plotly_chart(fig_dd, use_container_width=True)
+
+    with col_streak:
+        max_dd = drawdown.min()
+        max_dd_idx = drawdown.idxmin()
+        max_dd_ts = closes.loc[max_dd_idx, "timestamp"] if max_dd_idx in closes.index else "N/A"
+
+        # Win/loss streaks
+        results = (closes["net_pnl_clean"] > 0).astype(int)
+        streaks = results.groupby((results != results.shift()).cumsum())
+        win_streaks = [len(g) for _, g in streaks if g.iloc[0] == 1]
+        loss_streaks = [len(g) for _, g in streaks if g.iloc[0] == 0]
+
+        s1, s2 = st.columns(2)
+        s1.metric("Max Drawdown", f"${max_dd:,.2f}")
+        s2.metric("Max DD Date", str(max_dd_ts)[:10] if max_dd_ts != "N/A" else "N/A")
+
+        s3, s4 = st.columns(2)
+        s3.metric("Best Win Streak", max(win_streaks) if win_streaks else 0)
+        s4.metric("Worst Loss Streak", max(loss_streaks) if loss_streaks else 0)
+
+        s5, s6 = st.columns(2)
+        s5.metric("Best Trade", f"${closes['net_pnl_clean'].max():,.2f}")
+        s6.metric("Worst Trade", f"${closes['net_pnl_clean'].min():,.2f}")
+
+        # Monthly PnL heatmap
+        monthly = closes.copy()
+        monthly["month"] = monthly["timestamp"].dt.to_period("M").astype(str)
+        monthly_pnl = monthly.groupby("month")["net_pnl_clean"].sum().reset_index()
+        if not monthly_pnl.empty:
+            fig_monthly = px.bar(
+                monthly_pnl, x="month", y="net_pnl_clean",
+                color=monthly_pnl["net_pnl_clean"].apply(lambda x: "Profit" if x > 0 else "Loss"),
+                color_discrete_map={"Profit": "#26a69a", "Loss": "#ef5350"},
+                title="Monthly Net PnL",
+                labels={"month": "", "net_pnl_clean": "PnL ($)", "color": ""},
+            )
+            fig_monthly.update_layout(
+                height=220, template="plotly_dark", showlegend=False,
+                margin=dict(l=20, r=20, t=40, b=20),
+            )
+            st.plotly_chart(fig_monthly, use_container_width=True)
+
+else:
+    st.info("No closed trades to analyze.")
+
+st.divider()
+
+# ─────────────────── Execution Quality ───────────────────
+st.subheader("⚡ Execution Quality")
+
+col_lat, col_slip = st.columns(2)
+
+with col_lat:
+    lat_df = df[_safe_float(df["execution_latency_ms"]) > 0].copy()
+    lat_df["latency"] = _safe_float(lat_df["execution_latency_ms"])
+    if not lat_df.empty:
+        fig_lat = px.histogram(
+            lat_df, x="latency", nbins=25,
+            title="Execution Latency Distribution",
+            labels={"latency": "Latency (ms)"},
+            color_discrete_sequence=["#42a5f5"],
+        )
+        fig_lat.update_layout(
+            height=350, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_lat, use_container_width=True)
+
+        l1, l2, l3 = st.columns(3)
+        l1.metric("Avg Latency", f"{lat_df['latency'].mean():.0f} ms")
+        l2.metric("P95 Latency", f"{lat_df['latency'].quantile(0.95):.0f} ms")
+        l3.metric("Max Latency", f"{lat_df['latency'].max():.0f} ms")
+    else:
+        st.info("No latency data.")
+
+with col_slip:
+    slip_df = df.copy()
+    slip_df["slip"] = _safe_float(slip_df["slippage_bps"])
+    if slip_df["slip"].sum() > 0:
+        fig_slip = px.histogram(
+            slip_df, x="slip", nbins=20,
+            title="Slippage Distribution (bps)",
+            labels={"slip": "Slippage (bps)"},
+            color_discrete_sequence=["#ffa726"],
+        )
+        fig_slip.update_layout(
+            height=350, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_slip, use_container_width=True)
+
+        sl1, sl2, sl3 = st.columns(3)
+        sl1.metric("Avg Slippage", f"{slip_df['slip'].mean():.1f} bps")
+        sl2.metric("Max Slippage", f"{slip_df['slip'].max():.1f} bps")
+        sl3.metric("Total Slippage Cost", f"${(slip_df['slip'] / 10000 * slip_df['notional']).sum():,.2f}")
+    else:
+        st.info("No slippage data.")
+
+st.divider()
+
+# ─────────────────── Position & Risk ───────────────────
+st.subheader("🛡️ Position & Risk")
+
+col_size, col_lev = st.columns(2)
+
+with col_size:
+    if not entries.empty:
+        entries_copy = entries.copy()
+        entries_copy["notional_val"] = _safe_float(entries_copy["price"]) * _safe_float(entries_copy["quantity"])
+        fig_size = px.scatter(
+            entries_copy, x="timestamp", y="notional_val",
+            color="side",
+            color_discrete_map={"BUY": "#26a69a", "SELL": "#ef5350"},
+            size="notional_val",
+            title="Position Size Over Time",
+            labels={"notional_val": "Notional ($)", "timestamp": ""},
+        )
+        fig_size.update_layout(
+            height=380, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_size, use_container_width=True)
+
+with col_lev:
+    lev_df = df[_safe_float(df["leverage"]) > 0].copy()
+    lev_df["lev"] = _safe_float(lev_df["leverage"])
+    if not lev_df.empty:
+        fig_lev = px.line(
+            lev_df, x="timestamp", y="lev",
+            title="Leverage Used Over Time",
+            labels={"lev": "Leverage (x)", "timestamp": ""},
+        )
+        fig_lev.update_traces(line_color="#ffa726")
+        fig_lev.update_layout(
+            height=380, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_lev, use_container_width=True)
+    else:
+        st.info("No leverage data.")
+
+# SL/TP analysis
+col_sltp, col_rr = st.columns(2)
+
+with col_sltp:
+    sl_tp_df = entries.copy()
+    sl_tp_df["sl_val"] = _safe_float(sl_tp_df["sl"])
+    sl_tp_df["tp_val"] = _safe_float(sl_tp_df["tp"])
+    has_sl_tp = sl_tp_df[(sl_tp_df["sl_val"] > 0) | (sl_tp_df["tp_val"] > 0)]
+    if not has_sl_tp.empty:
+        fig_sltp = go.Figure()
+        fig_sltp.add_trace(go.Scatter(
+            x=has_sl_tp["timestamp"], y=has_sl_tp["price"],
+            mode="markers", name="Entry Price", marker=dict(color="#42a5f5", size=8),
+        ))
+        fig_sltp.add_trace(go.Scatter(
+            x=has_sl_tp["timestamp"], y=has_sl_tp["sl_val"],
+            mode="markers", name="Stop Loss", marker=dict(color="#ef5350", size=6, symbol="triangle-down"),
+        ))
+        fig_sltp.add_trace(go.Scatter(
+            x=has_sl_tp["timestamp"], y=has_sl_tp["tp_val"],
+            mode="markers", name="Take Profit", marker=dict(color="#26a69a", size=6, symbol="triangle-up"),
+        ))
+        fig_sltp.update_layout(
+            title="Entry Prices with SL/TP Levels",
+            yaxis_title="Price ($)", height=380, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_sltp, use_container_width=True)
+    else:
+        st.info("No SL/TP data available.")
+
+with col_rr:
+    # Risk-reward ratio per entry
+    rr_df = entries.copy()
+    rr_df["sl_val"] = _safe_float(rr_df["sl"])
+    rr_df["tp_val"] = _safe_float(rr_df["tp"])
+    rr_df["risk"] = (rr_df["price"] - rr_df["sl_val"]).abs()
+    rr_df["reward"] = (rr_df["tp_val"] - rr_df["price"]).abs()
+    rr_df = rr_df[(rr_df["risk"] > 0) & (rr_df["reward"] > 0)]
+    if not rr_df.empty:
+        rr_df["rr_ratio"] = rr_df["reward"] / rr_df["risk"]
+        fig_rr = px.bar(
+            rr_df.reset_index(drop=True), y="rr_ratio",
+            title="Risk/Reward Ratio per Entry",
+            labels={"rr_ratio": "R:R Ratio", "index": "Trade #"},
+            color="rr_ratio",
+            color_continuous_scale=["#ef5350", "#ffa726", "#26a69a"],
+        )
+        fig_rr.update_layout(
+            height=380, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_rr, use_container_width=True)
+
+        avg_rr = rr_df["rr_ratio"].mean()
+        st.caption(f"Average Risk/Reward: **{avg_rr:.2f}**")
+    else:
+        st.info("No valid SL/TP entries for R:R calculation.")
+
+st.divider()
+
+# ─────────────────── Strategy Signal Analysis ───────────────────
+st.subheader("🧠 Strategy Signal Analysis")
+
+col_conf, col_sig = st.columns(2)
+
+with col_conf:
+    conf_df = closes.copy()
+    conf_df["confidence"] = _safe_float(conf_df["signal_confidence"])
+    conf_valid = conf_df[conf_df["confidence"] > 0]
+    if not conf_valid.empty:
+        fig_conf = px.scatter(
+            conf_valid, x="confidence", y="net_pnl_clean",
+            color=conf_valid["net_pnl_clean"].apply(lambda x: "Win" if x > 0 else "Loss"),
+            color_discrete_map={"Win": "#26a69a", "Loss": "#ef5350"},
+            title="Signal Confidence vs PnL",
+            labels={"confidence": "Signal Confidence", "net_pnl_clean": "Net PnL ($)", "color": ""},
+        )
+        fig_conf.update_layout(
+            height=380, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_conf, use_container_width=True)
+    else:
+        st.info("No signal confidence data.")
+
+with col_sig:
+    sig_type_df = closes.copy()
+    sig_type_df["sig"] = sig_type_df["signal_type"].fillna("unknown")
+    sig_summary = sig_type_df.groupby("sig").agg(
+        count=("net_pnl_clean", "count"),
+        total_pnl=("net_pnl_clean", "sum"),
+        avg_pnl=("net_pnl_clean", "mean"),
+        win_rate=("net_pnl_clean", lambda x: (x > 0).mean() * 100),
+    ).reset_index()
+    if not sig_summary.empty:
+        fig_sig = px.bar(
+            sig_summary, x="sig", y="total_pnl",
+            color="win_rate",
+            color_continuous_scale=["#ef5350", "#ffa726", "#26a69a"],
+            title="PnL by Signal Type",
+            labels={"sig": "Signal Type", "total_pnl": "Total PnL ($)", "win_rate": "Win Rate %"},
+            text="count",
+        )
+        fig_sig.update_layout(
+            height=380, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_sig, use_container_width=True)
+
+st.divider()
+
+# ─────────────────── Funding & Fee Details ───────────────────
+st.subheader("💸 Costs Breakdown")
+
+col_fee_t, col_fund_t = st.columns(2)
+
+with col_fee_t:
+    fee_ts = df[_safe_float(df["fee"]) > 0].copy()
+    fee_ts["fee_val"] = _safe_float(fee_ts["fee"])
+    if not fee_ts.empty:
+        fig_fee = px.bar(
+            fee_ts, x="timestamp", y="fee_val",
+            color="side",
+            color_discrete_map={"BUY": "#42a5f5", "SELL": "#ef5350", "CLOSE": "#ffa726"},
+            title="Fees Per Trade",
+            labels={"fee_val": "Fee ($)", "timestamp": ""},
+        )
+        fig_fee.update_layout(
+            height=350, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_fee, use_container_width=True)
+    else:
+        st.info("No fee data.")
+
+with col_fund_t:
+    fund_ts = closes.copy()
+    fund_ts["fund_val"] = _safe_float(fund_ts["funding_paid"])
+    fund_valid = fund_ts[fund_ts["fund_val"].abs() > 0]
+    if not fund_valid.empty:
+        fig_fund = px.bar(
+            fund_valid, x="timestamp", y="fund_val",
+            title="Funding Paid Per Close",
+            labels={"fund_val": "Funding ($)", "timestamp": ""},
+            color=fund_valid["fund_val"].apply(lambda x: "Paid" if x > 0 else "Received"),
+            color_discrete_map={"Paid": "#ef5350", "Received": "#26a69a"},
+        )
+        fig_fund.update_layout(
+            height=350, template="plotly_dark",
+            margin=dict(l=20, r=20, t=40, b=20),
+        )
+        st.plotly_chart(fig_fund, use_container_width=True)
+    else:
+        st.info("No funding data.")
+
+# Cumulative costs
+if not closes.empty:
+    cum_fee = _safe_float(df["fee"]).cumsum()
+    cum_fund = closes["funding_clean"].cumsum()
+    fig_cum_cost = go.Figure()
+    fig_cum_cost.add_trace(go.Scatter(
+        x=df["timestamp"], y=cum_fee, mode="lines", name="Cumulative Fees",
+        line=dict(color="#ef5350", width=2),
+    ))
+    fig_cum_cost.add_trace(go.Scatter(
+        x=closes["timestamp"], y=cum_fund, mode="lines", name="Cumulative Funding",
+        line=dict(color="#ffa726", width=2),
+    ))
+    fig_cum_cost.update_layout(
+        title="Cumulative Trading Costs", yaxis_title="Cost ($)",
+        height=320, template="plotly_dark",
+        margin=dict(l=20, r=20, t=40, b=20),
+    )
+    st.plotly_chart(fig_cum_cost, use_container_width=True)
+
+st.divider()
+
+# ─────────────────── Full Trade Log ───────────────────
+st.subheader("📋 Trade Log")
+
+display_cols = [
+    "timestamp", "side", "price", "quantity", "notional",
+    "fee", "pnl", "net_pnl_after_fees", "funding_paid",
+    "sl", "tp", "entry_hold_minutes", "leverage",
+    "signal_confidence", "status", "tx_signature",
+]
+display_df = df[[c for c in display_cols if c in df.columns]].copy()
+display_df = display_df.sort_values("timestamp", ascending=False)
+
+# Format for display
+format_map = {
+    "price": "${:,.2f}",
+    "quantity": "{:.6f}",
+    "notional": "${:,.2f}",
+    "fee": "${:,.4f}",
+    "pnl": "${:,.2f}",
+    "net_pnl_after_fees": "${:,.2f}",
+    "funding_paid": "${:,.4f}",
+    "sl": "${:,.2f}",
+    "tp": "${:,.2f}",
+    "entry_hold_minutes": "{:.0f}",
+    "leverage": "{:.1f}x",
+    "signal_confidence": "{:.2f}",
+}
+
+def highlight_side(row):
+    """Color rows by trade side."""
+    color_map = {"BUY": "background-color: rgba(38,166,154,0.15)",
+                 "SELL": "background-color: rgba(239,83,80,0.15)",
+                 "CLOSE": "background-color: rgba(255,167,38,0.15)"}
+    return [color_map.get(row.get("side", ""), "")] * len(row)
+
+styled = display_df.style.apply(highlight_side, axis=1)
+for col, fmt in format_map.items():
+    if col in display_df.columns:
+        styled = styled.format({col: fmt}, na_rep="—")
+
+st.dataframe(styled, use_container_width=True, height=500)
+
+# Download button
+csv_data = df.to_csv(index=False)
+st.download_button(
+    "⬇️ Download Full Trade Data (CSV)",
+    csv_data,
+    file_name="drift_trades_export.csv",
+    mime="text/csv",
+)
+
+st.divider()
+
+# ─────────────────── Footer ───────────────────
+st.caption("Drift Protocol Perpetual Trading Bot · MACD Momentum Strategy · Built with Streamlit & Plotly")

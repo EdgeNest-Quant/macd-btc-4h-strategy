@@ -1,30 +1,12 @@
-# import os
-# from dotenv import load_dotenv
-# from alpaca.data.timeframe import TimeFrameUnit
-
-# load_dotenv()
-
-# API_KEY = os.getenv("API_KEY")
-# SECRET_KEY = os.getenv("SECRET_KEY")
-
-# LIST_OF_TICKERS = ["AAVE/USD", "ETH/USD", "SOL/USD"]
-
-# # Timeframe and strategy configs
-# TIME_FRAME = 1
-# TIME_FRAME_UNIT = TimeFrameUnit.Minute
-# DAYS = 20
-# START_HOUR, START_MIN = 7, 1
-# END_HOUR, END_MIN = 9, 35
-# TIME_ZONE = "America/New_York"
-# STRATEGY_NAME = "crypto_supertrend_ema_strategy"
-# STOP_PERC = 2
-
 """
 Configuration file for the Drift Protocol trading bot
 """
+import logging
 import os
 from datetime import timezone, timedelta
 from dotenv import load_dotenv
+
+_config_logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -68,27 +50,30 @@ TIME_ZONE = 'UTC'
 # You can change this to any timezone (e.g., 'US/Eastern', 'Europe/London', 'Asia/Tokyo')
 # All datetime operations throughout the bot will use this timezone
 def get_timezone():
-    """Get the configured timezone object"""
+    """Get the configured timezone object. Supports UTC, named timezones, and UTC offsets."""
     if TIME_ZONE.upper() == 'UTC':
         return timezone.utc
-    else:
-        # For non-UTC timezones, you can extend this with pytz or zoneinfo
-        # For now, supporting UTC and basic offset formats
-        try:
-            # Try to parse as UTC offset (e.g., '+05:00', '-08:00')
-            if TIME_ZONE.startswith(('+', '-')):
-                hours, minutes = TIME_ZONE[1:].split(':')
-                offset = timedelta(hours=int(hours), minutes=int(minutes))
-                if TIME_ZONE.startswith('-'):
-                    offset = -offset
-                return timezone(offset)
-            else:
-                # Default to UTC for unsupported timezone strings
-                print(f"Warning: Timezone '{TIME_ZONE}' not supported, using UTC")
-                return timezone.utc
-        except:
-            print(f"Warning: Invalid timezone format '{TIME_ZONE}', using UTC")
-            return timezone.utc
+
+    # Try named timezone via zoneinfo (Python 3.9+)
+    try:
+        from zoneinfo import ZoneInfo
+        return ZoneInfo(TIME_ZONE)
+    except (ImportError, KeyError):
+        pass
+
+    # Try UTC offset format (e.g., '+05:00', '-08:00')
+    try:
+        if TIME_ZONE.startswith(('+', '-')):
+            hours, minutes = TIME_ZONE[1:].split(':')
+            offset = timedelta(hours=int(hours), minutes=int(minutes))
+            if TIME_ZONE.startswith('-'):
+                offset = -offset
+            return timezone(offset)
+    except (ValueError, IndexError):
+        pass
+
+    _config_logger.warning(f"Invalid timezone '{TIME_ZONE}', falling back to UTC")
+    return timezone.utc
 
 # Create the timezone object once
 TIMEZONE = get_timezone()
@@ -151,6 +136,10 @@ CASH_ALLOCATION_MODE = 'full'           # Use full balance (within safety margin
 # File Paths
 TRADES_FILE = "trades.csv"
 ORDERS_FILE = "orders.csv"
+SNAPSHOT_FILE = "position_snapshots.csv"
+
+# Bot metadata
+BOT_VERSION = "1.3.0"
 
 # Execution Settings
 STRATEGY_CHECK_INTERVAL = 60  # Check every minute

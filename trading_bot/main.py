@@ -175,11 +175,3 @@ def sync_main():
 
 if __name__ == "__main__":
     sync_main()
-    
-    print('Strategy stopped')
-    logger.info('Strategy stopped')
-
-
-if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())

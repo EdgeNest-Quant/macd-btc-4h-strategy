@@ -2,15 +2,30 @@
 Order execution handler for interacting with Drift Protocol
 """
 import asyncio
+import json
 import time
 import pandas as pd
 from datetime import datetime
+from pathlib import Path
 from typing import Optional, Tuple, Dict, Any, List
 from ..config import (
     SOLANA_RPC_URL, PRIVATE_KEY, DRIFT_ENV, SUB_ACCOUNT_ID,
     TX_COMPUTE_UNITS, TX_COMPUTE_UNIT_PRICE, get_market_index_by_symbol
 )
 from ..logger import logger
+
+# Audit log for raw exchange responses (JSONL format)
+_RAW_RESPONSE_LOG = Path("logs/raw_order_responses.jsonl")
+
+
+def _log_raw_response(payload: dict) -> None:
+    """Append a raw exchange response dict to the JSONL audit log."""
+    try:
+        _RAW_RESPONSE_LOG.parent.mkdir(parents=True, exist_ok=True)
+        with _RAW_RESPONSE_LOG.open("a") as f:
+            f.write(json.dumps(payload, default=str) + "\n")
+    except Exception as exc:
+        logger.warning(f"Failed to write raw response log: {exc}")
 
 try:
     from solana.rpc.async_api import AsyncClient
@@ -132,22 +147,18 @@ class DriftOrderExecutor:
             return 0.0
     
     def get_account_cash(self) -> float:
-        """Synchronous wrapper for getting account balance"""
-        if not self._initialized:
-            # Run initialization if needed
-            loop = asyncio.get_event_loop()
-            if loop.is_running():
-                # We're already in an async context, need to handle differently
-                return 1000.0  # Return a default value
-            else:
-                return asyncio.run(self.get_account_balance())
+        """Synchronous wrapper for getting account balance.
         
+        WARNING: Only works outside of an already-running event loop.
+        In async code, use `await get_account_balance()` instead.
+        """
         loop = asyncio.get_event_loop()
         if loop.is_running():
-            # Create a task to run in the existing loop
-            return 1000.0  # Return default for now
-        else:
-            return asyncio.run(self.get_account_balance())
+            raise RuntimeError(
+                "get_account_cash() cannot be called from async context. "
+                "Use 'await get_account_balance()' instead."
+            )
+        return asyncio.run(self.get_account_balance())
     
     async def get_open_position(self) -> pd.DataFrame:
         """Get all open positions as DataFrame"""
@@ -327,7 +338,7 @@ class DriftOrderExecutor:
                 'open': False
             }
     
-    async def place_market_order(self, symbol: str, quantity: float, side: str) -> Optional[str]:
+    async def place_market_order(self, symbol: str, quantity: float, side: str) -> Optional[Dict[str, Any]]:
         """
         Place a market order
         
@@ -337,12 +348,22 @@ class DriftOrderExecutor:
             side: "BUY" or "SELL"
             
         Returns:
-            Transaction signature if successful, None otherwise
+            Dictionary with execution details if successful:
+                - 'tx_signature': Transaction signature
+                - 'execution_price': Actual fill price
+                - 'execution_quantity': Actual filled quantity
+                - 'fee': Fee charged (0.05% taker fee)
+                - 'account_equity': Account equity after trade
+            None if order failed
         """
         if not self._initialized:
             await self.initialize()
             
         try:
+            # Get account equity before trade
+            equity_before = await self.get_account_balance()
+            order_start_ms = time.monotonic() * 1000  # Start latency timer
+            
             market_index = get_market_index_by_symbol(symbol)
             direction = PositionDirection.Long() if side.upper() == "BUY" else PositionDirection.Short()
             market_type = MarketType.Perp() if symbol.endswith("-PERP") else MarketType.Spot()
@@ -371,7 +392,7 @@ class DriftOrderExecutor:
                 await asyncio.sleep(2)  # Allow time for order processing
                 execution_details = await self.get_execution_details(symbol, tx_sig)
                 if execution_details:
-                    actual_price = execution_details.get('execution_price', 'market')
+                    actual_price = execution_details.get('execution_price', 0.0)
                     actual_qty = execution_details.get('execution_quantity', 0)
                     logger.info(f"📊 EXECUTION DETAILS: {symbol} {side} - Intended: {quantity}@market | Actual: {actual_qty}@{actual_price}")
                     
@@ -387,8 +408,49 @@ class DriftOrderExecutor:
                         logger.error(f"   • Reduce LEVERAGE_MULTIPLIER from 2.0 to 1.5")
                         logger.error(f"   • Check Drift UI for pending orders or margin issues")
                         return None  # Return None to indicate failed order
+                    
+                    # Calculate Drift Protocol taker fee (0.035% on notional - Tier 1 per https://docs.drift.trade/trading/trading-fees)
+                    notional = actual_price * actual_qty
+                    taker_fee = notional * 0.00035  # 0.035% taker fee (Drift Tier 1)
+                    
+                    # Get account equity after trade
+                    equity_after = await self.get_account_balance()
+                    latency_ms = time.monotonic() * 1000 - order_start_ms
+                    
+                    # Build comprehensive result
+                    result = {
+                        'tx_signature': tx_sig,
+                        'execution_price': actual_price,
+                        'execution_quantity': actual_qty,
+                        'fee': taker_fee,
+                        'account_equity': equity_after,
+                        'equity_before': equity_before,
+                        'notional': notional,
+                        'execution_latency_ms': latency_ms,
+                    }
+                    
+                    # Log full raw exchange response for audit
+                    raw_response = {
+                        'logged_at': datetime.now().isoformat(),
+                        'symbol': symbol,
+                        'side': side,
+                        'requested_quantity': quantity,
+                        'order_params': {
+                            'order_type': 'Market',
+                            'direction': side,
+                            'base_asset_amount': base_asset_amount,
+                            'market_index': market_index,
+                        },
+                        'tx_signature': tx_sig,
+                        'execution_details': execution_details,
+                        'computed': result,
+                    }
+                    _log_raw_response(raw_response)
+                    logger.info(f"📝 Raw order response logged to {_RAW_RESPONSE_LOG}")
+                    
+                    return result
             
-            return tx_sig
+            return None
             
         except Exception as e:
             logger.error(f"Error placing market order for {symbol}: {e}")

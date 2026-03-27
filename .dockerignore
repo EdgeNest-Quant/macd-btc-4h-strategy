@@ -15,6 +15,17 @@ build/
 .env
 *.env.local
 
+# Large/unnecessary directories
+drift_env/
+.venv/
+logs/
+logs_old_with_bug/
+dashboard/
+*.md
+*.ipynb
+generate_test_trades.py
+run_dashboard.sh
+
 # IDE
 .vscode/
 .idea/

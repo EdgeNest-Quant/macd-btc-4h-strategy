@@ -1,5 +1,0 @@
-2025-11-05 11:02:12 UTC -     INFO - drift_macd_momentum_strategy - Logger initialized: drift_macd_momentum_strategy
-2025-11-05 11:02:12 UTC -     INFO - drift_macd_momentum_strategy - Log file: logs/drift_macd_momentum_strategy_20251105.log
-2025-11-05 11:02:12 UTC -     INFO - drift_macd_momentum_strategy - Log level: DEBUG
-2025-11-05 11:02:13 UTC -     INFO - drift_macd_momentum_strategy - Initializing Drift executor (attempt 1/3)...
-2025-11-05 11:02:19 UTC -     INFO - drift_macd_momentum_strategy - ✅ Drift executor initialized for wallet: 6BP8Gb3Szc5Zbk6nyzeh2AtueTLbWpTDxU5sszbkX4Tt

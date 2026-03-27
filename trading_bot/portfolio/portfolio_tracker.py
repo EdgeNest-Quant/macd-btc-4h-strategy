@@ -10,6 +10,17 @@ from typing import Optional, Dict, Any
 from ..config import TRADES_FILE, TIMEZONE
 from ..logger import logger
 
+# Snapshot CSV path (imported lazily to avoid circular import at module level)
+_SNAPSHOT_FILE = None
+
+
+def _get_snapshot_file():
+    global _SNAPSHOT_FILE
+    if _SNAPSHOT_FILE is None:
+        from ..config import SNAPSHOT_FILE
+        _SNAPSHOT_FILE = SNAPSHOT_FILE
+    return _SNAPSHOT_FILE
+
 
 class DriftPortfolioTracker:
     def __init__(self):
@@ -79,7 +90,7 @@ class DriftPortfolioTracker:
                      bot_version: str = "1.0", env: str = "devnet",
                      # Drift-specific parameters
                      funding_paid: float = 0.0, cumulative_funding: float = 0.0,
-                     entry_hold_minutes: float = 0.0, taker_fee_rate: float = 0.0005,
+                     entry_hold_minutes: float = 0.0, taker_fee_rate: float = 0.00035,
                      maker_fee_rate: float = 0.0002, net_pnl_after_fees: float = 0.0):
         """
         Record a trade to the portfolio with comprehensive metadata
@@ -131,7 +142,7 @@ class DriftPortfolioTracker:
             funding_paid: Funding fee paid during this trade session (in quote)
             cumulative_funding: Total funding paid since position open
             entry_hold_minutes: How long position was held
-            taker_fee_rate: Drift taker fee percentage (default 0.05%)
+            taker_fee_rate: Drift taker fee percentage (default 0.035% - Tier 1 per https://docs.drift.trade/trading/trading-fees)
             maker_fee_rate: Drift maker fee percentage (default 0.02%)
             net_pnl_after_fees: PnL minus all fees and funding
         """
@@ -203,16 +214,20 @@ class DriftPortfolioTracker:
         logger.debug(f"✅ Trade validation passed: {side_normalized} {quantity} {symbol} @ ${price:.2f}")
         
         # Calculate net P&L after Drift fees and funding
+        # Drift Protocol fees: 0.035% taker fee for Tier 1 (verified https://docs.drift.trade/trading/trading-fees)
         if side.upper() == 'BUY' or side.upper() == 'SELL':
-            # Entry trade - calculate entry fee
+            # Entry trade - calculate entry fee (0.05% taker fee on notional)
             entry_fee = price * quantity * taker_fee_rate
-            net_entry = pnl - entry_fee if pnl > 0 else pnl - entry_fee
+            # For entry trades, net P&L is just the fee reduction (no PnL yet)
+            net_pnl_after_fees = -entry_fee
+            logger.debug(f"Entry P&L: Entry Fee=${entry_fee:.6f} | Net=${net_pnl_after_fees:.6f}")
         elif side.upper() == 'CLOSE':
-            # Close trade - calculate close fee + cumulative funding
+            # Close trade - calculate close fee (0.05% taker) + cumulative funding
             close_fee = price * quantity * taker_fee_rate
-            total_costs = fee + close_fee + cumulative_funding
+            # Total costs: entry fee + close fee + funding paid
+            total_costs = (price * quantity * taker_fee_rate) + fee + funding_paid + cumulative_funding
             net_pnl_after_fees = pnl - total_costs
-            logger.debug(f"Close P&L breakdown: Gross=${pnl:.2f} - Fees=${total_costs:.2f} = Net=${net_pnl_after_fees:.2f}")
+            logger.debug(f"Close P&L breakdown: Gross=${pnl:.2f} - Close Fee=${close_fee:.6f} - Funding=${funding_paid + cumulative_funding:.6f} = Net=${net_pnl_after_fees:.2f}")
         else:
             net_pnl_after_fees = pnl
         
@@ -275,6 +290,9 @@ class DriftPortfolioTracker:
         trade_data['timestamp'] = timestamp
         self.session_trades.append(trade_data)
         
+        # Persist to disk immediately so no trades are lost on crash
+        self.save_trades()
+        
         # ============================================================
         # AUDIT LOGGING: Log complete trade data for history
         # ============================================================
@@ -323,6 +341,36 @@ class DriftPortfolioTracker:
         except Exception as e:
             logger.error(f"Error saving trades: {e}")
     
+    def record_position_snapshot(self, symbol: str, mark_price: float,
+                                 position_size: float, side: str,
+                                 entry_price: float, unrealized_pnl: float,
+                                 account_equity: float = 0.0) -> None:
+        """
+        Log a point-in-time snapshot of an open position for unrealized PnL tracking.
+
+        Appends one row per call to the snapshot CSV.
+        """
+        snapshot_file = _get_snapshot_file()
+        row = {
+            'timestamp': datetime.now(TIMEZONE).isoformat(),
+            'symbol': symbol,
+            'mark_price': mark_price,
+            'position_size': position_size,
+            'side': side,
+            'entry_price': entry_price,
+            'unrealized_pnl': unrealized_pnl,
+            'account_equity': account_equity,
+        }
+        try:
+            import os
+            write_header = not os.path.exists(snapshot_file) or os.path.getsize(snapshot_file) == 0
+            pd.DataFrame([row]).to_csv(
+                snapshot_file, mode='a', header=write_header, index=False
+            )
+            logger.debug(f"Position snapshot saved: {symbol} @ ${mark_price:.2f}, uPnL ${unrealized_pnl:.2f}")
+        except Exception as e:
+            logger.error(f"Error saving position snapshot: {e}")
+
     def get_trades(self, symbol: Optional[str] = None, days: Optional[int] = None) -> pd.DataFrame:
         """
         Get trades with optional filtering

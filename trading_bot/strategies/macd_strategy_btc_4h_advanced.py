@@ -24,7 +24,8 @@ from ..logger import logger
 from ..config import (TIMEZONE, MACD_TARGET_SYMBOL, MACD_TIMEFRAME, MACD_FAST_PERIOD, 
                     MACD_SLOW_PERIOD, MACD_SIGNAL_PERIOD, EMA_FILTER_PERIOD, 
                     MACD_STOP_BUFFER, MIN_SIGNAL_STRENGTH, PERP_MARKETS,
-                    get_market_index_by_symbol,  # Add this import
+                    get_market_index_by_symbol,
+                    STRATEGY_NAME, DRIFT_ENV, BOT_VERSION, LEVERAGE_MULTIPLIER,
                     # === NEW 4H STRATEGY CONFIG IMPORTS ===
                     INITIAL_STOP_ATR_MULTIPLIER, TRAILING_STOP_ATR_MULTIPLIER, 
                     TRAILING_ACTIVATION_ATR, TAKE_PROFIT_ATR_MULTIPLIER, MAX_DRAWDOWN_PCT,
@@ -191,7 +192,8 @@ class DriftMACDStrategy:
             
             # Get market data (ensure enough for MACD + EMA indicators)
             required_bars = max(self.macd_slow, self.ema_filter) + 10  # 178 bars needed
-            duration_days = max(8, required_bars // 24)  # At least 8 days for sufficient hourly data
+            bars_per_day = (24 * 60) // self.timeframe_minutes  # 6 for 4h
+            duration_days = max(8, (required_bars // bars_per_day) + 2)  # ~32 days for 4h
             
             # Ensure 4-hour timeframe is used for MACD signals
             df = await self.data_handler.get_historical_crypto_data(symbol, duration_days, "4h")
@@ -215,6 +217,7 @@ class DriftMACDStrategy:
             buy_signal = signals.get('buy_signal', False)
             sell_signal = signals.get('sell_signal', False)
             signal_strength = signals.get('signal_strength', 0)
+            self._last_signal_strength = signal_strength  # Store for record_trade calls
             
             logger.info(f"📈 {symbol} @ ${current_price:.2f} | ATR: ${atr_value:.2f} | "
                        f"Buy: {buy_signal} | Sell: {sell_signal} | Strength: {signal_strength:.4f}")
@@ -476,26 +479,6 @@ class DriftMACDStrategy:
     def generate_macd_signals(self, df: pd.DataFrame) -> Optional[Dict]:
         """Generate MACD signals with enhanced filtering"""
         try:
-            # Signal generation logic
-            buy_signal = False
-            sell_signal = False
-            # MACD crossover logic
-            macd_bullish_cross = current_macd > current_signal and prev_macd <= prev_signal
-            macd_bearish_cross = current_macd < current_signal and prev_macd >= prev_signal
-            # EMA trend filter
-            price_above_ema = current_price > current_ema
-            price_below_ema = current_price < current_ema
-            # Debug logging for MACD signal generation
-            logger.debug(f"MACD Signal Debug: macd_bullish_cross={macd_bullish_cross}, price_above_ema={price_above_ema}, "
-                         f"macd_histogram={current_histogram:.4f}, min_signal_strength={self.min_signal_strength}")
-            logger.debug(f"MACD Signal Debug: macd_bearish_cross={macd_bearish_cross}, price_below_ema={price_below_ema}, "
-                         f"macd_histogram={current_histogram:.4f}, min_signal_strength={self.min_signal_strength}")
-            if not buy_signal:
-                logger.debug(f"No BUY signal: Conditions - bullish_cross={macd_bullish_cross}, price_above_ema={price_above_ema}, "
-                             f"histogram_strength={abs(current_histogram) > self.min_signal_strength}")
-            if not sell_signal:
-                logger.debug(f"No SELL signal: Conditions - bearish_cross={macd_bearish_cross}, price_below_ema={price_below_ema}, "
-                             f"histogram_strength={abs(current_histogram) > self.min_signal_strength}")
             if df is None or len(df) < max(self.macd_slow, self.ema_filter) + 5:
                 return None
             
@@ -585,38 +568,52 @@ class DriftMACDStrategy:
             
             # Execute the trade
             logger.info(f"📤 Executing BUY order: {quantity:.6f} {symbol} at market price")
-            tx_sig = await self.broker.place_market_order(
+            exec_result = await self.broker.place_market_order(
                 symbol=symbol,
                 quantity=quantity,
                 side='BUY'
             )
             
-            if tx_sig:
-                # Log successful execution - price parameter already contains current market price
-                execution_price = price  # Market price at signal generation
+            if exec_result:
+                tx_sig = exec_result.get('tx_signature', '') if isinstance(exec_result, dict) else str(exec_result)
+                execution_price = exec_result.get('execution_price', price) if isinstance(exec_result, dict) else price
+                exec_qty = exec_result.get('execution_quantity', quantity) if isinstance(exec_result, dict) else quantity
+                exec_fee = exec_result.get('fee', 0.0) if isinstance(exec_result, dict) else 0.0
+                equity_after = exec_result.get('account_equity', 0.0) if isinstance(exec_result, dict) else 0.0
+                latency_ms = exec_result.get('execution_latency_ms', 0.0) if isinstance(exec_result, dict) else 0.0
                     
                 logger.info(f"✅ BUY order executed: {tx_sig}")
-                logger.info(f"📊 EXECUTION: Market @ ${execution_price:.2f}")
+                logger.info(f"📊 EXECUTION: {exec_qty:.6f} @ ${execution_price:.2f} | Fee: ${exec_fee:.4f} | Latency: {latency_ms:.0f}ms")
                 
                 # Set position tracking with enhanced parameters
-                self.position_entry_price = execution_price  # Use execution price instead of signal price
+                self.position_entry_price = execution_price
                 self.position_entry_time = datetime.now(TIMEZONE)
                 self.position_side = "BUY"
                 self.current_stop_loss = initial_stop_loss
                 self.current_take_profit = take_profit_level
                 
-                # Record trade with execution price
+                # Record trade with full execution metadata
                 self.portfolio_tracker.record_trade(
                     symbol=symbol,
                     side="BUY",
-                    price=execution_price,  # Use execution price
-                    quantity=quantity,
+                    price=execution_price,
+                    quantity=exec_qty,
                     sl=initial_stop_loss,
                     tp=take_profit_level,
                     tx_signature=tx_sig,
-                    market_index=self.market_index
+                    market_index=self.market_index,
+                    fee=exec_fee,
+                    account_equity=equity_after,
+                    oracle_price_at_entry=price,
+                    strategy_id=STRATEGY_NAME,
+                    signal_type='macd_momentum',
+                    signal_confidence=getattr(self, '_last_signal_strength', 0),
+                    order_type='market',
+                    env=DRIFT_ENV,
+                    leverage=LEVERAGE_MULTIPLIER,
+                    execution_latency_ms=latency_ms,
+                    bot_version=BOT_VERSION,
                 )
-                logger.info(f"✅ BUY order executed: {tx_sig}")
                 
         except Exception as e:
             logger.error(f"Error executing buy signal: {e}")
@@ -649,38 +646,52 @@ class DriftMACDStrategy:
             
             # Execute the trade
             logger.info(f"📤 Executing SELL order: {quantity:.6f} {symbol} at market price")
-            tx_sig = await self.broker.place_market_order(
+            exec_result = await self.broker.place_market_order(
                 symbol=symbol,
                 quantity=quantity,
                 side='SELL'
             )
             
-            if tx_sig:
-                # Log successful execution - price parameter already contains current market price
-                execution_price = price  # Market price at signal generation
+            if exec_result:
+                tx_sig = exec_result.get('tx_signature', '') if isinstance(exec_result, dict) else str(exec_result)
+                execution_price = exec_result.get('execution_price', price) if isinstance(exec_result, dict) else price
+                exec_qty = exec_result.get('execution_quantity', quantity) if isinstance(exec_result, dict) else quantity
+                exec_fee = exec_result.get('fee', 0.0) if isinstance(exec_result, dict) else 0.0
+                equity_after = exec_result.get('account_equity', 0.0) if isinstance(exec_result, dict) else 0.0
+                latency_ms = exec_result.get('execution_latency_ms', 0.0) if isinstance(exec_result, dict) else 0.0
                 
                 logger.info(f"✅ SELL order executed: {tx_sig}")
-                logger.info(f"📊 EXECUTION: Market @ ${execution_price:.2f}")
+                logger.info(f"📊 EXECUTION: {exec_qty:.6f} @ ${execution_price:.2f} | Fee: ${exec_fee:.4f} | Latency: {latency_ms:.0f}ms")
                 
                 # Set position tracking with enhanced parameters
-                self.position_entry_price = execution_price  # Use execution price instead of signal price
+                self.position_entry_price = execution_price
                 self.position_entry_time = datetime.now(TIMEZONE)
                 self.position_side = "SELL"
                 self.current_stop_loss = initial_stop_loss
                 self.current_take_profit = take_profit_level
                 
-                # Record trade with execution price
+                # Record trade with full execution metadata
                 self.portfolio_tracker.record_trade(
                     symbol=symbol,
                     side="SELL",
-                    price=execution_price,  # Use execution price
-                    quantity=quantity, 
+                    price=execution_price,
+                    quantity=exec_qty,
                     sl=initial_stop_loss,
                     tp=take_profit_level,
                     tx_signature=tx_sig,
-                    market_index=self.market_index
+                    market_index=self.market_index,
+                    fee=exec_fee,
+                    account_equity=equity_after,
+                    oracle_price_at_entry=price,
+                    strategy_id=STRATEGY_NAME,
+                    signal_type='macd_momentum',
+                    signal_confidence=getattr(self, '_last_signal_strength', 0),
+                    order_type='market',
+                    env=DRIFT_ENV,
+                    leverage=LEVERAGE_MULTIPLIER,
+                    execution_latency_ms=latency_ms,
+                    bot_version=BOT_VERSION,
                 )
-                logger.info(f"✅ SELL order executed: {tx_sig}")
                 
         except Exception as e:
             logger.error(f"Error executing sell signal: {e}")
@@ -767,6 +778,22 @@ class DriftMACDStrategy:
             profit_pct = (profit_per_unit / entry_price) * 100
             logger.info(f"📊 Position Management: {side} {abs(actual_qty):.6f} {symbol} @ ${entry_price:.2f}")
             logger.info(f"📈 Current: ${current_price:.2f} | Total P&L: ${total_profit:.2f} ({profit_pct:+.2f}%)")
+
+            # 📸 Record position snapshot for unrealized PnL tracking
+            try:
+                equity = await self.broker.get_account_balance()
+                self.portfolio_tracker.record_position_snapshot(
+                    symbol=symbol,
+                    mark_price=current_price,
+                    position_size=abs(actual_qty),
+                    side=side,
+                    entry_price=entry_price,
+                    unrealized_pnl=total_profit,
+                    account_equity=equity,
+                )
+            except Exception as snap_err:
+                logger.debug(f"Snapshot write skipped: {snap_err}")
+
             # 🎯 TAKE PROFIT CHECK (Priority 1)
             take_profit_triggered = False
             # Ensure take profit is set
@@ -879,16 +906,21 @@ class DriftMACDStrategy:
             logger.critical(f"🚪 CLOSING POSITION: {reason}")
             logger.info(f"📤 Close order: {close_side} {quantity} {symbol}")
             # Execute close order
-            tx_sig = await self.broker.place_market_order(
+            exec_result = await self.broker.place_market_order(
                 symbol=symbol,
                 quantity=quantity,
                 side=close_side
             )
             
-            if tx_sig:
-                # Use current market price as execution price (captured before closing)
-                # Fallback to get_execution_details if market price not available
-                if current_market_price:
+            if exec_result:
+                tx_sig = exec_result.get('tx_signature', '') if isinstance(exec_result, dict) else str(exec_result)
+                exec_price_from_broker = exec_result.get('execution_price', 0.0) if isinstance(exec_result, dict) else 0.0
+
+                # Use broker execution price if available, then current market price, then fallback
+                if exec_price_from_broker and exec_price_from_broker > 0:
+                    execution_price = exec_price_from_broker
+                    logger.info(f"💰 Using broker execution price: ${execution_price:.2f}")
+                elif current_market_price:
                     execution_price = current_market_price
                     logger.info(f"💰 Using market price as close price: ${execution_price:.2f}")
                 else:
@@ -929,6 +961,10 @@ class DriftMACDStrategy:
                 logger.info(f"  Funding Paid: ${funding_paid:.2f}")
                 logger.info(f"  ━━━ NET P&L: ${net_pnl:.2f} ({pnl_breakdown['net_pnl_pct']:+.2f}%)")
                 
+                # Get equity & oracle at close time
+                close_equity = await self.broker.get_account_balance()
+                close_oracle = execution_price  # oracle already used to determine exec price
+
                 # Record the CLOSE trade with complete P&L breakdown
                 self.portfolio_tracker.record_trade(
                     symbol=symbol,
@@ -949,10 +985,16 @@ class DriftMACDStrategy:
                     funding_paid=funding_paid,
                     cumulative_funding=funding_paid,
                     taker_fee_rate=DriftPnLCalculator.DEFAULT_TAKER_FEE,
-                    net_pnl_after_fees=net_pnl
+                    net_pnl_after_fees=net_pnl,
+                    account_equity=close_equity,
+                    oracle_price_at_entry=close_oracle,
+                    strategy_id=STRATEGY_NAME,
+                    env=DRIFT_ENV,
+                    leverage=LEVERAGE_MULTIPLIER,
+                    bot_version=BOT_VERSION,
                 )
                 
-                logger.info(f"💰 CLOSE trade recorded: {close_side} {quantity} @ ${execution_price:.2f}, P&L: ${realized_pnl:.2f}")
+                logger.info(f"💰 CLOSE trade recorded: {close_side} {quantity} @ ${execution_price:.2f}, P&L: ${net_pnl:.2f}")
                 
                 # Reset position tracking
                 self.position_entry_price = None
@@ -993,17 +1035,50 @@ class DriftMACDStrategy:
                         
                         logger.info(f"🚪 Closing {MACD_TARGET_SYMBOL} position: {close_side} {abs(qty)}")
                         
-                        tx_sig = await self.broker.place_market_order(
+                        exec_result = await self.broker.place_market_order(
                             symbol=MACD_TARGET_SYMBOL,
                             quantity=abs(qty),
                             side=close_side
                         )
                         
-                        if tx_sig:
-                            # Record CLOSE trade
-                            execution_details = await self.broker.get_execution_details(MACD_TARGET_SYMBOL, tx_sig)
-                            execution_price = execution_details.get('execution_price') if execution_details else 0.001
-                            
+                        if exec_result:
+                            tx_sig = exec_result.get('tx_signature', '') if isinstance(exec_result, dict) else str(exec_result)
+                            execution_price = exec_result.get('execution_price', 0.0) if isinstance(exec_result, dict) else 0.0
+                            exec_fee = exec_result.get('fee', 0.0) if isinstance(exec_result, dict) else 0.0
+                            equity_after = exec_result.get('account_equity', 0.0) if isinstance(exec_result, dict) else 0.0
+
+                            # Fallback: get price from execution details if not in result
+                            if execution_price == 0.0:
+                                det = await self.broker.get_execution_details(MACD_TARGET_SYMBOL, tx_sig)
+                                execution_price = det.get('execution_price', 0.0) if det else 0.0
+
+                            # Calculate PnL if we have entry tracking
+                            gross_pnl = 0.0
+                            net_pnl = 0.0
+                            hold_minutes = 0.0
+                            funding_paid = 0.0
+                            entry_fee = 0.0
+                            close_fee = exec_fee
+
+                            if self.position_entry_price and self.position_entry_price > 0 and execution_price > 0:
+                                from ..portfolio.portfolio_tracker import DriftPnLCalculator
+                                hold_minutes = (datetime.now(TIMEZONE) - self.position_entry_time).total_seconds() / 60 if self.position_entry_time else 0
+                                pnl_breakdown = DriftPnLCalculator.calculate_realized_pnl(
+                                    entry_price=self.position_entry_price,
+                                    close_price=execution_price,
+                                    quantity=abs(qty),
+                                    side=self.position_side or ('BUY' if qty > 0 else 'SELL'),
+                                    hold_hours=hold_minutes / 60,
+                                    funding_rate=0.0,
+                                    is_maker=False
+                                )
+                                gross_pnl = pnl_breakdown['gross_pnl']
+                                net_pnl = pnl_breakdown['net_pnl']
+                                entry_fee = pnl_breakdown['entry_fee']
+                                close_fee = pnl_breakdown['close_fee']
+                                funding_paid = pnl_breakdown['funding_paid']
+                                logger.info(f"💰 Shutdown close PnL: gross=${gross_pnl:.2f}, net=${net_pnl:.2f}")
+
                             self.portfolio_tracker.record_trade(
                                 symbol=MACD_TARGET_SYMBOL,
                                 side="CLOSE",
@@ -1012,7 +1087,22 @@ class DriftMACDStrategy:
                                 sl=0.0,
                                 tp=0.0,
                                 tx_signature=tx_sig,
-                                market_index=target_market_index
+                                market_index=target_market_index,
+                                pnl=gross_pnl,
+                                status="CLOSED",
+                                fee=entry_fee + close_fee,
+                                order_type="market",
+                                duration_seconds=hold_minutes * 60,
+                                entry_hold_minutes=hold_minutes,
+                                funding_paid=funding_paid,
+                                cumulative_funding=funding_paid,
+                                net_pnl_after_fees=net_pnl,
+                                account_equity=equity_after,
+                                oracle_price_at_entry=execution_price,
+                                strategy_id=STRATEGY_NAME,
+                                env=DRIFT_ENV,
+                                leverage=LEVERAGE_MULTIPLIER,
+                                bot_version=BOT_VERSION,
                             )
                             
                             logger.info(f"✅ Position closed on shutdown: {tx_sig}")
