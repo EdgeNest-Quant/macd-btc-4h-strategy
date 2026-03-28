@@ -379,11 +379,13 @@ class DriftDataHandler:
 
         cache_key = f"{ticker}_{duration}_{time_frame_unit}"
 
-        # Return cached data if still fresh (less than one candle period old)
+        # Return cached data if still fresh
+        # Refresh at least every 30 min so we catch candle closes promptly
+        cache_max_age_seconds = min(minutes_per_bar * 60, 1800)  # 30 min cap
         if cache_key in self.data_cache and cache_key in self._cache_timestamps:
             age_seconds = (datetime.now(TIMEZONE) - self._cache_timestamps[cache_key]).total_seconds()
-            if age_seconds < minutes_per_bar * 60:
-                logger.debug(f"📦 Using cached data for {ticker} (age: {age_seconds/60:.0f}m < {minutes_per_bar}m)")
+            if age_seconds < cache_max_age_seconds:
+                logger.debug(f"📦 Using cached data for {ticker} (age: {age_seconds/60:.0f}m < {cache_max_age_seconds/60:.0f}m)")
                 return self.data_cache[cache_key]
 
         # --- 1. Primary: Fetch from CoinGecko API ---
