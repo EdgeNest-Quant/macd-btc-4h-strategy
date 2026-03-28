@@ -54,6 +54,7 @@ class DriftDataHandler:
         self.connection = None
         self.drift_client: Optional[DriftClient] = None
         self.data_cache = {}  # Cache for historical data
+        self._cache_timestamps = {}  # When each cache entry was last fetched
         self._initialized = False
         self._init_retries = 3  # Number of retry attempts per RPC
         
@@ -302,13 +303,8 @@ class DriftDataHandler:
 
     async def _fetch_from_coingecko(self, ticker: str, days: int) -> Optional[pd.DataFrame]:
         """
-        Fetch OHLC data from CoinGecko free API.
-        Returns a DataFrame indexed by UTC timestamp with columns: open, high, low, close, volume.
-
-        CoinGecko /coins/{id}/ohlc returns:
-          - 4h candles when days = 3–30
-          - daily candles when days > 30
-        So we clamp days to 30 max for 4h resolution.
+        Fetch OHLC data from CoinGecko API.
+        Uses CG_API_KEY env var for Pro API if available, otherwise free tier.
         """
         import httpx
 
@@ -317,14 +313,23 @@ class DriftDataHandler:
             logger.warning(f"No CoinGecko mapping for {ticker}, cannot fetch live data")
             return None
 
-        # Clamp to 30 days to get 4h candles (~180 bars)
         days_param = min(max(days, 1), 30)
-        url = f"https://api.coingecko.com/api/v3/coins/{coin_id}/ohlc"
+
+        api_key = os.environ.get("CG_API_KEY", "")
+        if api_key:
+            base_url = "https://pro-api.coingecko.com/api/v3"
+            headers = {"x-cg-pro-api-key": api_key}
+            logger.debug("Using CoinGecko Pro API")
+        else:
+            base_url = "https://api.coingecko.com/api/v3"
+            headers = {}
+
+        url = f"{base_url}/coins/{coin_id}/ohlc"
         params = {"vs_currency": "usd", "days": str(days_param)}
 
         try:
             async with httpx.AsyncClient(timeout=httpx.Timeout(20.0)) as client:
-                resp = await client.get(url, params=params)
+                resp = await client.get(url, params=params, headers=headers)
                 resp.raise_for_status()
                 data = resp.json()
         except Exception as e:
@@ -374,6 +379,13 @@ class DriftDataHandler:
 
         cache_key = f"{ticker}_{duration}_{time_frame_unit}"
 
+        # Return cached data if still fresh (less than one candle period old)
+        if cache_key in self.data_cache and cache_key in self._cache_timestamps:
+            age_seconds = (datetime.now(TIMEZONE) - self._cache_timestamps[cache_key]).total_seconds()
+            if age_seconds < minutes_per_bar * 60:
+                logger.debug(f"📦 Using cached data for {ticker} (age: {age_seconds/60:.0f}m < {minutes_per_bar}m)")
+                return self.data_cache[cache_key]
+
         # --- 1. Primary: Fetch from CoinGecko API ---
         df = None
         try:
@@ -412,6 +424,7 @@ class DriftDataHandler:
         df = indicator_calc.add_indicators(df)
 
         self.data_cache[cache_key] = df
+        self._cache_timestamps[cache_key] = datetime.now(TIMEZONE)
         logger.info(f"📊 Returning {len(df)} bars for {ticker} ({timeframe_label})")
         return df
 

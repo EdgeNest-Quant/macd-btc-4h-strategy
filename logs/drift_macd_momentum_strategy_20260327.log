@@ -4480,3 +4480,150 @@
 2026-03-28 04:07:31 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
 2026-03-28 04:07:31 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
 2026-03-28 04:07:31 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:08:31 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:08:31 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:08:31 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:08:31 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66141.95 | ATR: $961.09 | Buy: False | Sell: False | Strength: 20.9592
+2026-03-28 04:08:31 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:08:31 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:08:31 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:09:31 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:09:31 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:09:31 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:09:31 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66138.26 | ATR: $961.09 | Buy: False | Sell: False | Strength: 20.8314
+2026-03-28 04:09:31 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:09:31 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:09:31 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:10:31 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:10:32 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:10:32 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:10:32 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66139.46 | ATR: $961.09 | Buy: False | Sell: False | Strength: 20.8730
+2026-03-28 04:10:32 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:10:32 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:10:32 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:11:31 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:11:31 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:11:31 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:11:31 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66127.27 | ATR: $961.31 | Buy: False | Sell: False | Strength: 20.4508
+2026-03-28 04:11:31 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:11:31 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:11:31 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:12:32 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:12:32 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:12:32 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:12:32 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66118.42 | ATR: $962.54 | Buy: False | Sell: False | Strength: 20.1443
+2026-03-28 04:12:32 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:12:33 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:12:33 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:13:33 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:13:33 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:13:33 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:13:33 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66134.97 | ATR: $962.54 | Buy: False | Sell: False | Strength: 20.7175
+2026-03-28 04:13:33 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:13:33 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:13:33 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:14:32 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:14:32 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:14:33 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:14:33 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66130.14 | ATR: $962.54 | Buy: False | Sell: False | Strength: 20.5502
+2026-03-28 04:14:33 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:14:33 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:14:33 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:15:34 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:15:34 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:15:34 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:15:34 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66127.01 | ATR: $962.54 | Buy: False | Sell: False | Strength: 20.4418
+2026-03-28 04:15:34 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:15:34 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:15:34 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:16:34 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:16:34 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:16:34 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:16:34 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66138.82 | ATR: $962.54 | Buy: False | Sell: False | Strength: 20.8508
+2026-03-28 04:16:34 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:16:34 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:16:34 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:17:34 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:17:34 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:17:34 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:17:34 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66200.89 | ATR: $962.54 | Buy: False | Sell: False | Strength: 23.0005
+2026-03-28 04:17:34 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:17:34 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:17:34 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:18:33 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:18:33 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:18:33 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:18:34 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66276.03 | ATR: $965.12 | Buy: False | Sell: False | Strength: 25.6027
+2026-03-28 04:18:34 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:18:34 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:18:34 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:19:34 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:19:34 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:19:34 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:19:34 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66256.63 | ATR: $965.12 | Buy: False | Sell: False | Strength: 24.9308
+2026-03-28 04:19:34 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:19:34 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:19:34 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:20:35 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:20:35 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:20:35 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:20:35 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66262.11 | ATR: $965.12 | Buy: False | Sell: False | Strength: 25.1206
+2026-03-28 04:20:35 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:20:35 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:20:35 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:21:34 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:21:34 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:21:34 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:21:34 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66269.43 | ATR: $965.12 | Buy: False | Sell: False | Strength: 25.3741
+2026-03-28 04:21:34 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:21:34 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:21:34 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:22:35 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:22:35 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:22:35 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:22:35 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66285.44 | ATR: $966.37 | Buy: False | Sell: False | Strength: 25.9286
+2026-03-28 04:22:35 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:22:35 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:22:35 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:23:35 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:23:35 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:23:35 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:23:35 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66269.76 | ATR: $966.45 | Buy: False | Sell: False | Strength: 25.3856
+2026-03-28 04:23:35 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:23:35 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:23:35 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:24:36 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:24:36 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:24:36 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:24:36 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66285.66 | ATR: $966.45 | Buy: False | Sell: False | Strength: 25.9362
+2026-03-28 04:24:36 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:24:36 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:24:36 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:25:36 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:25:36 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:25:36 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:25:36 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66253.57 | ATR: $966.45 | Buy: False | Sell: False | Strength: 24.8249
+2026-03-28 04:25:36 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:25:36 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:25:36 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:26:37 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:26:37 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:26:37 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:26:37 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66261.47 | ATR: $966.45 | Buy: False | Sell: False | Strength: 25.0985
+2026-03-28 04:26:37 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:26:37 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:26:37 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:27:38 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:27:38 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:27:38 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:27:38 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66246.60 | ATR: $966.45 | Buy: False | Sell: False | Strength: 24.5835
+2026-03-28 04:27:38 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:27:38 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:27:38 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
+2026-03-28 04:28:39 UTC -     INFO - drift_macd_momentum_strategy - 🌐 Fetched 186 bars from Binance for BTC-PERP (4h)
+2026-03-28 04:28:39 UTC -     INFO - drift_macd_momentum_strategy - 💾 Saved 186 bars to BTC-PERP_4h.csv
+2026-03-28 04:28:39 UTC -     INFO - drift_macd_momentum_strategy - 📊 Returning 186 bars for BTC-PERP (4h)
+2026-03-28 04:28:39 UTC -     INFO - drift_macd_momentum_strategy - 📈 BTC-PERP @ $66261.05 | ATR: $966.45 | Buy: False | Sell: False | Strength: 25.0839
+2026-03-28 04:28:39 UTC -     INFO - drift_macd_momentum_strategy - 🔹 PERP positions: 0 | SPOT positions: 1
+2026-03-28 04:28:39 UTC - CRITICAL - drift_macd_momentum_strategy - 📋 DECISION: ⏸️ HOLD - No qualifying signals or waiting for opportunity
+2026-03-28 04:28:39 UTC -     INFO - drift_macd_momentum_strategy - 🎯 ACCOUNT CLEAR! Bot can execute trades based on signals
