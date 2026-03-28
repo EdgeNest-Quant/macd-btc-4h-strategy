@@ -519,6 +519,14 @@ class DriftMACDStrategy:
             price_above_ema = current_price > current_ema
             price_below_ema = current_price < current_ema
             
+            # Log signal diagnostics so we can see WHY there's no signal
+            logger.info(f"🔍 MACD: {current_macd:.2f} | Signal: {current_signal:.2f} | Hist: {current_histogram:.2f} | "
+                       f"Prev MACD: {prev_macd:.2f} | Prev Signal: {prev_signal:.2f}")
+            logger.info(f"🔍 EMA({self.ema_filter}): ${current_ema:.2f} | Price: ${current_price:.2f} | "
+                       f"Price vs EMA: {'ABOVE ✅' if price_above_ema else 'BELOW ❌'} (gap: ${current_price - current_ema:.2f})")
+            logger.info(f"🔍 Bullish cross: {macd_bullish_cross} | Bearish cross: {macd_bearish_cross} | "
+                       f"Strength ({abs(current_histogram):.4f}) > {self.min_signal_strength}: {abs(current_histogram) > self.min_signal_strength}")
+            
             # Generate signals with filters
             if macd_bullish_cross and price_above_ema and abs(current_histogram) > self.min_signal_strength:
                 buy_signal = True
