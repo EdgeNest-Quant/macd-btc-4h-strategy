@@ -23,14 +23,14 @@ except ImportError as e:
     logger.error("Please install requirements: pip install -r requirements.txt")
     raise
 
-# Map of symbol names to Binance futures symbols
-_BINANCE_SYMBOL_MAP = {
-    "BTC-PERP": "BTCUSDT",
-    "ETH-PERP": "ETHUSDT",
-    "SOL-PERP": "SOLUSDT",
+# Map of symbol names to CoinGecko coin IDs
+_COINGECKO_ID_MAP = {
+    "BTC-PERP": "bitcoin",
+    "ETH-PERP": "ethereum",
+    "SOL-PERP": "solana",
 }
 
-# Map timeframe strings to Binance interval codes and minutes per bar
+# Map timeframe strings to (label, minutes_per_bar)
 _TIMEFRAME_MAP = {
     "1m":  ("1m", 1),
     "5m":  ("5m", 5),
@@ -61,7 +61,7 @@ class DriftDataHandler:
         """Initialize Drift client connection with RPC fallback logic.
         
         Only needed for oracle price lookups (get_current_price).
-        Historical OHLCV data uses Binance + local CSV and does NOT require this.
+        Historical OHLCV data uses CoinGecko + local CSV and does NOT require this.
         """
         if self._initialized:
             return
@@ -252,7 +252,7 @@ class DriftDataHandler:
             return df
     
     def _resolve_timeframe(self, time_frame_unit: str):
-        """Resolve a timeframe string to (binance_interval, minutes_per_bar)."""
+        """Resolve a timeframe string to (label, minutes_per_bar)."""
         key = time_frame_unit.lower().strip()
         if key in _TIMEFRAME_MAP:
             return _TIMEFRAME_MAP[key]
@@ -300,67 +300,56 @@ class DriftDataHandler:
         except Exception as e:
             logger.warning(f"Failed to save CSV: {e}")
 
-    async def _fetch_from_binance(self, ticker: str, binance_interval: str,
-                                   bars_needed: int, end_time: Optional[datetime] = None) -> Optional[pd.DataFrame]:
+    async def _fetch_from_coingecko(self, ticker: str, days: int) -> Optional[pd.DataFrame]:
         """
-        Fetch OHLCV klines from Binance public API (no key required).
+        Fetch OHLC data from CoinGecko free API.
         Returns a DataFrame indexed by UTC timestamp with columns: open, high, low, close, volume.
+
+        CoinGecko /coins/{id}/ohlc returns:
+          - 4h candles when days = 3–30
+          - daily candles when days > 30
+        So we clamp days to 30 max for 4h resolution.
         """
         import httpx
 
-        binance_symbol = _BINANCE_SYMBOL_MAP.get(ticker)
-        if binance_symbol is None:
-            logger.warning(f"No Binance mapping for {ticker}, cannot fetch live data")
+        coin_id = _COINGECKO_ID_MAP.get(ticker)
+        if coin_id is None:
+            logger.warning(f"No CoinGecko mapping for {ticker}, cannot fetch live data")
             return None
 
-        url = "https://api.binance.com/api/v3/klines"
-        all_rows = []
-        remaining = bars_needed
-        end_ms = int((end_time or datetime.utcnow()).timestamp() * 1000)
+        # Clamp to 30 days to get 4h candles (~180 bars)
+        days_param = min(max(days, 1), 30)
+        url = f"https://api.coingecko.com/api/v3/coins/{coin_id}/ohlc"
+        params = {"vs_currency": "usd", "days": str(days_param)}
 
-        async with httpx.AsyncClient(timeout=httpx.Timeout(15.0)) as client:
-            while remaining > 0:
-                limit = min(remaining, 1000)  # Binance max 1000 per request
-                params = {
-                    "symbol": binance_symbol,
-                    "interval": binance_interval,
-                    "limit": limit,
-                    "endTime": end_ms,
-                }
-                try:
-                    resp = await client.get(url, params=params)
-                    resp.raise_for_status()
-                    klines = resp.json()
-                except Exception as e:
-                    logger.warning(f"Binance API request failed: {e}")
-                    break
-
-                if not klines:
-                    break
-
-                for k in klines:
-                    all_rows.append({
-                        "timestamp": pd.Timestamp(k[0], unit="ms", tz="UTC"),
-                        "open": float(k[1]),
-                        "high": float(k[2]),
-                        "low": float(k[3]),
-                        "close": float(k[4]),
-                        "volume": float(k[5]),
-                    })
-
-                remaining -= len(klines)
-                # Move window backwards for next batch
-                end_ms = int(klines[0][0]) - 1
-                if len(klines) < limit:
-                    break  # no more historical data available
-
-        if not all_rows:
+        try:
+            async with httpx.AsyncClient(timeout=httpx.Timeout(20.0)) as client:
+                resp = await client.get(url, params=params)
+                resp.raise_for_status()
+                data = resp.json()
+        except Exception as e:
+            logger.warning(f"CoinGecko API request failed: {e}")
             return None
 
-        df = pd.DataFrame(all_rows)
+        if not data:
+            return None
+
+        rows = []
+        for candle in data:
+            # Each candle: [timestamp_ms, open, high, low, close]
+            rows.append({
+                "timestamp": pd.Timestamp(candle[0], unit="ms", tz="UTC"),
+                "open": float(candle[1]),
+                "high": float(candle[2]),
+                "low": float(candle[3]),
+                "close": float(candle[4]),
+                "volume": 0.0,  # CoinGecko OHLC endpoint does not provide volume
+            })
+
+        df = pd.DataFrame(rows)
         df = df.set_index("timestamp").sort_index()
         df = df[~df.index.duplicated(keep="last")]
-        logger.info(f"🌐 Fetched {len(df)} bars from Binance for {ticker} ({binance_interval})")
+        logger.info(f"🌐 Fetched {len(df)} bars from CoinGecko for {ticker} (days={days_param})")
         return df
 
     async def get_historical_crypto_data(self, ticker: str, duration: int, time_frame_unit: str) -> pd.DataFrame:
@@ -368,8 +357,8 @@ class DriftDataHandler:
         Get historical OHLCV data for a cryptocurrency.
 
         Data source priority:
-          1. Local CSV cache (data/<SYMBOL>_<timeframe>.csv)
-          2. Binance public API (merged with local data and saved)
+          1. CoinGecko free API (4h candles for up to 30 days)
+          2. Local CSV cache (data/<SYMBOL>_<timeframe>.csv)
           3. Synthetic random data (last resort)
 
         Args:
@@ -380,25 +369,24 @@ class DriftDataHandler:
         Returns:
             DataFrame with OHLCV data and technical indicators
         """
-        binance_interval, minutes_per_bar = self._resolve_timeframe(time_frame_unit)
-        timeframe_label = binance_interval  # e.g. "4h", "1h"
+        timeframe_label, minutes_per_bar = self._resolve_timeframe(time_frame_unit)
         bars_needed = max(1, (duration * 24 * 60) // minutes_per_bar)
 
         cache_key = f"{ticker}_{duration}_{time_frame_unit}"
 
-        # --- 1. Primary: Fetch from Binance API ---
+        # --- 1. Primary: Fetch from CoinGecko API ---
         df = None
         try:
-            df = await self._fetch_from_binance(ticker, binance_interval, bars_needed)
+            df = await self._fetch_from_coingecko(ticker, duration)
             if df is not None and not df.empty:
                 # Save to CSV as cache for future cold starts
                 self._save_to_csv(df, ticker, timeframe_label)
         except Exception as e:
-            logger.warning(f"Could not fetch from Binance: {e}")
+            logger.warning(f"Could not fetch from CoinGecko: {e}")
 
-        # --- 2. Fallback: local CSV cache (only if Binance failed) ---
+        # --- 2. Fallback: local CSV cache (only if CoinGecko failed) ---
         if df is None or df.empty:
-            logger.info("Binance unavailable, falling back to local CSV cache")
+            logger.info("CoinGecko unavailable, falling back to local CSV cache")
             df = self._load_local_csv(ticker, timeframe_label)
 
         # --- 3. Last resort: synthetic data ---
